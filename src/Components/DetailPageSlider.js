@@ -23,7 +23,7 @@ const DetailPageSlider = (props) => {
     ];
 
     return (
-        <Carousel animation="slide">
+        <Carousel animation="slide" navButtonsAlwaysVisible="true">
             {items.map((item, i) => (
                 <Item key={i} item={item} />
             ))}
