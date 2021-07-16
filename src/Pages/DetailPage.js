@@ -3,21 +3,21 @@ import React from "react";
 import Header from "../Components/Header";
 import MainMovieList from "../Components/MainMovieList";
 import MainContentLayout from "../Layouts/Main/MainContentLayout";
-import MainHeaderLayout from "../Layouts/Main/MainHeaderLayout";
+import DetailHeaderLayout from "../Layouts/Detail/DetailHeaderLayout";
 import MainPageLayout from "../Layouts/Main/MainPageLayout";
-import MainSubSectionLayout from "../Layouts/Main/MainSubSectionLayout";
-import MainSubSection from "../Components/MainSubSection";
+import DetailSubSectionLayout from "../Layouts/Detail/DetailSubSectionLayout";
+import DetailSubSection from "../Components/DetailSubSection";
 
 const DetailPage = (props) => {
     return (
         <React.Fragment>
             <MainPageLayout>
-                <MainHeaderLayout>
-                    <Header />
-                </MainHeaderLayout>
-                <MainSubSectionLayout>
-                    <MainSubSection />
-                </MainSubSectionLayout>
+                <DetailHeaderLayout>
+                    <Header page={"detail"} />
+                </DetailHeaderLayout>
+                <DetailSubSectionLayout>
+                    <DetailSubSection />
+                </DetailSubSectionLayout>
                 <MainContentLayout>
                     <MainMovieList />
                     <div style={{ height: "400px", backgroundColor: "blue" }}>
