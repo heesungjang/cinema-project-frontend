@@ -35,13 +35,13 @@ const DetailCarousel = (props) => {
         },
     ];
 
-    return (
-        <Carousel animation="slide">
-            {items.map((item, i) => (
-                <Item key={i} item={item} />
-            ))}
-        </Carousel>
-    );
+  return (
+    <Carousel animation="slide" navButtonsAlwaysVisible="true">
+      {items.map((item, i) => (
+        <Item key={i} item={item} />
+      ))}
+    </Carousel>
+  );
 };
 
 const Item = (props) => {
