@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { makeStyles } from "@material-ui/styles";
 import { Grid, Button } from "@material-ui/core";
-import { TrainOutlined } from "@material-ui/icons";
+import DetailInfoContent from "./DetailInfoContent";
 
 const useStyles = makeStyles({
     in_active_button: {
@@ -35,42 +35,51 @@ const DetailInfo = (props) => {
         useState(false);
 
     return (
-        <Grid xs={12} className={classes.MainContainer}>
-            <Grid xs={6}>
-                <Button
-                    className={
-                        is_info_button_active
-                            ? classes.active_button
-                            : classes.in_active_button
-                    }
-                    variant="outlined"
-                    fullWidth
-                    onClick={() => {
-                        set_is_info_button_active(true);
-                        set_is_comment_button_active(false);
-                    }}
-                >
-                    영화정보
-                </Button>
+        <React.Fragment>
+            <Grid xs={12} className={classes.MainContainer}>
+                <Grid xs={6}>
+                    <Button
+                        className={
+                            is_info_button_active
+                                ? classes.active_button
+                                : classes.in_active_button
+                        }
+                        variant="outlined"
+                        fullWidth
+                        onClick={() => {
+                            set_is_info_button_active(true);
+                            set_is_comment_button_active(false);
+                        }}
+                    >
+                        영화정보
+                    </Button>
+                </Grid>
+                <Grid xs={6}>
+                    <Button
+                        className={
+                            is_comment_button_active
+                                ? classes.active_button
+                                : classes.in_active_button
+                        }
+                        variant="outlined"
+                        fullWidth
+                        onClick={() => {
+                            set_is_info_button_active(false);
+                            set_is_comment_button_active(true);
+                        }}
+                    >
+                        평점 및 관람편 (98)
+                    </Button>
+                </Grid>
             </Grid>
-            <Grid xs={6}>
-                <Button
-                    className={
-                        is_comment_button_active
-                            ? classes.active_button
-                            : classes.in_active_button
-                    }
-                    variant="outlined"
-                    fullWidth
-                    onClick={() => {
-                        set_is_info_button_active(false);
-                        set_is_comment_button_active(true);
-                    }}
-                >
-                    평점 및 관람편 (98)
-                </Button>
+            <Grid xs={12}>
+                {is_info_button_active ? (
+                    <DetailInfoContent />
+                ) : (
+                    <React.Fragment></React.Fragment>
+                )}
             </Grid>
-        </Grid>
+        </React.Fragment>
     );
 };
 
