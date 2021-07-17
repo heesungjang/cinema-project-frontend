@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import { Grid, Button } from "@material-ui/core";
 import DetailInfoContent from "./DetailInfoContent";
+import DetailTrailer from "../Elements/DetailTrailer";
 
 const useStyles = makeStyles({
     in_active_button: {
@@ -28,9 +29,7 @@ const useStyles = makeStyles({
 
 const DetailInfo = (props) => {
     const classes = useStyles();
-
     const [is_info_button_active, set_is_info_button_active] = useState(true);
-
     const [is_comment_button_active, set_is_comment_button_active] =
         useState(false);
 
@@ -74,7 +73,10 @@ const DetailInfo = (props) => {
             </Grid>
             <Grid xs={12}>
                 {is_info_button_active ? (
-                    <DetailInfoContent />
+                    <>
+                        <DetailInfoContent />
+                        <DetailTrailer />
+                    </>
                 ) : (
                     <React.Fragment></React.Fragment>
                 )}
