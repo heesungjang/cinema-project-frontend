@@ -6,6 +6,9 @@ import logo from "../images/logo.png";
 import facebook from "../images/gnb_facebook_wht.png";
 import youtube from "../images/gnb_youtube_wht.png";
 import follow from "../images/gnb_follow_wht.png";
+import signup from "../images/nav_side_my_wht.png";
+import reserve from "../images/nav_side_reserve_wht.png";
+import allMenu from "../images/nav_side_all_wht.png";
 
 const Header = (props) => {
   return (
@@ -70,8 +73,43 @@ const Header = (props) => {
         style={{ margin: "10px 0", backgroundColor: "#fff" }}
       />
 
-      <Grid xs={12} style={{ display: "flex", justifyContent: "center" }}>
+      <Grid
+        xs={12}
+        style={{ display: "flex", justifyContent: "space-between" }}
+      >
+        <Grid xs={4} />
         <HeaderLinks />
+        <Grid
+          xs={4}
+          style={{
+            display: "flex",
+            color: "#fff",
+            justifyContent: "flex-end",
+            alignItems: "center",
+          }}
+        >
+          <Typography>
+            <span>
+              <img src={signup} alt="" />
+            </span>
+            <span style={{ margin: "0px 0px 0px 5px", fontSize: "12px" }}>
+              회원가입
+            </span>
+          </Typography>
+          <Typography style={{ margin: "0 15px" }}>
+            <span>
+              <img src={reserve} alt="" />
+            </span>
+            <span style={{ margin: "0px 0px 0px 5px", fontSize: "12px" }}>
+              바로예매
+            </span>
+          </Typography>
+          <Typography>
+            <span>
+              <img src={allMenu} alt="" />
+            </span>
+          </Typography>
+        </Grid>
       </Grid>
     </Container>
   );
