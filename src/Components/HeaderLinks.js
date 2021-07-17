@@ -5,38 +5,48 @@ import { Grid, Typography, Divider } from "@material-ui/core";
 const HeaderLinks = (props) => {
   return (
     <Grid
-      xs={6}
+      xs={4}
       style={{
         display: "flex",
         justifyContent: "space-between",
         color: "#fff",
       }}
     >
-      <Typography>예매</Typography>
+      <Typography style={{ fontSize: "14px", fontWeight: "bold" }}>
+        예매
+      </Typography>
       <Divider
         orientation="vertical"
         flexItem
-        style={{ backgroundColor: "#fff" }}
+        style={{ backgroundColor: "#fff", height: "9px", margin: "auto 10px" }}
       />
-      <Typography>영화</Typography>
+      <Typography style={{ fontSize: "14px", fontWeight: "bold" }}>
+        영화
+      </Typography>
       <Divider
         orientation="vertical"
         flexItem
-        style={{ backgroundColor: "#fff" }}
+        style={{ backgroundColor: "#fff", height: "9px", margin: "auto 10px" }}
       />
-      <Typography>영화관</Typography>
+      <Typography style={{ fontSize: "14px", fontWeight: "bold" }}>
+        영화관
+      </Typography>
       <Divider
         orientation="vertical"
         flexItem
-        style={{ backgroundColor: "#fff" }}
+        style={{ backgroundColor: "#fff", height: "9px", margin: "auto 10px" }}
       />
-      <Typography>이벤트</Typography>
+      <Typography style={{ fontSize: "14px", fontWeight: "bold" }}>
+        이벤트
+      </Typography>
       <Divider
         orientation="vertical"
         flexItem
-        style={{ backgroundColor: "#fff" }}
+        style={{ backgroundColor: "#fff", height: "9px", margin: "auto 10px" }}
       />
-      <Typography>스토어</Typography>
+      <Typography style={{ fontSize: "14px", fontWeight: "bold" }}>
+        스토어
+      </Typography>
     </Grid>
   );
 };
