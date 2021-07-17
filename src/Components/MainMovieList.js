@@ -108,6 +108,7 @@ function Item(props) {
       <Card className={classes.root} style={{ backgroundColor: "black" }}>
         <CardContent style={{ padding: 0 }}>
           {/* 영화 포스터 */}
+          <Gradation />
           <CardMedia className={classes.media} image={props.item.url} />
           {/* 영화 순위 */}
           <span
@@ -187,7 +188,21 @@ function Item(props) {
 const Container = styled.div`
   width: 980px;
   height: 355px;
-  margin: 0 auto;
+  margin: 40px auto 0px;
+`;
+
+const Gradation = styled.div`
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  top: 234px;
+  left: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.1) 90%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
 `;
 
 export default MainMovieList;
