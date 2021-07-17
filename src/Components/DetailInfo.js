@@ -2,8 +2,9 @@ import React, { useState } from "react";
 
 import { makeStyles } from "@material-ui/styles";
 import { Grid, Button } from "@material-ui/core";
-import DetailInfoContent from "./DetailInfoContent";
 import DetailTrailer from "../Elements/DetailTrailer";
+import DetailContentTop from "../Elements/DetailContentTop";
+import DetailContentBottom from "../Elements/DetailContentBottom";
 
 const useStyles = makeStyles({
     in_active_button: {
@@ -74,8 +75,9 @@ const DetailInfo = (props) => {
             <Grid xs={12}>
                 {is_info_button_active ? (
                     <>
-                        <DetailInfoContent />
+                        <DetailContentTop />
                         <DetailTrailer />
+                        <DetailContentBottom />
                     </>
                 ) : (
                     <React.Fragment></React.Fragment>
