@@ -105,82 +105,97 @@ function Item(props) {
 
   return (
     <>
-      <Card className={classes.root} style={{ backgroundColor: "black" }}>
-        <CardContent style={{ padding: 0 }}>
-          {/* 영화 포스터 */}
-          <Gradation />
-          <CardMedia className={classes.media} image={props.item.url} />
-          {/* 영화 순위 */}
-          <span
-            style={{
-              position: "absolute",
-              bottom: "56px",
-              color: "white",
-              fontWeight: "bold",
-              fontSize: "26px",
-              fontStyle: "italic",
-              padding: "0px 0px 0px 10px",
-            }}
-          >
-            {props.item.rank}
-          </span>
-          {/* 영화 정보 (영화 이름이 없으면 출력X) */}
-          {props.item.name && (
-            <CardContent style={{ padding: "0px" }}>
-              <Typography
-                variant="body2"
-                color="textSecondary"
-                component="p"
+      <Poster>
+        <Card
+          id="card"
+          className={classes.root}
+          style={{ backgroundColor: "black" }}
+        >
+          <CardContent id="card_content" style={{ padding: 0 }}>
+            {/* 영화 포스터 */}
+            <CardMedia
+              id="card_media"
+              className={classes.media}
+              image={props.item.url}
+            >
+              <span
                 style={{
-                  height: "36px",
-                  margin: "20px 0px 0px 0px",
-                  textAlign: "center",
+                  position: "absolute",
+                  bottom: "56px",
                   color: "white",
-                  fontSize: "13px",
+                  fontWeight: "bold",
+                  fontSize: "26px",
+                  fontStyle: "italic",
+                  padding: "0px 0px 0px 10px",
+                  zIndex: "99",
                 }}
               >
-                {props.item.name}
-                <div
+                {props.item.rank}
+              </span>
+            </CardMedia>
+            <Gradation />
+            {/* 영화 순위 */}
+
+            {/* 영화 정보 (영화 이름이 없으면 출력X) */}
+            {props.item.name && (
+              <CardContent style={{ padding: "0px" }}>
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
                   style={{
+                    height: "36px",
+                    margin: "20px 0px 0px 0px",
+                    textAlign: "center",
                     color: "white",
-                    fontSize: "11px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
+                    fontSize: "13px",
                   }}
                 >
-                  <span>예매율 {props.item.rate}</span>
-                  <Divider
-                    orientation="vertical"
-                    flexItem
+                  {props.item.name}
+                  <div
                     style={{
-                      backgroundColor: "#fff",
-                      height: "10px",
-                      margin: "auto 10px",
+                      color: "white",
+                      fontSize: "11px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
                     }}
-                  />
-                  <span style={{ display: "flex", alignItems: "center" }}>
-                    <img src={star} alt="" />
-                    <span style={{ marginLeft: "3px" }}>{props.item.star}</span>
-                  </span>
-                  <Divider
-                    orientation="vertical"
-                    flexItem
-                    style={{
-                      backgroundColor: "#fff",
-                      height: "10px",
-                      margin: "auto 10px",
-                    }}
-                  />
-                  <span>
-                    <img src={heartOff} alt="" />
-                  </span>
-                </div>
-              </Typography>
-            </CardContent>
-          )}
-        </CardContent>
-      </Card>
+                  >
+                    <span>예매율 {props.item.rate}</span>
+                    <Divider
+                      orientation="vertical"
+                      flexItem
+                      style={{
+                        backgroundColor: "#fff",
+                        height: "10px",
+                        margin: "auto 10px",
+                      }}
+                    />
+                    <span style={{ display: "flex", alignItems: "center" }}>
+                      <img src={star} alt="" />
+                      <span style={{ marginLeft: "3px" }}>
+                        {props.item.star}
+                      </span>
+                    </span>
+                    <Divider
+                      orientation="vertical"
+                      flexItem
+                      style={{
+                        backgroundColor: "#fff",
+                        height: "10px",
+                        margin: "auto 10px",
+                      }}
+                    />
+                    <span>
+                      <img src={heartOff} alt="" />
+                    </span>
+                  </div>
+                </Typography>
+              </CardContent>
+            )}
+          </CardContent>
+        </Card>
+      </Poster>
     </>
   );
 }
@@ -189,6 +204,12 @@ const Container = styled.div`
   width: 980px;
   height: 355px;
   margin: 40px auto 0px;
+`;
+
+const Poster = styled.div`
+  &:hover > #card > #card_content > #card_media {
+    opacity: 0.3;
+  }
 `;
 
 const Gradation = styled.div`
