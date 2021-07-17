@@ -119,6 +119,11 @@ function Item(props) {
               image={props.item.url}
               style={{ position: "relative" }}
             >
+              <HoverMenu id="hover_menu">
+                <Button id="menu_button">예매하기</Button>
+                <Button id="menu_button">상세보기</Button>
+              </HoverMenu>
+              {/* 영화 순위 */}
               <span
                 style={{
                   position: "absolute",
@@ -128,15 +133,13 @@ function Item(props) {
                   fontSize: "26px",
                   fontStyle: "italic",
                   padding: "0px 0px 0px 10px",
-                  zIndex: "99",
+                  zIndex: "98",
                 }}
               >
                 {props.item.rank}
               </span>
               <Gradation />
             </CardMedia>
-            {/* <Gradation /> */}
-            {/* 영화 순위 */}
 
             {/* 영화 정보 (영화 이름이 없으면 출력X) */}
             {props.item.name && (
@@ -209,8 +212,8 @@ const Container = styled.div`
 `;
 
 const Poster = styled.div`
-  &:hover > #card > #card_content > #card_media {
-    opacity: 0.3;
+  &:hover > #card > #card_content > #card_media > #hover_menu {
+    display: flex;
   }
 `;
 
@@ -226,6 +229,33 @@ const Gradation = styled.div`
     rgba(0, 0, 0, 0.3) 50%,
     rgba(0, 0, 0, 0.7) 100%
   );
+`;
+
+const HoverMenu = styled.div`
+  width: 184px;
+  height: 262px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* display: flex; */
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+`;
+
+const Button = styled.button`
+  width: 145px;
+  margin: 6px 0px;
+  border: 2px solid white;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  padding: 3px 0px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default MainMovieList;
