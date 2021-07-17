@@ -9,7 +9,6 @@ const MainSubSection = (props) => {
     <>
       {/* <Paper style={{ borderRadius: "0px", width: "80%" }}> */}
       <DetailCarousel />
-      <MainMovieList />
       {/* </Paper> */}
     </>
   );
