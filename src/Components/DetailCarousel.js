@@ -1,8 +1,10 @@
 import React from "react";
+import styled from "styled-components";
 
 import { makeStyles } from "@material-ui/core";
-import { Paper } from "@material-ui/core";
 import Carousel from "react-material-ui-carousel";
+import { Paper, Button } from "@material-ui/core";
+import { Gradient } from "@material-ui/icons";
 
 const useStyles = makeStyles({
     paper: {
@@ -36,11 +38,15 @@ const DetailCarousel = (props) => {
     ];
 
   return (
-    <Carousel animation="slide" navButtonsAlwaysVisible="true">
-      {items.map((item, i) => (
-        <Item key={i} item={item} />
-      ))}
-    </Carousel>
+    <>
+      <Carousel animation="slide" navButtonsAlwaysVisible="true">
+        {items.map((item, i) => (
+          <Item key={i} item={item} />
+        ))}
+      </Carousel>
+      <Gradation location="top" />
+      <Gradation top="624" />
+    </>
   );
 };
 
@@ -53,5 +59,17 @@ const Item = (props) => {
         </Paper>
     );
 };
+
+const Gradation = styled.div`
+  width: 100%;
+  height: 150px;
+  position: absolute;
+  ${(props) => (props.top ? `top: ${props.top}px;` : "top: 0px;")}
+  left: 0;
+  ${(props) =>
+    props.location === "top"
+      ? "background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 1) 100%);"
+      : "background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 1) 100%);"}
+`;
 
 export default DetailCarousel;
