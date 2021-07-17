@@ -1,13 +1,15 @@
 import React from "react";
 
 import Header from "../Components/Header";
-import MainMovieList from "../Components/MainMovieList";
-import DetailContentLayout from "../Layouts/Detail/DetailContentLayout";
-import DetailHeaderLayout from "../Layouts/Detail/DetailHeaderLayout";
+
 import MainPageLayout from "../Layouts/Main/MainPageLayout";
-import DetailSubSectionLayout from "../Layouts/Detail/DetailSubSectionLayout";
-import DetailSubSection from "../Components/DetailSubSection";
+
+import DetailInfo from "../Components/DetailInfo";
 import DetailContent from "../Components/DetailContent";
+import DetailSubSection from "../Components/DetailSubSection";
+import DetailHeaderLayout from "../Layouts/Detail/DetailHeaderLayout";
+import DetailContentLayout from "../Layouts/Detail/DetailContentLayout";
+import DetailSubSectionLayout from "../Layouts/Detail/DetailSubSectionLayout";
 
 const DetailPage = (props) => {
     return (
@@ -21,6 +23,7 @@ const DetailPage = (props) => {
                 </DetailSubSectionLayout>
                 <DetailContentLayout>
                     <DetailContent />
+                    <DetailInfo />
                 </DetailContentLayout>
             </MainPageLayout>
         </React.Fragment>
