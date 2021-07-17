@@ -9,6 +9,7 @@ const DetailContentLayout = (props) => {
                 width: "90%",
                 display: "flex",
                 margin: "auto",
+                flexDirection: "column",
             }}
         >
             {props.children}
