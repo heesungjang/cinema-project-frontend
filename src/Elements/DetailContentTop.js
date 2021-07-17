@@ -13,7 +13,7 @@ import PermIdentityOutlinedIcon from "@material-ui/icons/PermIdentityOutlined";
 import male from "../images/male-solid.svg";
 import female from "../images/female-solid.svg";
 
-const ContainerT = styled.div`
+const ScrollbarContainer = styled.div`
     overflow: scroll;
     &::-webkit-scrollbar {
         /* 세로 스크롤 넓이 */
@@ -53,11 +53,21 @@ const useStyles = makeStyles({
     },
     preferenceContainer: {
         display: "flex",
+        borderBottom: "1px solid rgba(232, 236, 241, 1)",
     },
-    iconContainer: {},
+    iconContainer: {
+        margin: "0px 10px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+    },
     maleIcon: {
         fontSize: "50px",
         fillColor: "red",
+    },
+    agePreferenceText: {
+        fontSize: "15px",
+        fontWeight: "600",
     },
 });
 
@@ -70,13 +80,13 @@ const DetailContentTop = (props) => {
                     <Typography className={classes.contentTopTitle}>
                         시놉시스
                     </Typography>
-                    <ContainerT>
+                    <ScrollbarContainer>
                         <Grid className={classes.textContent}>
                             {parse(
                                 "<span><b> “제 이름은 고진옥, 제주 해녀입니다” </b><br><br>‘바다에서 숨 오래 참기’로 기네스북에 오른 제주 해녀 진옥(고두심)<br>성질도, 물질도 제주에서 그를 이길 사람이 없다.<br>진옥을 취재하기 위해 서울에서 내려온 다큐멘터리 PD 경훈(지현우)<br>하지만 진옥의 반응은 냉담하다.<br>경훈은 진옥의 마음을 열기 위해 그의 주위를 맴돌기 시작하고,<br>진옥은 바다에 빠진 경훈의 목숨을 구해준 이후<br>자신과 같은 상처를 가졌음을 알고 경훈에게 마음을 연다.<br>제주 그리고 해녀의 삶에 깊숙이 들어가게 된 경훈<br>그런 경훈을 통해 진옥은 생전 처음 느껴보는 감정들을 마주하기 시작하는데…<br><br><b> 당신을 만나고 비로소 알게 된,<br>나의 가장 빛나는 순간 </b></span>"
                             )}
                         </Grid>
-                    </ContainerT>
+                    </ScrollbarContainer>
                 </Grid>
             </Grid>
 
@@ -88,16 +98,25 @@ const DetailContentTop = (props) => {
                     <Grid xs={6}>
                         <Grid>
                             <dl style={{ display: "flex" }}>
-                                <dd>
-                                    <Grid className={classes.iconContainer}>
-                                        <img
-                                            src={male}
-                                            alt=""
-                                            style={{ height: "50px" }}
-                                        />
-                                    </Grid>
-                                    <dt>남성</dt>
-                                </dd>
+                                <Grid className={classes.iconContainer}>
+                                    <img
+                                        src={male}
+                                        alt=""
+                                        style={{
+                                            height: "50px",
+                                        }}
+                                    />
+                                    <Typography>남성</Typography>
+                                    <Typography
+                                        style={{
+                                            fontWeight: "600",
+                                            color: "#8BE2FC",
+                                        }}
+                                    >
+                                        42.9%
+                                    </Typography>
+                                </Grid>
+
                                 <dd>
                                     <Grid className={classes.iconContainer}>
                                         <img
@@ -105,13 +124,71 @@ const DetailContentTop = (props) => {
                                             alt=""
                                             style={{ height: "50px" }}
                                         />
+                                        <Typography>여성</Typography>
+                                        <Typography
+                                            style={{
+                                                fontWeight: "600",
+                                                color: "#FB5B95",
+                                            }}
+                                        >
+                                            42.9%
+                                        </Typography>
                                     </Grid>
-                                    <dt>여성</dt>
                                 </dd>
                             </dl>
                         </Grid>
                     </Grid>
-                    <Grid xs={6}>asd</Grid>
+                    <Grid xs={6}>
+                        <Grid>
+                            <dl style={{ display: "flex" }}>
+                                <Grid className={classes.iconContainer}>
+                                    <Typography>10대</Typography>
+                                    <Typography
+                                        className={classes.agePreferenceText}
+                                    >
+                                        42.9%
+                                    </Typography>
+                                </Grid>
+
+                                <dd>
+                                    <Grid className={classes.iconContainer}>
+                                        <Typography>20대</Typography>
+                                        <Typography
+                                            className={
+                                                classes.agePreferenceText
+                                            }
+                                        >
+                                            42.9%
+                                        </Typography>
+                                    </Grid>
+                                </dd>
+                                <dd>
+                                    <Grid className={classes.iconContainer}>
+                                        <Typography>30대</Typography>
+                                        <Typography
+                                            className={
+                                                classes.agePreferenceText
+                                            }
+                                        >
+                                            42.9%
+                                        </Typography>
+                                    </Grid>
+                                </dd>
+                                <dd>
+                                    <Grid className={classes.iconContainer}>
+                                        <Typography>40대</Typography>
+                                        <Typography
+                                            className={
+                                                classes.agePreferenceText
+                                            }
+                                        >
+                                            42.9%
+                                        </Typography>
+                                    </Grid>
+                                </dd>
+                            </dl>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>
