@@ -12,6 +12,7 @@ import {
 const useStyles = makeStyles({
     titleText: {
         margin: "60px 0",
+        fontWeight: "600",
     },
     avatar: {
         height: "90px",

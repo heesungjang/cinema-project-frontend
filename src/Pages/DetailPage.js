@@ -11,6 +11,7 @@ import DetailHeaderLayout from "../Layouts/Detail/DetailHeaderLayout";
 import DetailContentLayout from "../Layouts/Detail/DetailContentLayout";
 import DetailSubSectionLayout from "../Layouts/Detail/DetailSubSectionLayout";
 import DetailAd from "../Elements/DetailAd";
+import DetailLastAd from "../Elements/DetailLastAd";
 
 const DetailPage = (props) => {
     return (
@@ -27,6 +28,7 @@ const DetailPage = (props) => {
                     <DetailInfo />
                     <DetailAd />
                 </DetailContentLayout>
+                <DetailLastAd />
             </MainPageLayout>
         </React.Fragment>
     );
