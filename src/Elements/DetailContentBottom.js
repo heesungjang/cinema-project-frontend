@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/styles";
 import {
     Grid,
     Typography,
-    List,
     ListItem,
     Avatar,
     Container,
@@ -45,7 +44,7 @@ const DetailContentBottom = (props) => {
                         />
                         <Container>
                             <Typography>케이트 쇼트랜드</Typography>
-                            <Typography>감독</Typography>
+                            <Typography>배우</Typography>
                         </Container>
                     </ListItem>
                     <ListItem>
@@ -55,17 +54,17 @@ const DetailContentBottom = (props) => {
                         />
                         <Container>
                             <Typography>케이트 쇼트랜드</Typography>
-                            <Typography>감독</Typography>
+                            <Typography>배우</Typography>
                         </Container>
                     </ListItem>
                     <ListItem>
                         <Avatar
                             className={classes.avatar}
-                            src="https://caching.lottecinema.co.kr//Media/MovieFile/PersonImg/100000/99765_107_3.jpg"
+                            src="https://caching.lottecinema.co.kr//Media/MovieFile/PersonImg/81000/80678_107_2.jpg"
                         />
                         <Container>
                             <Typography>케이트 쇼트랜드</Typography>
-                            <Typography>감독</Typography>
+                            <Typography>배우</Typography>
                         </Container>
                     </ListItem>
                 </Grid>
