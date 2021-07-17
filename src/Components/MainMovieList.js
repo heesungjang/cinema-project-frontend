@@ -117,11 +117,12 @@ function Item(props) {
               id="card_media"
               className={classes.media}
               image={props.item.url}
+              style={{ position: "relative" }}
             >
               <span
                 style={{
                   position: "absolute",
-                  bottom: "56px",
+                  bottom: "0px",
                   color: "white",
                   fontWeight: "bold",
                   fontSize: "26px",
@@ -132,8 +133,9 @@ function Item(props) {
               >
                 {props.item.rank}
               </span>
+              <Gradation />
             </CardMedia>
-            <Gradation />
+            {/* <Gradation /> */}
             {/* 영화 순위 */}
 
             {/* 영화 정보 (영화 이름이 없으면 출력X) */}
@@ -221,8 +223,8 @@ const Gradation = styled.div`
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.1) 90%,
-    rgba(0, 0, 0, 0.2) 100%
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.7) 100%
   );
 `;
 
