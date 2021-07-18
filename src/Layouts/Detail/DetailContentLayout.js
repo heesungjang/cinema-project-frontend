@@ -1,12 +1,15 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
 
-const MainSubSectionLayout = (props) => {
+const DetailContentLayout = (props) => {
     return (
         <Grid
             xs={12}
             style={{
-                backgroundColor: "black",
+                width: "90%",
+                display: "flex",
+                margin: "auto",
+                flexDirection: "column",
             }}
         >
             {props.children}
@@ -14,4 +17,4 @@ const MainSubSectionLayout = (props) => {
     );
 };
 
-export default MainSubSectionLayout;
+export default DetailContentLayout;

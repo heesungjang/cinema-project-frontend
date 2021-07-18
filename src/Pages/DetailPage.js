@@ -1,32 +1,38 @@
 import React from "react";
 
 import Header from "../Components/Header";
-import MainMovieList from "../Components/MainMovieList";
-import MainContentLayout from "../Layouts/Main/MainContentLayout";
-import MainHeaderLayout from "../Layouts/Main/MainHeaderLayout";
+
 import MainPageLayout from "../Layouts/Main/MainPageLayout";
-import MainSubSectionLayout from "../Layouts/Main/MainSubSectionLayout";
-import MainSubSection from "../Components/MainSubSection";
+
+import DetailInfo from "../Components/DetailInfo";
+import DetailContent from "../Components/DetailContent";
+import DetailSubSection from "../Components/DetailSubSection";
+import DetailHeaderLayout from "../Layouts/Detail/DetailHeaderLayout";
+import DetailContentLayout from "../Layouts/Detail/DetailContentLayout";
+import DetailSubSectionLayout from "../Layouts/Detail/DetailSubSectionLayout";
+import DetailAd from "../Elements/DetailAd";
+import DetailLastAd from "../Elements/DetailLastAd";
+import Footer from "../Components/Footer";
 
 const DetailPage = (props) => {
     return (
         <React.Fragment>
             <MainPageLayout>
-                <MainHeaderLayout>
-                    <Header />
-                </MainHeaderLayout>
-                <MainSubSectionLayout>
-                    <MainSubSection />
-                </MainSubSectionLayout>
-                <MainContentLayout>
-                    <MainMovieList />
-                    <div style={{ height: "400px", backgroundColor: "blue" }}>
-                        여기 이벤트
-                    </div>
-                    <div style={{ height: "150px", backgroundColor: "yellow" }}>
-                        시사회/무대인사
-                    </div>
-                </MainContentLayout>
+                <DetailHeaderLayout>
+                    <Header page={"detail"} />
+                </DetailHeaderLayout>
+                <DetailSubSectionLayout>
+                    <DetailSubSection />
+                </DetailSubSectionLayout>
+                <DetailContentLayout>
+                    <DetailContent />
+                    <DetailInfo />
+                    <DetailAd />
+                </DetailContentLayout>
+                <DetailLastAd />
+                <DetailHeaderLayout>
+                    <Footer />
+                </DetailHeaderLayout>
             </MainPageLayout>
         </React.Fragment>
     );

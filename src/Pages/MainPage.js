@@ -12,7 +12,7 @@ const MainPage = (props) => {
         <React.Fragment>
             <MainPageLayout>
                 <MainHeaderLayout>
-                    <Header />
+                    <Header page={"main"} />
                 </MainHeaderLayout>
                 <MainSubSectionLayout>
                     <MainSubSection />
