@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { makeStyles } from "@material-ui/core";
@@ -6,6 +6,7 @@ import Carousel from "react-material-ui-carousel";
 import { Paper, Button } from "@material-ui/core";
 
 import playBtn from "../images/btn_main_visual_play.png";
+import Modal from "../Components/Modal";
 
 const useStyles = makeStyles({
     paper: {
@@ -60,6 +61,12 @@ const Item = (props) => {
         </Paper>
     );
 };
+
+const A = styled.a`
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 const Gradation = styled.div`
   width: 100%;
