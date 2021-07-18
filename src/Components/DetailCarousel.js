@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Carousel from "react-material-ui-carousel";
 import { Paper, Button } from "@material-ui/core";
-import { Gradient } from "@material-ui/icons";
+
+import playBtn from "../images/btn_main_visual_play.png";
 
 const DetailCarousel = (props) => {
   var items = [
@@ -53,6 +54,11 @@ const Item = (props) => {
         }}
       >
         <img src={props.item.img} alt="" />
+        <img
+          src={playBtn}
+          alt=""
+          style={{ position: "absolute", top: "387px", left: "50%" }}
+        />
         {/* <Button className="CheckButton">Check it out!</Button> */}
       </Paper>
     </>
