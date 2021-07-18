@@ -24,7 +24,6 @@ import youtube_blk from "../images/gnb_youtube_blk.png";
 
 import facebook from "../images/gnb_facebook_wht.png";
 import facebook_blk from "../images/gnb_facebook_blk.png";
-import MainHeaderLayout from "../Layouts/Main/MainHeaderLayout";
 
 const useStyles = makeStyles({
     mainContainer: {
