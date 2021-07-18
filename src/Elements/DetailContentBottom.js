@@ -9,7 +9,7 @@ const useStyles = makeStyles({
         display: "flex",
     },
     titleText: {
-        margin: "60px 0",
+        margin: "60px 0 30px 0",
         fontWeight: "600",
     },
     avatar: {
