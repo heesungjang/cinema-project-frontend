@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { makeStyles } from "@material-ui/styles";
 import { Grid, Button } from "@material-ui/core";
-import DetailTrailer from "../Elements/DetailTrailer";
+import DetailPoster from "../Elements/DetailPoster";
 import DetailContentTop from "../Elements/DetailContentTop";
 import DetailContentBottom from "../Elements/DetailContentBottom";
 
@@ -76,7 +76,7 @@ const DetailInfo = (props) => {
                 {is_info_button_active ? (
                     <>
                         <DetailContentTop />
-                        <DetailTrailer />
+                        <DetailPoster />
                         <DetailContentBottom />
                     </>
                 ) : (
