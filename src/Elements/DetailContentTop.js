@@ -2,16 +2,11 @@ import React from "react";
 import parse from "html-react-parser"; // html --> react 변환
 import styled from "styled-components";
 
-import { makeStyles } from "@material-ui/styles";
-import {
-    Grid,
-    Typography,
-    TextareaAutosize,
-    Container,
-} from "@material-ui/core";
-import PermIdentityOutlinedIcon from "@material-ui/icons/PermIdentityOutlined";
 import male from "../images/male-solid.svg";
 import female from "../images/female-solid.svg";
+
+import { makeStyles } from "@material-ui/styles";
+import { Typography, Grid } from "@material-ui/core";
 
 const ScrollbarContainer = styled.div`
     overflow: scroll;
@@ -69,6 +64,14 @@ const useStyles = makeStyles({
         fontSize: "15px",
         fontWeight: "600",
     },
+    maleColoredText: {
+        fontWeight: "600",
+        color: "#8BE2FC",
+    },
+    femaleColoredText: {
+        fontWeight: "600",
+        color: "#FB5B95",
+    },
 });
 
 const DetailContentTop = (props) => {
@@ -108,10 +111,7 @@ const DetailContentTop = (props) => {
                                     />
                                     <Typography>남성</Typography>
                                     <Typography
-                                        style={{
-                                            fontWeight: "600",
-                                            color: "#8BE2FC",
-                                        }}
+                                        className={classes.maleColoredText}
                                     >
                                         42.9%
                                     </Typography>
@@ -126,10 +126,9 @@ const DetailContentTop = (props) => {
                                         />
                                         <Typography>여성</Typography>
                                         <Typography
-                                            style={{
-                                                fontWeight: "600",
-                                                color: "#FB5B95",
-                                            }}
+                                            className={
+                                                classes.femaleColoredText
+                                            }
                                         >
                                             42.9%
                                         </Typography>
