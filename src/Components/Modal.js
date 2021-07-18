@@ -16,7 +16,7 @@ function Modal(props) {
                 X
               </CloseButton>
             </ModalTop>
-            {props.children}
+            <ModalContents>{props.children}</ModalContents>
           </MovieBox>
         </Container>
       ) : null}
@@ -48,6 +48,12 @@ const MovieBox = styled.div`
 
 const ModalTop = styled.div`
   text-align: right;
+`;
+
+const ModalContents = styled.div`
+  margin: 0 auto;
+  width: 920px;
+  height: 520px;
 `;
 
 const CloseButton = styled.button`
