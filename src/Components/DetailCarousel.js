@@ -4,7 +4,8 @@ import styled from "styled-components";
 import { makeStyles } from "@material-ui/core";
 import Carousel from "react-material-ui-carousel";
 import { Paper, Button } from "@material-ui/core";
-import { Gradient } from "@material-ui/icons";
+
+import playBtn from "../images/btn_main_visual_play.png";
 
 const useStyles = makeStyles({
     paper: {
