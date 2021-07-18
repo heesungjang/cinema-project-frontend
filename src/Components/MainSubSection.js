@@ -1,6 +1,8 @@
 import React from "react";
 import { Paper } from "@material-ui/core";
+
 import DetailCarousel from "./DetailCarousel";
+import MainMovieList from "./MainMovieList";
 
 const MainSubSection = (props) => {
   return (
