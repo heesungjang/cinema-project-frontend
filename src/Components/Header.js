@@ -1,120 +1,182 @@
 import React from "react";
+
+import { makeStyles } from "@material-ui/core";
 import { Grid, Typography, Container, Divider } from "@material-ui/core";
-import HeaderLinks from "./HeaderLinks";
 
 import logo from "../images/logo.png";
-import facebook from "../images/gnb_facebook_wht.png";
-import youtube from "../images/gnb_youtube_wht.png";
-import follow from "../images/gnb_follow_wht.png";
-import signup from "../images/nav_side_my_wht.png";
-import reserve from "../images/nav_side_reserve_wht.png";
-import allMenu from "../images/nav_side_all_wht.png";
 import logo_red from "../images/logo_red.png";
+import HeaderLinks from "./HeaderLinks";
+
+import follow from "../images/gnb_follow_wht.png";
+import follow_blk from "../images/gnb_follow_blk.png";
+
+import signup from "../images/nav_side_my_wht.png";
+import signup_blk from "../images/nav_side_my_blk.png";
+
+import reserve from "../images/nav_side_reserve_wht.png";
+import reserve_blk from "../images/nav_side_reserve_blk.png";
+
+import allMenu from "../images/nav_side_all_wht.png";
+import allMenu_blk from "../images/nav_side_all_blk.png";
+
+import youtube from "../images/gnb_youtube_wht.png";
+import youtube_blk from "../images/gnb_youtube_blk.png";
+
+import facebook from "../images/gnb_facebook_wht.png";
+import facebook_blk from "../images/gnb_facebook_blk.png";
+import MainHeaderLayout from "../Layouts/Main/MainHeaderLayout";
+
+const useStyles = makeStyles({
+    mainContainer: {
+        height: "115px",
+        alignItems: "center",
+    },
+    subContainer: {
+        display: "flex",
+        marginTop: "30px",
+    },
+    headerTopContainer: {
+        display: "flex",
+        alignItems: "center",
+        color: (props) => (props.page === "main" ? "#fff" : "#000"),
+    },
+    headerTopText: {
+        margin: "0px 0px 0px 5px",
+        fontSize: "12px",
+    },
+    subscribeTextContainer: {
+        margin: "0 15px",
+    },
+    logoContainer: {
+        display: "flex",
+        justifyContent: "center",
+    },
+    topRightContainer: {
+        display: "flex",
+        justifyContent: "flex-end",
+        color: "#fff",
+        fontSize: "12px",
+        alignItems: "center",
+    },
+    topRightTexts: {
+        fontSize: "12px",
+        margin: "0 0 0 15px",
+        color: (props) => (props.page === "main" ? "#fff" : "#000"),
+    },
+    horizontalDivider: {
+        margin: "10px 0",
+        backgroundColor: (props) => (props.page === "main" ? "#fff" : "#000"),
+    },
+    signupButtonContainer: {
+        display: "flex",
+        color: "#fff",
+        justifyContent: "flex-end",
+        alignItems: "center",
+    },
+    topBottomTexts: {
+        margin: "0px 0px 0px 5px",
+        fontSize: "12px",
+        color: (props) => (props.page === "main" ? "#fff" : "#000"),
+    },
+});
 
 const Header = (props) => {
-	const { page } = props
-  return (
-    <Container style={{ height: "115px", alignItems: "center" }}>
-      <Grid xs={12} style={{ display: "flex", marginTop: "30px" }}>
-        <Grid
-          xs={4}
-          style={{ display: "flex", color: page === 'main' ? "#fff" : '#000', alignItems: "center" }}
-        >
-          <Typography>
-            <span>
-              <img src={facebook} alt="" />
-            </span>
-            <span style={{ margin: "0px 0px 0px 5px", fontSize: "12px" }}>
-              좋아요
-            </span>
-          </Typography>
-          <Typography style={{ margin: "0 15px" }}>
-            <span>
-              <img src={youtube} alt="" />
-            </span>
-            <span style={{ margin: "0px 0px 0px 5px", fontSize: "12px" }}>
-              구독하기
-            </span>
-          </Typography>
-          <Typography>
-            <span>
-              <img src={follow} alt="" />
-            </span>
-            <span style={{ margin: "0px 0px 0px 5px", fontSize: "12px" }}>
-              팔로우
-            </span>
-          </Typography>
-        </Grid>
+    const { page } = props;
+    const classes = useStyles(props);
+    return (
+        <Container className={classes.mainContainer}>
+            <Grid xs={12} className={classes.subContainer}>
+                <Grid xs={4} className={classes.headerTopContainer}>
+                    <Typography>
+                        <span>
+                            <img
+                                src={page === "main" ? facebook : facebook_blk}
+                                alt=""
+                            />
+                        </span>
+                        <span className={classes.headerTopText}>좋아요</span>
+                    </Typography>
+                    <Typography className={classes.subscribeTextContainer}>
+                        <span>
+                            <img
+                                src={page === "main" ? youtube : youtube_blk}
+                                alt=""
+                            />
+                        </span>
+                        <span className={classes.headerTopText}>구독하기</span>
+                    </Typography>
+                    <Typography>
+                        <span>
+                            <img
+                                src={page === "main" ? follow : follow_blk}
+                                alt=""
+                            />
+                        </span>
+                        <span className={classes.headerTopText}>팔로우</span>
+                    </Typography>
+                </Grid>
 
-        <Grid xs={4} style={{ display: "flex", justifyContent: "center" }}>
-          <Typography>
-            <img src={logo} alt="Lotte Cinema" />
-          </Typography>
-        </Grid>
+                <Grid xs={4} className={classes.logoContainer}>
+                    <Typography>
+                        <img
+                            src={page === "mian" ? logo : logo_red}
+                            alt="Lotte Cinema"
+                        />
+                    </Typography>
+                </Grid>
 
-        <Grid
-          xs={4}
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            color: "#fff",
-            fontSize: "12px",
-            alignItems: "center",
-          }}
-        >
-          <Typography style={{ fontSize: "12px" }}>멤버십</Typography>
-          <Typography style={{ margin: "0 15px", fontSize: "12px" }}>
-            고객센터
-          </Typography>
-          <Typography style={{ fontSize: "12px" }}>로그인</Typography>
-        </Grid>
-      </Grid>
+                <Grid xs={4} className={classes.topRightContainer}>
+                    <Typography className={classes.topRightTexts}>
+                        멤버십
+                    </Typography>
+                    <Typography className={classes.topRightTexts}>
+                        고객센터
+                    </Typography>
+                    <Typography className={classes.topRightTexts}>
+                        로그인
+                    </Typography>
+                </Grid>
+            </Grid>
 
-      <Divider
-        variant="middle"
-        style={{ margin: "10px 0", backgroundColor: "#fff" }}
-      />
+            <Divider variant="middle" className={classes.horizontalDivider} />
 
-      <Grid
-        xs={12}
-        style={{ display: "flex", justifyContent: "space-between" }}
-      >
-        <Grid xs={4} />
-        <HeaderLinks />
-        <Grid
-          xs={4}
-          style={{
-            display: "flex",
-            color: "#fff",
-            justifyContent: "flex-end",
-            alignItems: "center",
-          }}
-        >
-          <Typography>
-            <span>
-              <img src={signup} alt="" />
-            </span>
-            <span style={{ margin: "0px 0px 0px 5px", fontSize: "12px" }}>
-              회원가입
-            </span>
-          </Typography>
-          <Typography style={{ margin: "0 15px" }}>
-            <span>
-              <img src={reserve} alt="" />
-            </span>
-            <span style={{ margin: "0px 0px 0px 5px", fontSize: "12px" }}>
-              바로예매
-            </span>
-          </Typography>
-          <Typography>
-            <span>
-              <img src={allMenu} alt="" />
-            </span>
-          </Typography>
-        </Grid>
-      </Grid>
-    </Container>
-  );
+            <Grid
+                xs={12}
+                style={{ display: "flex", justifyContent: "space-between" }}
+            >
+                <Grid xs={4} />
+                <HeaderLinks page={page} />
+                <Grid xs={4} className={classes.signupButtonContainer}>
+                    <Typography>
+                        <span>
+                            <img
+                                src={page === "main" ? signup : signup_blk}
+                                alt=""
+                            />
+                        </span>
+                        <span className={classes.topBottomTexts}>회원가입</span>
+                    </Typography>
+                    <Typography style={{ margin: "0 15px" }}>
+                        <span>
+                            <img
+                                src={page === "main" ? reserve : reserve_blk}
+                                alt=""
+                            />
+                        </span>
+                        <span className={classes.topBottomTexts}>바로예매</span>
+                    </Typography>
+                    <Typography>
+                        <span>
+                            <img
+                                src={page === "main" ? allMenu : allMenu_blk}
+                                alt=""
+                            />
+                        </span>
+                    </Typography>
+                </Grid>
+            </Grid>
+        </Container>
+    );
 };
 
 export default Header;
