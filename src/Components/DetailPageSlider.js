@@ -1,6 +1,18 @@
 import React from "react";
+import { Paper } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
 import Carousel from "react-material-ui-carousel";
-import { Paper, Button } from "@material-ui/core";
+
+const useStyles = makeStyles({
+    paper: {
+        borderRadius: "0px",
+        justifyContent: "Center",
+        display: "flex",
+        height: "450px",
+        // height: "774px",
+        backgroundColor: "#000000",
+    },
+});
 
 const DetailPageSlider = (props) => {
     var items = [
@@ -32,17 +44,9 @@ const DetailPageSlider = (props) => {
 };
 
 const Item = (props) => {
+    const classes = useStyles();
     return (
-        <Paper
-            style={{
-                borderRadius: "0px",
-                justifyContent: "Center",
-                display: "flex",
-                height: "450px",
-                // height: "774px",
-                backgroundColor: "#000000",
-            }}
-        >
+        <Paper className={classes.paper}>
             <img src={props.item.img} alt="" />
             {/* <Button className="CheckButton">Check it out!</Button> */}
         </Paper>
