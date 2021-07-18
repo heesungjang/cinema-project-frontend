@@ -20,24 +20,32 @@ const useStyles = makeStyles({
 });
 
 const DetailCarousel = (props) => {
-    var items = [
-        {
-            name: "Random Name #1",
-            img: "https://caching2.lottecinema.co.kr/lotte_image/2021/Ice/0715/Ice_1920774.jpg",
-        },
-        {
-            name: "Random Name #2",
-            img: "https://caching2.lottecinema.co.kr/lotte_image/2021/Black/0712/Black_1920774.jpg",
-        },
-        {
-            name: "Random Name #2",
-            img: "https://caching2.lottecinema.co.kr/lotte_image/2021/Squad/Squad_1920774.jpg",
-        },
-        {
-            name: "Random Name #2",
-            img: "https://caching2.lottecinema.co.kr/lotte_image/2021/Moga/Moga_1920774.jpg",
-        },
-    ];
+  var items = [
+    {
+      name: "아이스로드",
+      img: "https://caching2.lottecinema.co.kr/lotte_image/2021/Ice/0715/Ice_1920774.jpg",
+      trailer:
+        "https://caching2.lottecinema.co.kr/lotte_image/2021/Ice/0707/Ice_1280720.mp4",
+    },
+    {
+      name: "블랙위도우",
+      img: "https://caching2.lottecinema.co.kr/lotte_image/2021/Black/0712/Black_1920774.jpg",
+      trailer:
+        "https://caching2.lottecinema.co.kr/lotte_image/2021/Black/0709/Black_1280720.mp4",
+    },
+    {
+      name: "수어사이드 스쿼드",
+      img: "https://caching2.lottecinema.co.kr/lotte_image/2021/Squad/Squad_1920774.jpg",
+      trailer:
+        "https://caching2.lottecinema.co.kr/lotte_image/2021/Squad/Squad_1280720.mp4",
+    },
+    {
+      name: "모가디슈",
+      img: "https://caching2.lottecinema.co.kr/lotte_image/2021/Moga/Moga_1920774.jpg",
+      trailer:
+        "https://caching2.lottecinema.co.kr/lotte_image/2021/Moga/0714/Moga_1280720.mp4",
+    },
+  ];
 
   return (
     <>
