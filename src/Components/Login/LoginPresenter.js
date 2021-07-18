@@ -2,7 +2,7 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/styles";
 import { Button, Grid, TextField, Typography } from "@material-ui/core";
-import DetailContentLayout from "../Layouts/Detail/DetailContentLayout";
+import DetailContentLayout from "../../Layouts/Detail/DetailContentLayout";
 
 const useStyles = makeStyles({
     mainContainer: {

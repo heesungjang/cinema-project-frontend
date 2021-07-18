@@ -2,15 +2,17 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/styles";
 
-import Header from "../Components/Header";
-import MainMovieList from "../Components/MainMovieList";
+import { Grid } from "@material-ui/core";
+import Footer from "../shared/Footer";
+import Header from "../shared/Header";
+import Premiere from "../Components/Main/Premiere";
+import MainMovieList from "../Components/Main/MainMovieList";
 import MainContentLayout from "../Layouts/Main/MainContentLayout";
 import MainHeaderLayout from "../Layouts/Main/MainHeaderLayout";
 import MainPageLayout from "../Layouts/Main/MainPageLayout";
 import MainSubSectionLayout from "../Layouts/Main/MainSubSectionLayout";
-import MainSubSection from "../Components/MainSubSection";
-import EventComponent from "../Components/EventComponent";
-import Premiere from "../Components/Premiere";
+import MainSubSection from "../Components/Main/MainSubSection";
+import EventComponent from "../Components/Main/EventComponent";
 
 const useStyles = makeStyles({
     firstDiv: {
@@ -45,6 +47,19 @@ const MainPage = (props) => {
                         <Premiere />
                     </div>
                 </MainContentLayout>
+                <Grid xs={12}>
+                    <Grid
+                        xs={12}
+                        style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            width: "1000px",
+                            margin: "auto",
+                        }}
+                    >
+                        <Footer />
+                    </Grid>
+                </Grid>
             </MainPageLayout>
         </React.Fragment>
     );

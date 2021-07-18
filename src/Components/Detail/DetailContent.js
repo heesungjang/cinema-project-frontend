@@ -1,6 +1,6 @@
 import React from "react";
 
-import star from "../images/star_14.png";
+import star from "../../images/star_14.png";
 import { makeStyles } from "@material-ui/styles";
 import ShareIcon from "@material-ui/icons/Share";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";

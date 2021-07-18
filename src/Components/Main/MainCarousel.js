@@ -1,25 +1,24 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import { makeStyles } from "@material-ui/core";
+import Modal from "./Modal";
+import { Paper } from "@material-ui/core";
+import playBtn from "../../images/btn_main_visual_play.png";
 import Carousel from "react-material-ui-carousel";
-import { Paper, Button } from "@material-ui/core";
-
-import Modal from "../Components/Modal";
-import playBtn from "../images/btn_main_visual_play.png";
+import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
     paper: {
         borderRadius: "0px",
         justifyContent: "Center",
         display: "flex",
-        // height: "450px",
+
         height: "774px",
         backgroundColor: "#000000",
     },
 });
 
-const DetailCarousel = (props) => {
+const MainCarousel = (props) => {
     var items = [
         {
             name: "아이스로드",
@@ -113,4 +112,4 @@ const Gradation = styled.div`
             : "background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 1) 100%);"}
 `;
 
-export default DetailCarousel;
+export default MainCarousel;
