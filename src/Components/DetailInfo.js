@@ -5,6 +5,7 @@ import { Grid, Button } from "@material-ui/core";
 import DetailPoster from "../Elements/DetailPoster";
 import DetailContentTop from "../Elements/DetailContentTop";
 import DetailContentBottom from "../Elements/DetailContentBottom";
+import DetailTrailer from "../Elements/DetailTrailer";
 
 const useStyles = makeStyles({
     in_active_button: {
@@ -76,6 +77,7 @@ const DetailInfo = (props) => {
                 {is_info_button_active ? (
                     <>
                         <DetailContentTop />
+                        <DetailTrailer />
                         <DetailPoster />
                         <DetailContentBottom />
                     </>
