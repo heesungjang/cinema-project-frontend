@@ -17,7 +17,7 @@ function App() {
                     <Route exact path="/" component={MainPage} />
                     <Route exact path="/detail/:id" component={DetailPage} />
                     <Route exact path="/login" component={LoginPage} />
-                    <Route exact path="/logout" component={SignupPage} />
+                    <Route exact path="/signup" component={SignupPage} />
                 </Switch>
             </Router>
         </ThemeProvider>
