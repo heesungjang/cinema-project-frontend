@@ -1,15 +1,13 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
-
-import {
-    Grid,
-    Typography,
-    ListItem,
-    Avatar,
-    Container,
-} from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import { ListItem, Avatar, Container } from "@material-ui/core";
 
 const useStyles = makeStyles({
+    subContainer: {
+        display: "flex",
+    },
     titleText: {
         margin: "60px 0",
         fontWeight: "600",
@@ -27,7 +25,7 @@ const DetailContentBottom = (props) => {
         <Grid xs={12}>
             <Typography className={classes.titleText}>감독 및 배우</Typography>
             <Grid xs={12}>
-                <Grid style={{ display: "flex" }}>
+                <Grid className={classes.subContainer}>
                     <ListItem>
                         <Avatar
                             className={classes.avatar}
