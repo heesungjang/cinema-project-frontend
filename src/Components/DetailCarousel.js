@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Carousel from "react-material-ui-carousel";
 import { Paper, Button } from "@material-ui/core";
 
 import playBtn from "../images/btn_main_visual_play.png";
+import Modal from "../Components/Modal";
 
 const DetailCarousel = (props) => {
   var items = [
@@ -39,6 +40,16 @@ const DetailCarousel = (props) => {
 };
 
 const Item = (props) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <>
       <Paper
@@ -53,17 +64,28 @@ const Item = (props) => {
             "linear-gradient(to-bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 1) 100%)",
         }}
       >
-        <img src={props.item.img} alt="" />
-        <img
-          src={playBtn}
-          alt=""
-          style={{ position: "absolute", top: "387px", left: "50%" }}
-        />
+        <A onClick={openModal}>
+          <img src={props.item.img} alt="" />
+          <img
+            src={playBtn}
+            alt=""
+            style={{ position: "absolute", top: "387px", left: "50%" }}
+          />
+        </A>
+        <Modal open={modalOpen} close={closeModal}>
+          {props.item.name}
+        </Modal>
         {/* <Button className="CheckButton">Check it out!</Button> */}
       </Paper>
     </>
   );
 };
+
+const A = styled.a`
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 const Gradation = styled.div`
   width: 100%;
