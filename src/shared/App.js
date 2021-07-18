@@ -7,7 +7,7 @@ import { theme } from "./themeConfig";
 import MainPage from "../Pages/MainPage";
 import DetailPage from "../Pages/DetailPage";
 import LoginPage from "../Pages/LoginPage";
-import LogoutPage from "../Pages/LogoutPage";
+import SignupPage from "../Pages/SignupPage";
 
 function App() {
     return (
@@ -17,7 +17,7 @@ function App() {
                     <Route exact path="/" component={MainPage} />
                     <Route exact path="/detail/:id" component={DetailPage} />
                     <Route exact path="/login" component={LoginPage} />
-                    <Route exact path="/logout" component={LogoutPage} />
+                    <Route exact path="/logout" component={SignupPage} />
                 </Switch>
             </Router>
         </ThemeProvider>
