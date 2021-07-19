@@ -1,7 +1,10 @@
 import React from "react";
 
+import { history } from "../Redux/configureStore";
+import { ConnectedRouter } from "connected-react-router";
+
+import { Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/styles";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { theme } from "./themeConfig";
 import MainPage from "../Pages/MainPage";
@@ -11,16 +14,22 @@ import SignupPage from "../Pages/SignupPage";
 
 function App() {
     return (
-        <ThemeProvider theme={theme}>
-            <Router>
-                <Switch>
-                    <Route exact path="/" component={MainPage} />
-                    <Route exact path="/detail/:id" component={DetailPage} />
-                    <Route exact path="/login" component={LoginPage} />
-                    <Route exact path="/signup" component={SignupPage} />
-                </Switch>
-            </Router>
-        </ThemeProvider>
+        <React.Fragment>
+            <ThemeProvider theme={theme}>
+                <ConnectedRouter history={history}>
+                    <Switch>
+                        <Route exact path="/" component={MainPage} />
+                        <Route
+                            exact
+                            path="/detail/:id"
+                            component={DetailPage}
+                        />
+                        <Route exact path="/login" component={LoginPage} />
+                        <Route exact path="/signup" component={SignupPage} />
+                    </Switch>
+                </ConnectedRouter>
+            </ThemeProvider>
+        </React.Fragment>
     );
 }
 
