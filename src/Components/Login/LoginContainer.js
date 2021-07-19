@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { logIn } from "../../Redux/async/user";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import LoginPresenter from "./LoginPresenter";
 
 const LoginContainer = (props) => {
-    const user = useSelector((state) => state.user);
-
+    const dispatch = useDispatch();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -20,7 +20,7 @@ const LoginContainer = (props) => {
         }
     };
     const handleSubmit = (e) => {
-        console.log(email, password);
+        dispatch(logIn(email, password));
     };
 
     return (
