@@ -65,10 +65,12 @@ const useStyles = makeStyles({
 });
 
 const LoginPresenter = (props) => {
+    const { email, password, handleSubmit, onChange } = props;
+
     const classes = useStyles();
     return (
         <DetailContentLayout>
-            <Grid xs={12} className={classes.mainContainer}>
+            <Grid item xs={12} className={classes.mainContainer}>
                 <Grid className={classes.activeSubContainer} xs={4}>
                     회원
                 </Grid>
@@ -79,43 +81,52 @@ const LoginPresenter = (props) => {
                     소셜 로그인
                 </Grid>
             </Grid>
-            <Grid className={classes.formMainContainer} xs={12}>
+            <Grid item className={classes.formMainContainer} xs={12}>
                 <Grid className={classes.formSubContainer}>
-                    <Grid xs={12} className={classes.formContents}>
-                        <Grid xs={6}>
+                    <Grid item xs={12} className={classes.formContents}>
+                        <Grid item xs={6}>
                             <Typography>
                                 L.POINT, 롯데시네마 ID로 별도의 회원가입 없이
                                 이용 가능 합니다.
                             </Typography>
                             <Grid className={classes.outerInputContainer}>
                                 <Grid
+                                    item
                                     xs={12}
                                     className={classes.inputContainer}
                                 >
                                     <TextField
+                                        name="email"
                                         id="outlined-password-input"
-                                        label="아이디 또는 이메일을 입력해 주세요."
-                                        type="text"
+                                        label="이메일을 입력해 주세요."
+                                        type="email"
                                         autoComplete="current-password"
                                         variant="outlined"
+                                        value={email}
+                                        onChange={onChange}
                                     />
                                     <TextField
+                                        name="password"
                                         id="outlined-password-input"
                                         label="비밀번호를 입력해 주세요."
                                         type="password"
                                         autoComplete="current-password"
                                         variant="outlined"
+                                        value={password}
+                                        onChange={onChange}
                                     />
                                 </Grid>
                                 <Button
                                     className={classes.loginButton}
                                     variant="contained"
                                     color="secondary"
+                                    onClick={handleSubmit}
                                 >
                                     로그인
                                 </Button>
                             </Grid>
                             <Grid
+                                item
                                 xs={12}
                                 className={classes.signupButtonContainer}
                             >
@@ -133,6 +144,7 @@ const LoginPresenter = (props) => {
                             </Grid>
                         </Grid>
                         <Grid
+                            item
                             xs={6}
                             style={{
                                 display: "flex",
