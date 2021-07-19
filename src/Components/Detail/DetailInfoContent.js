@@ -1,5 +1,5 @@
 import React from "react";
-import DetailContentTop from "../Elements/DetailContentTop";
+import DetailContentTop from "../../Elements/DetailContentTop";
 
 const DetailInfoContent = (props) => {
     return (

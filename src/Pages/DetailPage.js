@@ -1,18 +1,18 @@
 import React from "react";
 
-import Header from "../Components/Header";
+import Header from "../shared/Header";
 
 import MainPageLayout from "../Layouts/Main/MainPageLayout";
 
-import DetailInfo from "../Components/DetailInfo";
-import DetailContent from "../Components/DetailContent";
-import DetailSubSection from "../Components/DetailSubSection";
+import DetailInfo from "../Components/Detail/DetailInfo";
+import DetailContent from "../Components/Detail/DetailContent";
+import DetailSubSection from "../Components/Detail/DetailSubSection";
 import DetailHeaderLayout from "../Layouts/Detail/DetailHeaderLayout";
 import DetailContentLayout from "../Layouts/Detail/DetailContentLayout";
 import DetailSubSectionLayout from "../Layouts/Detail/DetailSubSectionLayout";
 import DetailAd from "../Elements/DetailAd";
 import DetailLastAd from "../Elements/DetailLastAd";
-import Footer from "../Components/Footer";
+import Footer from "../shared/Footer";
 
 const DetailPage = (props) => {
     return (

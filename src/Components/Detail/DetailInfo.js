@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 import { makeStyles } from "@material-ui/styles";
 import { Grid, Button } from "@material-ui/core";
-import DetailPoster from "../Elements/DetailPoster";
-import DetailContentTop from "../Elements/DetailContentTop";
-import DetailContentBottom from "../Elements/DetailContentBottom";
-import DetailTrailer from "../Elements/DetailTrailer";
+import DetailPoster from "../../Elements/DetailPoster";
+import DetailContentTop from "../../Elements/DetailContentTop";
+import DetailContentBottom from "../../Elements/DetailContentBottom";
+import DetailTrailer from "../../Elements/DetailTrailer";
 
 const useStyles = makeStyles({
     in_active_button: {
