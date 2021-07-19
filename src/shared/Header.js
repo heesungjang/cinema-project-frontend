@@ -131,7 +131,12 @@ const Header = (props) => {
                     <Typography className={classes.topRightTexts}>
                         고객센터
                     </Typography>
-                    <Typography className={classes.topRightTexts}>
+                    <Typography
+                        className={classes.topRightTexts}
+                        onClick={() => {
+                            props.history.push("/login");
+                        }}
+                    >
                         로그인
                     </Typography>
                 </Grid>
