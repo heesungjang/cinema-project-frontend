@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Slider from "react-slick";
 import styled from "styled-components";
 import "slick-carousel/slick/slick.css";
@@ -12,6 +12,8 @@ import {
     Typography,
     Divider,
 } from "@material-ui/core";
+
+import { getMovies } from "../../Redux/async/movies";
 
 import star from "../../images/ic_star.png";
 import heartOff from "../../images/heart_off.png";
@@ -27,9 +29,14 @@ const useStyles = makeStyles({
 });
 
 const MainMovieList = (props) => {
-    console.log(props);
+    const dispatch = useDispatch();
     const classes = useStyles();
     const movies = useSelector((state) => state.movie.main_movie_list);
+    console.log(movies);
+
+    useEffect(() => {
+        dispatch(getMovies());
+    }, []);
 
     const settings = {
         dots: false,
@@ -142,7 +149,7 @@ function Item(props) {
                                         >
                                             <img src={star} alt="" />
                                             <span style={{ marginLeft: "3px" }}>
-                                                {props.item.star}
+                                                {/* {props.item.star} */}
                                             </span>
                                         </span>
                                         <Divider
