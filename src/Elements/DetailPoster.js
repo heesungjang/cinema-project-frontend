@@ -31,6 +31,13 @@ const DetailPoster = () => {
                 timeout="900"
                 navButtonsAlwaysVisible
                 autoPlay="false"
+                indicators="false"
+                indicatorIconButtonProps={{
+                    style: {
+                        padding: "10px", // 1
+                        color: "white", // 3
+                    },
+                }}
             >
                 {items.map((item, i) => (
                     <Item key={i} item={item} />
