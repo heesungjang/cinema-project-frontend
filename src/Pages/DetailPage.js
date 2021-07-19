@@ -17,8 +17,10 @@ import Footer from "../shared/Footer";
 
 const DetailPage = (props) => {
     console.log(props);
-    const movies = useSelector((state) => state.movie);
+    const movies = useSelector((state) => state.movie.main_movie_list);
     console.log(movies);
+    const movie = movies.find((movie) => movie.title === props.match.params.id);
+    console.log(movie);
     return (
         <React.Fragment>
             <MainPageLayout>
@@ -29,7 +31,7 @@ const DetailPage = (props) => {
                     <DetailSubSection />
                 </DetailSubSectionLayout>
                 <DetailContentLayout>
-                    <DetailContent {...props} />
+                    <DetailContent {...props} movie={movie} />
                     <DetailInfo />
                     <DetailAd />
                 </DetailContentLayout>

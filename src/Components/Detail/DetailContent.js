@@ -74,6 +74,7 @@ const useStyles = makeStyles({
 
 const DetailContent = (props) => {
     console.log(props);
+    const { movie } = props;
     const classes = useStyles();
     return (
         <Grid xs={12} className={classes.mainContainer}>
@@ -81,7 +82,8 @@ const DetailContent = (props) => {
                 <Grid>
                     <img
                         className={classes.postCard}
-                        src="https://caching.lottecinema.co.kr//Media/MovieFile/MovieImg/202106/17508_103_1.jpg"
+                        src={movie.main_poster}
+                        // src="https://caching.lottecinema.co.kr//Media/MovieFile/MovieImg/202106/17508_103_1.jpg"
                         alt=""
                     />
                 </Grid>
@@ -90,7 +92,8 @@ const DetailContent = (props) => {
                 <Grid>
                     <Grid className={classes.titleContainer}>
                         <Avatar style={{ marginRight: "10px" }}>12</Avatar>
-                        <Typography variant="h4">빛나는 순간</Typography>
+                        <Typography variant="h4">{movie.title}</Typography>
+                        {/* <Typography variant="h4">빛나는 순간</Typography> */}
                     </Grid>
                     <Grid xs={7} className={classes.rateContainer}>
                         <Grid className={classes.rateSubContainer}>
@@ -113,7 +116,7 @@ const DetailContent = (props) => {
                         <Grid className={classes.rateSubContainer}>
                             <Typography>누적관객수</Typography>
                             <Typography className={classes.subContainerText}>
-                                14,728 명
+                                {movie.viewers} 명
                             </Typography>
                         </Grid>
                     </Grid>
@@ -123,15 +126,19 @@ const DetailContent = (props) => {
                     <Grid xs={5} className={classes.detailInfoContainer}>
                         <Typography>장르</Typography>
                         <Grid className={classes.detailInfoContentContainer}>
-                            <Typography>드라마 / 한국</Typography>
+                            <Typography>{movie.genre}</Typography>
+                            <Typography>{movie.releaseDate} 개봉</Typography>
+                            <Typography>{movie.runningTime}분</Typography>
+                            {/* <Typography>드라마 / 한국</Typography>
                             <Typography>2021.06.30 개봉</Typography>
-                            <Typography>95분</Typography>
+                            <Typography>95분</Typography> */}
                         </Grid>
                     </Grid>
                     <Grid xs={2} className={classes.detailInfoContainer}>
                         <Typography>감독</Typography>
                         <Grid className={classes.detailInfoContentContainer}>
-                            <Typography>소준문</Typography>
+                            <Typography>{movie.director.name}</Typography>
+                            {/* <Typography>소준문</Typography> */}
                         </Grid>
                     </Grid>
                     <Grid className={classes.detailInfoContainer}>
@@ -140,10 +147,13 @@ const DetailContent = (props) => {
                             xs={4}
                             className={classes.detailInfoContentNameContainer}
                         >
-                            <Typography>고두심</Typography>
+                            {movie.actors.map((actor, idx) => (
+                                <Typography>{actor.name}</Typography>
+                            ))}
+                            {/* <Typography>고두심</Typography>
                             <Typography>지형우</Typography>
                             <Typography>양정원</Typography>
-                            <Typography>전혜진</Typography>
+                            <Typography>전혜진</Typography> */}
                         </Grid>
                     </Grid>
                 </Grid>
