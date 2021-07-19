@@ -64,7 +64,7 @@ function Item(props) {
     console.log(props);
 
     const goDetail = () => {
-        props.history.push(`/detail/${props.item.name}`);
+        props.history.push(`/detail/${props.item.title}`);
     };
 
     return (
