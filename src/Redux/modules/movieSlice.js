@@ -105,17 +105,49 @@ const movieSlice = createSlice({
             // console.log("state: ", state.main_movie_list);
             // console.log("action: ", action.payload);
             const movies = action.payload;
-            // console.log("movies: ", movies);
+            console.log("movies: ", movies);
             movies.map((movie, idx) => {
-                let { bookRate, photos, title } = movie;
+                let {
+                    bookRate,
+                    photos,
+                    title,
+                    actors,
+                    director,
+                    genre,
+                    grade,
+                    preference,
+                    releaseDate,
+                    runningTime,
+                    synopsis,
+                    trailer,
+                    viewers,
+                } = movie;
                 let _bookRate = bookRate * 100;
-                let _photos = photos[photos.length - 1];
-                state.main_movie_list.push({
-                    name: title,
-                    url: _photos,
-                    rate: _bookRate,
+                let main_poster = photos[photos.length - 1];
+                const movie_data = {
+                    bookRate: _bookRate,
+                    photos,
+                    title,
+                    actors,
+                    director,
+                    genre,
+                    grade,
+                    preference,
+                    releaseDate,
+                    runningTime,
+                    synopsis,
+                    trailer,
+                    viewers,
+                    main_poster,
                     rank: idx + 1,
-                });
+                };
+                state.main_movie_list.push(movie_data);
+                // state.main_movie_list.push({
+                //     name: title,
+                //     url: _photos,
+                //     rate: _bookRate,
+                //     rank: idx + 1,
+                // });
             });
         });
     },

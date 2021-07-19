@@ -80,7 +80,7 @@ function Item(props) {
                         <CardMedia
                             id="card_media"
                             className={classes.media}
-                            image={props.item.url}
+                            image={props.item.main_poster}
                             style={{ position: "relative" }}
                         >
                             <HoverMenu id="hover_menu">
@@ -108,7 +108,7 @@ function Item(props) {
                         </CardMedia>
 
                         {/* 영화 정보 (영화 이름이 없으면 출력X) */}
-                        {props.item.name && (
+                        {props.item.title && (
                             <CardContent style={{ padding: "0px" }}>
                                 <Typography
                                     variant="body2"
@@ -122,7 +122,7 @@ function Item(props) {
                                         fontSize: "13px",
                                     }}
                                 >
-                                    {props.item.name}
+                                    {props.item.title}
                                     <div
                                         style={{
                                             color: "white",
@@ -132,7 +132,9 @@ function Item(props) {
                                             alignItems: "center",
                                         }}
                                     >
-                                        <span>예매율 {props.item.rate}</span>
+                                        <span>
+                                            예매율 {props.item.bookRate}
+                                        </span>
                                         <Divider
                                             orientation="vertical"
                                             flexItem
