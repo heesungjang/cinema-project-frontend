@@ -39,7 +39,7 @@ const MainPage = (props) => {
                     <MainSubSection />
                 </MainSubSectionLayout>
                 <MainContentLayout>
-                    <MainMovieList />
+                    <MainMovieList {...props} />
                     <div className={classes.firstDiv}>
                         <EventComponent />
                     </div>

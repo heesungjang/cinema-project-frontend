@@ -1,7 +1,7 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Slider from "react-slick";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { makeStyles } from "@material-ui/core/styles";
@@ -27,10 +27,9 @@ const useStyles = makeStyles({
 });
 
 const MainMovieList = (props) => {
+    console.log(props);
     const classes = useStyles();
-
-    const movie_list = useSelector((state) => state.movie.main_movie_list);
-    // console.log(movie_list);
+    const movies = useSelector((state) => state.movie.main_movie_list);
 
     const settings = {
         dots: false,
@@ -44,8 +43,8 @@ const MainMovieList = (props) => {
         <>
             <Container>
                 <Slider {...settings}>
-                    {movie_list.map((movie, i) => (
-                        <Item key={i} item={movie} />
+                    {movies.map((movie, i) => (
+                        <Item key={i} item={movie} {...props} />
                     ))}
                 </Slider>
             </Container>
@@ -55,6 +54,10 @@ const MainMovieList = (props) => {
 
 function Item(props) {
     const classes = useStyles();
+
+    const goDetail = () => {
+        props.history.push("/detail/1");
+    };
 
     return (
         <>
@@ -74,7 +77,9 @@ function Item(props) {
                         >
                             <HoverMenu id="hover_menu">
                                 <Button id="menu_button">예매하기</Button>
-                                <Button id="menu_button">상세보기</Button>
+                                <Button id="menu_button" onClick={goDetail}>
+                                    상세보기
+                                </Button>
                             </HoverMenu>
                             {/* 영화 순위 */}
                             <span
