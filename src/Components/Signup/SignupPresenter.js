@@ -1,11 +1,12 @@
 import React from "react";
-import { Grid, Typography, TextField } from "@material-ui/core";
+import { Grid, Typography, TextField, Button } from "@material-ui/core";
 
 import logo from "../../images/signup_logo.png";
 import logo_two from "../../images/img_1050.png";
 import logo_x from "../../images/ico-with.png";
 
 import { makeStyles } from "@material-ui/styles";
+import { classExpression } from "@babel/types";
 
 const useStyles = makeStyles({
     mainContainer: {
@@ -41,6 +42,18 @@ const useStyles = makeStyles({
         fontSize: "15px",
         marginLeft: "3px",
     },
+
+    inputContainer: {
+        borderBottom: "1px solid",
+        marginBottom: "20px",
+        display: "flex",
+        alignItems: "center",
+        paddingBottom: "20px",
+        color: "grey",
+        "&:hover": {
+            color: "black",
+        },
+    },
 });
 
 const SignupPresenter = () => {
@@ -75,22 +88,115 @@ const SignupPresenter = () => {
                         </span>
                     </Typography>
                 </Grid>
-                <Grid container spacing={1} alignItems="flex-end">
-                    <TextField
-                        id="input-with-icon-grid"
-                        label="With a"
-                        fullWidth
-                    />
-                    <TextField
-                        id="input-with-icon-grid"
-                        label="With a"
-                        fullWidth
-                    />
-                    <TextField
-                        id="input-with-icon-grid"
-                        label="With a"
-                        fullWidth
-                    />
+                <Grid xs={12} className={classes.inputContainer}>
+                    <Grid xs={2}>
+                        <Typography>
+                            {" "}
+                            <span className={classes.bigRedText}>*</span>이름
+                        </Typography>
+                    </Grid>
+                    <Grid xs={5}>
+                        <TextField
+                            id="filled-basic"
+                            label="한글 또는 영문으로 입력해주세요."
+                            variant="filled"
+                            fullWidth
+                        />
+                    </Grid>
+                </Grid>
+                <Grid xs={12} className={classes.inputContainer}>
+                    <Grid xs={2}>
+                        <Typography>
+                            <span className={classes.bigRedText}>*</span>이메일
+                            주소
+                        </Typography>
+                    </Grid>
+                    <Grid xs={5}>
+                        <TextField
+                            id="filled-basic"
+                            label="이메일주소를 입력해주세요"
+                            variant="filled"
+                            fullWidth
+                        />
+                    </Grid>
+                </Grid>
+                <Grid xs={12} className={classes.inputContainer}>
+                    <Grid xs={2}>
+                        <Typography>
+                            {" "}
+                            <span className={classes.bigRedText}>*</span>
+                            비밀번호
+                        </Typography>
+                    </Grid>
+                    <Grid xs={5}>
+                        <TextField
+                            id="filled-basic"
+                            label="비밀번호를 입력해주세요."
+                            variant="filled"
+                            fullWidth
+                        />
+                        <TextField
+                            id="filled-basic"
+                            label="입력하신 비밀번호를 다시 한번 입력해주세요."
+                            variant="filled"
+                            fullWidth
+                        />
+                    </Grid>
+                </Grid>
+                <Grid xs={12} className={classes.inputContainer}>
+                    <Grid xs={2}>
+                        <Typography>
+                            <span className={classes.bigRedText}>*</span>휴대폰
+                            번호
+                        </Typography>
+                    </Grid>
+                    <Grid
+                        xs={5}
+                        style={{
+                            display: "flex",
+                        }}
+                    >
+                        <TextField
+                            id="filled-basic"
+                            variant="filled"
+                            inputProps={{ maxLength: 3 }}
+                        />
+                        <TextField
+                            id="filled-basic"
+                            variant="filled"
+                            style={{ margin: "0 5px" }}
+                            inputProps={{ maxLength: 4 }}
+                        />
+                        <TextField
+                            id="filled-basic"
+                            variant="filled"
+                            inputProps={{ maxLength: 4 }}
+                        />
+                    </Grid>
+                </Grid>
+                <Grid
+                    xs={12}
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        marginBottom: "200px",
+                        marginTop: "50px",
+                    }}
+                >
+                    <Button
+                        variant="contained"
+                        color="default"
+                        style={{ padding: "15px 60px" }}
+                    >
+                        취소하기
+                    </Button>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        style={{ marginLeft: "50px", padding: "15px 60px" }}
+                    >
+                        회원가입
+                    </Button>
                 </Grid>
             </Grid>
         </>
