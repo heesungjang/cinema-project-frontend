@@ -72,7 +72,8 @@ const useStyles = makeStyles({
     },
 });
 
-const DetailContent = () => {
+const DetailContent = (props) => {
+    console.log(props);
     const classes = useStyles();
     return (
         <Grid xs={12} className={classes.mainContainer}>

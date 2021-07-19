@@ -61,9 +61,10 @@ const MainMovieList = (props) => {
 
 function Item(props) {
     const classes = useStyles();
+    console.log(props);
 
     const goDetail = () => {
-        props.history.push("/detail/1");
+        props.history.push(`/detail/${props.item.name}`);
     };
 
     return (

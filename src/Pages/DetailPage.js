@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import Header from "../shared/Header";
 
@@ -15,6 +16,9 @@ import DetailLastAd from "../Elements/DetailLastAd";
 import Footer from "../shared/Footer";
 
 const DetailPage = (props) => {
+    console.log(props);
+    const movies = useSelector((state) => state.movie);
+    console.log(movies);
     return (
         <React.Fragment>
             <MainPageLayout>
@@ -25,7 +29,7 @@ const DetailPage = (props) => {
                     <DetailSubSection />
                 </DetailSubSectionLayout>
                 <DetailContentLayout>
-                    <DetailContent />
+                    <DetailContent {...props} />
                     <DetailInfo />
                     <DetailAd />
                 </DetailContentLayout>
