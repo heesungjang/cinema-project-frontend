@@ -7,7 +7,10 @@ const api = axios.create({
     // },
 });
 
-export const authApi = {};
+export const authApi = {
+    userLogin: () => api.post("/login"),
+    userSignup: () => api.post("/signup"),
+};
 
 export const moviesApi = {
     getAllMovies: () => api.get("/movies"),
