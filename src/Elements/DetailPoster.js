@@ -1,89 +1,63 @@
 import React from "react";
+import styled from "styled-components";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-import { makeStyles } from "@material-ui/styles";
-import Carousel from "react-material-ui-carousel";
-import { Grid, Typography } from "@material-ui/core";
+const DetailPoster = (props) => {
+    const { movie } = props;
 
-const useStyles = makeStyles({
-    itemContainer: {
-        display: "flex",
-        justifyContent: "space-around",
-    },
-    img: {
-        height: "150px",
-        width: "260px",
-    },
-});
-
-const DetailPoster = () => {
-    const classes = useStyles();
-    var items = [
-        {
-            name: "Random Name #1",
-            description: "Probably the most random thing you have ever seen!",
-        },
-    ];
+    const settings = {
+        dots: false,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+    };
 
     return (
-        <Grid xs={12}>
-            <Carousel
-                animation="slide"
-                timeout="900"
-                navButtonsAlwaysVisible
-                autoPlay="false"
-                indicators="false"
-                indicatorIconButtonProps={{
-                    style: {
-                        padding: "10px", // 1
-                        color: "white", // 3
-                    },
-                }}
-            >
-                {items.map((item, i) => (
-                    <Item key={i} item={item} />
+        <Container>
+            <Slider {...settings}>
+                {movie.photos.map((movie, i) => (
+                    <Item key={i} item={movie} />
                 ))}
-            </Carousel>
-        </Grid>
+            </Slider>
+        </Container>
     );
 };
 
 function Item(props) {
-    const classes = useStyles();
     return (
-        <Grid>
-            <Typography>포스터 스틸컷</Typography>
-            <Grid xs={12} className={classes.itemContainer}>
-                <Grid xs={3}>
-                    <img
-                        className={classes.img}
-                        src="https://caching.lottecinema.co.kr//Media/MovieFile/MovieImg/202107/17630_105_1.jpg"
-                        alt=""
-                    />
-                </Grid>
-                <Grid xs={3}>
-                    <img
-                        className={classes.img}
-                        src="https://caching.lottecinema.co.kr//Media/MovieFile/MovieImg/202107/17630_105_6.jpg"
-                        alt=""
-                    />
-                </Grid>
-                <Grid xs={3}>
-                    <img
-                        className={classes.img}
-                        src="https://caching.lottecinema.co.kr//Media/MovieFile/MovieImg/202107/17630_105_10.jpg"
-                        alt=""
-                    />
-                </Grid>
-                <Grid xs={3}>
-                    <img
-                        className={classes.img}
-                        src="https://caching.lottecinema.co.kr//Media/MovieFile/MovieImg/202107/17630_105_11.jpg"
-                        alt=""
-                    />
-                </Grid>
-            </Grid>
-        </Grid>
+        <>
+            <StillCut>
+                <Img src={props.item} alt="" />
+            </StillCut>
+        </>
     );
 }
+
+const Container = styled.div`
+    width: 932px;
+    height: 140px;
+    margin: 0 auto;
+    .slick-prev:before {
+        opacity: 1;
+        color: #eee;
+    }
+    .slick-next:before {
+        opacity: 1;
+        color: #eee;
+    }
+`;
+
+const StillCut = styled.div`
+    width: 233px;
+    height: 133px;
+`;
+
+const Img = styled.img`
+    width: 100%;
+    height: 100%;
+`;
 
 export default DetailPoster;
