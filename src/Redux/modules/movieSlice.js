@@ -127,6 +127,7 @@ const movieSlice = createSlice({
                 } = movie;
                 let _bookRate = bookRate * 100; // 예매율
                 let main_poster = photos[photos.length - 1]; // 메인포스터
+                let _releaseDate = releaseDate.split("T");
                 const movie_data = {
                     bookRate: _bookRate.toFixed(1), // .toFixed(1) : 소수점 첫번째 자리까지 저장
                     photos,
@@ -136,7 +137,7 @@ const movieSlice = createSlice({
                     genre,
                     grade,
                     preference,
-                    releaseDate,
+                    releaseDate: _releaseDate[0],
                     runningTime,
                     synopsis,
                     trailer,
