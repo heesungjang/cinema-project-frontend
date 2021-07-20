@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getMovies, getMovieDetail } from "../async/movies";
+import { getMovieDetail } from "../async/movies";
 
 const initialState = {
     isFetching: false,
