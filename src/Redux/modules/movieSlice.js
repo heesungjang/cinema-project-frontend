@@ -125,9 +125,10 @@ const movieSlice = createSlice({
                     trailer,
                     viewers,
                 } = movie;
+                let _bookRate = bookRate * 100; // 예매율
                 let main_poster = photos[photos.length - 1]; // 메인포스터
                 const movie_data = {
-                    bookRate,
+                    bookRate: _bookRate.toFixed(1), // .toFixed(1) : 소수점 첫번째 자리까지 저장
                     photos,
                     title,
                     actors,
