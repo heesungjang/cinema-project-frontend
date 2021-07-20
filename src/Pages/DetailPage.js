@@ -32,7 +32,7 @@ const DetailPage = (props) => {
                 </DetailSubSectionLayout>
                 <DetailContentLayout>
                     <DetailContent {...props} movie={movie} />
-                    <DetailInfo />
+                    <DetailInfo movie={movie} />
                     <DetailAd />
                 </DetailContentLayout>
                 <DetailLastAd />
