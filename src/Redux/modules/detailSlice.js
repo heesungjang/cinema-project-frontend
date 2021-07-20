@@ -7,7 +7,7 @@ const initialState = {
     error: null,
 };
 
-const DetailSlice = createSlice({
+const detailSlice = createSlice({
     name: "detail",
     initialState: initialState,
     reducers: {
@@ -19,3 +19,5 @@ const DetailSlice = createSlice({
         [getMovieDetail.rejected]: (state, { payload }) => {},
     },
 });
+
+export default detailSlice;
