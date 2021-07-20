@@ -28,7 +28,7 @@ const DetailPage = (props) => {
                     <Header page={"detail"} />
                 </DetailHeaderLayout>
                 <DetailSubSectionLayout>
-                    <DetailSubSection />
+                    <DetailSubSection movie={movie} />
                 </DetailSubSectionLayout>
                 <DetailContentLayout>
                     <DetailContent {...props} movie={movie} />
