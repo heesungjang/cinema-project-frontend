@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { logIn } from "../../Redux/async/user";
+import { login } from "../../Redux/async/user";
 
 import { useSelector, useDispatch } from "react-redux";
 import LoginPresenter from "./LoginPresenter";
@@ -20,7 +20,11 @@ const LoginContainer = (props) => {
         }
     };
     const handleSubmit = (e) => {
-        dispatch(logIn(email, password));
+        const data = {
+            email,
+            password,
+        };
+        dispatch(login(data));
     };
 
     return (
