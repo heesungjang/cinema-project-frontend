@@ -33,13 +33,13 @@ const MainPage = (props) => {
         <React.Fragment>
             <MainPageLayout>
                 <MainHeaderLayout>
-                    <Header page={"main"} />
+                    <Header page={"main"} {...props} />
                 </MainHeaderLayout>
                 <MainSubSectionLayout>
                     <MainSubSection />
                 </MainSubSectionLayout>
                 <MainContentLayout>
-                    <MainMovieList />
+                    <MainMovieList {...props} />
                     <div className={classes.firstDiv}>
                         <EventComponent />
                     </div>

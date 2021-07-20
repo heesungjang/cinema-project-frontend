@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Slider from "react-slick";
 import styled from "styled-components";
 import "slick-carousel/slick/slick.css";
@@ -11,6 +12,8 @@ import {
     Typography,
     Divider,
 } from "@material-ui/core";
+
+import { getMovies } from "../../Redux/async/movies";
 
 import star from "../../images/ic_star.png";
 import heartOff from "../../images/heart_off.png";
@@ -26,58 +29,14 @@ const useStyles = makeStyles({
 });
 
 const MainMovieList = (props) => {
+    const dispatch = useDispatch();
     const classes = useStyles();
-    const items = [
-        {
-            name: "블랙 위도우",
-            url: "https://caching.lottecinema.co.kr//Media/MovieFile/MovieImg/202004/15496_101_1.jpg",
-            rank: "1",
-            rate: "39.4%",
-            star: "9",
-        },
-        {
-            name: "랑종",
-            url: "https://caching.lottecinema.co.kr//Media/MovieFile/MovieImg/202107/17630_101_1.jpg",
-            rank: "2",
-            rate: "31.1%",
-            star: "6",
-        },
-        {
-            name: "보스 베이비2",
-            url: "https://caching.lottecinema.co.kr//Media/MovieFile/MovieImg/202107/17623_101_1.jpg",
-            rank: "3",
-            rate: "9.9%",
-            star: "0",
-        },
-        {
-            name: "이스케이프 룸 2: 노 웨이 아웃",
-            url: "https://caching.lottecinema.co.kr//Media/MovieFile/MovieImg/202107/17598_101_1.jpg",
-            rank: "4",
-            rate: "6.0%",
-            star: "8.2",
-        },
-        {
-            name: "",
-            url: "https://caching2.lottecinema.co.kr/lotte_image/2021/Ido/Ido_184262.jpg",
-            rank: "AD",
-            rate: "",
-            star: "",
-        },
-        {
-            name: "크루엘라",
-            url: "https://caching.lottecinema.co.kr//Media/MovieFile/MovieImg/202105/17387_101_1.jpg",
-            rank: "5",
-            rate: "3.0%",
-            star: "9.2",
-        },
-        {
-            name: "꽃다발 같은 사랑을 했다.",
-            url: "https://caching.lottecinema.co.kr//Media/MovieFile/MovieImg/202106/17526_101_1.jpg",
-            rank: "6",
-            rate: "1.0%",
-            star: "8.6",
-        },
-    ];
+    const movies = useSelector((state) => state.movie.main_movie_list);
+    console.log(movies);
+
+    useEffect(() => {
+        dispatch(getMovies());
+    }, []);
 
     const settings = {
         dots: false,
@@ -91,8 +50,8 @@ const MainMovieList = (props) => {
         <>
             <Container>
                 <Slider {...settings}>
-                    {items.map((item, i) => (
-                        <Item key={i} item={item} />
+                    {movies.map((movie, i) => (
+                        <Item key={i} item={movie} {...props} />
                     ))}
                 </Slider>
             </Container>
@@ -102,6 +61,11 @@ const MainMovieList = (props) => {
 
 function Item(props) {
     const classes = useStyles();
+    console.log(props);
+
+    const goDetail = () => {
+        props.history.push(`/detail/${props.item.title}`);
+    };
 
     return (
         <>
@@ -116,12 +80,14 @@ function Item(props) {
                         <CardMedia
                             id="card_media"
                             className={classes.media}
-                            image={props.item.url}
+                            image={props.item.main_poster}
                             style={{ position: "relative" }}
                         >
                             <HoverMenu id="hover_menu">
                                 <Button id="menu_button">예매하기</Button>
-                                <Button id="menu_button">상세보기</Button>
+                                <Button id="menu_button" onClick={goDetail}>
+                                    상세보기
+                                </Button>
                             </HoverMenu>
                             {/* 영화 순위 */}
                             <span
@@ -142,7 +108,7 @@ function Item(props) {
                         </CardMedia>
 
                         {/* 영화 정보 (영화 이름이 없으면 출력X) */}
-                        {props.item.name && (
+                        {props.item.title && (
                             <CardContent style={{ padding: "0px" }}>
                                 <Typography
                                     variant="body2"
@@ -156,7 +122,7 @@ function Item(props) {
                                         fontSize: "13px",
                                     }}
                                 >
-                                    {props.item.name}
+                                    {props.item.title}
                                     <div
                                         style={{
                                             color: "white",
@@ -166,7 +132,9 @@ function Item(props) {
                                             alignItems: "center",
                                         }}
                                     >
-                                        <span>예매율 {props.item.rate}</span>
+                                        <span>
+                                            예매율 {props.item.bookRate}
+                                        </span>
                                         <Divider
                                             orientation="vertical"
                                             flexItem
@@ -184,7 +152,7 @@ function Item(props) {
                                         >
                                             <img src={star} alt="" />
                                             <span style={{ marginLeft: "3px" }}>
-                                                {props.item.star}
+                                                {/* {props.item.star} */}
                                             </span>
                                         </span>
                                         <Divider

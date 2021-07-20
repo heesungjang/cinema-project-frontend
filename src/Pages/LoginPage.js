@@ -9,11 +9,11 @@ import LoginContainer from "../Components/Login/LoginContainer";
 import MainPageLayout from "../Layouts/Main/MainPageLayout";
 import DetailHeaderLayout from "../Layouts/Detail/DetailHeaderLayout";
 
-const LoginPage = () => {
+const LoginPage = (props) => {
     return (
         <MainPageLayout>
             <DetailHeaderLayout>
-                <Header page={"detail"} />
+                <Header page={"detail"} {...props} />
             </DetailHeaderLayout>
             <LoginContainer />
             <DetailAd />

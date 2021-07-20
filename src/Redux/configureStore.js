@@ -4,9 +4,12 @@ import { combineReducers } from "redux";
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
+import movieSlice from "./modules/movieSlice";
+
 export const history = createBrowserHistory();
 
 const reducer = combineReducers({
+    movie: movieSlice.reducer,
     router: connectRouter(history),
 });
 

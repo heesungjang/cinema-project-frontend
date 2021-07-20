@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import Header from "../shared/Header";
 
@@ -15,6 +16,11 @@ import DetailLastAd from "../Elements/DetailLastAd";
 import Footer from "../shared/Footer";
 
 const DetailPage = (props) => {
+    console.log(props);
+    const movies = useSelector((state) => state.movie.main_movie_list);
+    console.log(movies);
+    const movie = movies.find((movie) => movie.title === props.match.params.id);
+    console.log(movie);
     return (
         <React.Fragment>
             <MainPageLayout>
@@ -22,11 +28,11 @@ const DetailPage = (props) => {
                     <Header page={"detail"} />
                 </DetailHeaderLayout>
                 <DetailSubSectionLayout>
-                    <DetailSubSection />
+                    <DetailSubSection movie={movie} />
                 </DetailSubSectionLayout>
                 <DetailContentLayout>
-                    <DetailContent />
-                    <DetailInfo />
+                    <DetailContent {...props} movie={movie} />
+                    <DetailInfo movie={movie} />
                     <DetailAd />
                 </DetailContentLayout>
                 <DetailLastAd />
