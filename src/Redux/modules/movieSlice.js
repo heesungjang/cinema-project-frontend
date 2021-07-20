@@ -104,9 +104,12 @@ const movieSlice = createSlice({
             // console.log("fulfilled!!");
             // console.log("state: ", state.main_movie_list);
             // console.log("action: ", action.payload);
-            const movies = action.payload;
+            const movies = action.payload; // 크롤링해서 가져오는 영화정보
             console.log("movies: ", movies);
+
+            let _movie_data = [];
             movies.map((movie, idx) => {
+                // 필요한 영화정보들
                 let {
                     bookRate,
                     photos,
@@ -122,10 +125,9 @@ const movieSlice = createSlice({
                     trailer,
                     viewers,
                 } = movie;
-                let _bookRate = bookRate * 100;
-                let main_poster = photos[photos.length - 1];
+                let main_poster = photos[photos.length - 1]; // 메인포스터
                 const movie_data = {
-                    bookRate: _bookRate,
+                    bookRate,
                     photos,
                     title,
                     actors,
@@ -139,16 +141,11 @@ const movieSlice = createSlice({
                     trailer,
                     viewers,
                     main_poster,
-                    rank: idx + 1,
+                    rank: idx + 1, // 랭크
                 };
-                state.main_movie_list.push(movie_data);
-                // state.main_movie_list.push({
-                //     name: title,
-                //     url: _photos,
-                //     rate: _bookRate,
-                //     rank: idx + 1,
-                // });
+                _movie_data.push(movie_data);
             });
+            state.main_movie_list = _movie_data;
         });
     },
 });
