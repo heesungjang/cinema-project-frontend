@@ -1,13 +1,14 @@
 import React from "react";
 
+import logo from "../../images/signup_logo.png";
+import logo_x from "../../images/ico-with.png";
+import logo_two from "../../images/img_1050.png";
+
 import DatePicker from "react-date-picker";
+import { makeStyles } from "@material-ui/styles";
 import { Grid, Typography, TextField, Button } from "@material-ui/core";
 
-import logo from "../../images/signup_logo.png";
-import logo_two from "../../images/img_1050.png";
-import logo_x from "../../images/ico-with.png";
-
-import { makeStyles } from "@material-ui/styles";
+import Alert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles({
     mainContainer: {
@@ -58,6 +59,7 @@ const useStyles = makeStyles({
 });
 
 const SignupPresenter = (props) => {
+    const classes = useStyles();
     const {
         name,
         email,
@@ -73,7 +75,6 @@ const SignupPresenter = (props) => {
         setDateValue,
     } = props;
 
-    const classes = useStyles();
     return (
         <>
             <Grid xs={12} className={classes.topContainer}>
@@ -95,7 +96,10 @@ const SignupPresenter = (props) => {
                 </Grid>
                 <Grid
                     xs={12}
-                    style={{ borderBottom: "1px solid", marginBottom: "20px" }}
+                    style={{
+                        borderBottom: "1px solid",
+                        marginBottom: "20px",
+                    }}
                 >
                     <Typography>
                         회원정보입력{" "}
@@ -108,7 +112,8 @@ const SignupPresenter = (props) => {
                     <Grid xs={2}>
                         <Typography>
                             {" "}
-                            <span className={classes.bigRedText}>*</span>이름
+                            <span className={classes.bigRedText}>*</span>
+                            이름
                         </Typography>
                     </Grid>
                     <Grid xs={5}>
@@ -126,8 +131,8 @@ const SignupPresenter = (props) => {
                 <Grid xs={12} className={classes.inputContainer}>
                     <Grid xs={2}>
                         <Typography>
-                            <span className={classes.bigRedText}>*</span>이메일
-                            주소
+                            <span className={classes.bigRedText}>*</span>
+                            이메일 주소
                         </Typography>
                     </Grid>
                     <Grid xs={5}>
@@ -159,8 +164,11 @@ const SignupPresenter = (props) => {
                             label="비밀번호를 입력해주세요."
                             variant="filled"
                             fullWidth
+                            type="password"
                         />
                         <TextField
+                            required
+                            type="password"
                             name="password_2"
                             value={password_2}
                             onChange={onChange}
@@ -174,8 +182,8 @@ const SignupPresenter = (props) => {
                 <Grid xs={12} className={classes.inputContainer}>
                     <Grid xs={2}>
                         <Typography>
-                            <span className={classes.bigRedText}>*</span>휴대폰
-                            번호
+                            <span className={classes.bigRedText}>*</span>
+                            휴대폰 번호
                         </Typography>
                     </Grid>
                     <Grid
@@ -185,6 +193,8 @@ const SignupPresenter = (props) => {
                         }}
                     >
                         <TextField
+                            required
+                            placeholder="010"
                             name="phoneNumber_1"
                             id="filled-basic"
                             variant="filled"
@@ -193,6 +203,7 @@ const SignupPresenter = (props) => {
                             onChange={handlePhoneNumber}
                         />
                         <TextField
+                            required
                             name="phoneNumber_2"
                             id="filled-basic"
                             variant="filled"
@@ -202,6 +213,7 @@ const SignupPresenter = (props) => {
                             onChange={handlePhoneNumber}
                         />
                         <TextField
+                            required
                             name="phoneNumber_3"
                             id="filled-basic"
                             variant="filled"
@@ -241,21 +253,35 @@ const SignupPresenter = (props) => {
                         marginTop: "50px",
                     }}
                 >
-                    <Button
-                        variant="contained"
-                        color="default"
-                        style={{ padding: "15px 60px" }}
-                    >
-                        취소하기
-                    </Button>
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        style={{ marginLeft: "50px", padding: "15px 60px" }}
-                        onClick={handleSubmit}
-                    >
-                        회원가입
-                    </Button>
+                    {false ? (
+                        <Button onClick={console.log("clicked")}>
+                            <Alert variant="filled" severity="success">
+                                Click - 회원가입에 성공했습니다, 인증 메일을
+                                확인해주세요.
+                            </Alert>
+                        </Button>
+                    ) : (
+                        <Grid>
+                            <Button
+                                variant="contained"
+                                color="default"
+                                style={{ padding: "15px 60px" }}
+                            >
+                                취소하기
+                            </Button>
+                            <Button
+                                variant="contained"
+                                color="secondary"
+                                style={{
+                                    marginLeft: "50px",
+                                    padding: "15px 60px",
+                                }}
+                                onClick={handleSubmit}
+                            >
+                                회원가입
+                            </Button>
+                        </Grid>
+                    )}
                 </Grid>
             </Grid>
         </>
