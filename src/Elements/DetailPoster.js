@@ -17,6 +17,7 @@ const DetailPoster = (props) => {
 
     return (
         <Container>
+            <Title>포스터/스틸컷({movie.photos.length})</Title>
             <Slider {...settings}>
                 {movie.photos.map((movie, i) => (
                     <Item key={i} item={movie} />
@@ -39,7 +40,7 @@ function Item(props) {
 const Container = styled.div`
     width: 932px;
     height: 140px;
-    margin: 0 auto;
+    margin: 70px auto 0px;
     .slick-prev:before {
         opacity: 1;
         color: #eee;
@@ -48,6 +49,12 @@ const Container = styled.div`
         opacity: 1;
         color: #eee;
     }
+`;
+
+const Title = styled.div`
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 10px;
 `;
 
 const StillCut = styled.div`
