@@ -1,4 +1,6 @@
 import React from "react";
+
+import DatePicker from "react-date-picker";
 import { Grid, Typography, TextField, Button } from "@material-ui/core";
 
 import logo from "../../images/signup_logo.png";
@@ -6,7 +8,6 @@ import logo_two from "../../images/img_1050.png";
 import logo_x from "../../images/ico-with.png";
 
 import { makeStyles } from "@material-ui/styles";
-import { classExpression } from "@babel/types";
 
 const useStyles = makeStyles({
     mainContainer: {
@@ -56,7 +57,22 @@ const useStyles = makeStyles({
     },
 });
 
-const SignupPresenter = () => {
+const SignupPresenter = (props) => {
+    const {
+        name,
+        email,
+        password_1,
+        password_2,
+        phoneNumber_1,
+        phoneNumber_2,
+        phoneNumber_3,
+        handlePhoneNumber,
+        dateValue,
+        onChange,
+        handleSubmit,
+        setDateValue,
+    } = props;
+
     const classes = useStyles();
     return (
         <>
@@ -97,10 +113,13 @@ const SignupPresenter = () => {
                     </Grid>
                     <Grid xs={5}>
                         <TextField
+                            name="name"
                             id="filled-basic"
                             label="한글 또는 영문으로 입력해주세요."
                             variant="filled"
                             fullWidth
+                            value={name}
+                            onChange={onChange}
                         />
                     </Grid>
                 </Grid>
@@ -113,6 +132,9 @@ const SignupPresenter = () => {
                     </Grid>
                     <Grid xs={5}>
                         <TextField
+                            name="email"
+                            value={email}
+                            onChange={onChange}
                             id="filled-basic"
                             label="이메일주소를 입력해주세요"
                             variant="filled"
@@ -130,12 +152,18 @@ const SignupPresenter = () => {
                     </Grid>
                     <Grid xs={5}>
                         <TextField
+                            name="password_1"
+                            value={password_1}
+                            onChange={onChange}
                             id="filled-basic"
                             label="비밀번호를 입력해주세요."
                             variant="filled"
                             fullWidth
                         />
                         <TextField
+                            name="password_2"
+                            value={password_2}
+                            onChange={onChange}
                             id="filled-basic"
                             label="입력하신 비밀번호를 다시 한번 입력해주세요."
                             variant="filled"
@@ -157,23 +185,53 @@ const SignupPresenter = () => {
                         }}
                     >
                         <TextField
+                            name="phoneNumber_1"
                             id="filled-basic"
                             variant="filled"
                             inputProps={{ maxLength: 3 }}
+                            value={phoneNumber_1}
+                            onChange={handlePhoneNumber}
                         />
                         <TextField
+                            name="phoneNumber_2"
                             id="filled-basic"
                             variant="filled"
                             style={{ margin: "0 5px" }}
                             inputProps={{ maxLength: 4 }}
+                            value={phoneNumber_2}
+                            onChange={handlePhoneNumber}
                         />
                         <TextField
+                            name="phoneNumber_3"
                             id="filled-basic"
                             variant="filled"
                             inputProps={{ maxLength: 4 }}
+                            value={phoneNumber_3}
+                            onChange={handlePhoneNumber}
                         />
                     </Grid>
                 </Grid>
+                <Grid xs={12} className={classes.inputContainer}>
+                    <Grid xs={2}>
+                        <Typography>
+                            <span className={classes.bigRedText}>*</span>
+                            생년월일
+                        </Typography>
+                    </Grid>
+                    <Grid
+                        xs={5}
+                        style={{
+                            display: "flex",
+                        }}
+                    >
+                        <DatePicker
+                            onChange={setDateValue}
+                            value={dateValue}
+                            format={"yyyy-MM-dd"}
+                        />
+                    </Grid>
+                </Grid>
+
                 <Grid
                     xs={12}
                     style={{
@@ -194,6 +252,7 @@ const SignupPresenter = () => {
                         variant="contained"
                         color="secondary"
                         style={{ marginLeft: "50px", padding: "15px 60px" }}
+                        onClick={handleSubmit}
                     >
                         회원가입
                     </Button>
