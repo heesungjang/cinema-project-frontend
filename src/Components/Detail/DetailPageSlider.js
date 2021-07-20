@@ -46,7 +46,6 @@ const DetailPageSlider = (props) => {
 };
 
 const Item = (props) => {
-    console.log(props);
     const classes = useStyles();
     return (
         <Paper className={classes.paper}>

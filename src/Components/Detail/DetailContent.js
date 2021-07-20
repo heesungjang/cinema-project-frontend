@@ -110,13 +110,13 @@ const DetailContent = (props) => {
                         <Grid className={classes.rateSubContainer}>
                             <Typography>예매율</Typography>
                             <Typography className={classes.subContainerText}>
-                                17위 0.0%
+                                {movie.rank}위 {movie.bookRate}%
                             </Typography>
                         </Grid>
                         <Grid className={classes.rateSubContainer}>
                             <Typography>누적관객수</Typography>
                             <Typography className={classes.subContainerText}>
-                                {movie.viewers} 명
+                                {movie.viewers.toLocaleString("ko-KR")} 명
                             </Typography>
                         </Grid>
                     </Grid>
