@@ -1,35 +1,37 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { logIn } from "../async/user";
+import { logIn, signup } from "../async/user";
 
 const initialState = {
-    isLoggingIn: false,
-    data: null,
-    error: null,
+    username: "",
+    email: "",
+    isFetching: false,
+    isSuccess: false,
+    isError: false,
+    errorMessage: "",
 };
 
 const userSlice = createSlice({
-    name: "user",
+    name: "users",
     initialState,
     reducers: {
-        logOut: (state, action) => {
-            state.data = null;
+        // Reducer 여기에 추가
+    },
+    extraReducers: {
+        [signup.fulfilled]: (state, { payload }) => {
+            state.isFetching = false;
+            state.isSuccess = true;
+            state.email = payload.email;
+            state.username = payload.username;
+        },
+        [signup.pending]: (state) => {
+            state.isFetching = true;
+        },
+        [signup.rejected]: (state, { payload }) => {
+            state.isFetching = false;
+            state.isError = true;
+            // state.errorMessage = payload.message;
         },
     },
-    extraReducers: (builder) =>
-        builder
-            .addCase(logIn.pending, (state, action) => {
-                state.data = null;
-                state.isLoading = true;
-            })
-            .addCase(logIn.fulfilled, (state, action) => {
-                state.data = action.payload;
-                state.isLoggingIn = false;
-            })
-            .addCase(logIn.rejected, (state, action) => {
-                state.error = action.payload;
-            }),
 });
-
-export const { logOut } = userSlice.actions;
 
 export default userSlice;

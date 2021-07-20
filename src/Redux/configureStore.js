@@ -3,12 +3,14 @@ import { combineReducers } from "redux";
 
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
+import userSlice from "./modules/userSlice";
 
 import movieSlice from "./modules/movieSlice";
 
 export const history = createBrowserHistory();
 
 const reducer = combineReducers({
+    user: userSlice.reducer,
     movie: movieSlice.reducer,
     router: connectRouter(history),
 });
