@@ -4,6 +4,7 @@ import logo from "../../images/signup_logo.png";
 import logo_x from "../../images/ico-with.png";
 import logo_two from "../../images/img_1050.png";
 
+import { useHistory } from "react-router";
 import DatePicker from "react-date-picker";
 import { makeStyles } from "@material-ui/styles";
 import { Grid, Typography, TextField, Button } from "@material-ui/core";
@@ -59,6 +60,7 @@ const useStyles = makeStyles({
 });
 
 const SignupPresenter = (props) => {
+    const history = useHistory();
     const classes = useStyles();
     const {
         name,
@@ -266,6 +268,9 @@ const SignupPresenter = (props) => {
                                 variant="contained"
                                 color="default"
                                 style={{ padding: "15px 60px" }}
+                                onClick={() => {
+                                    history.replace("/login");
+                                }}
                             >
                                 취소하기
                             </Button>

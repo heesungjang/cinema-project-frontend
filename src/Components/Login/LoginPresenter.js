@@ -3,7 +3,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/styles";
 import { Button, Grid, TextField, Typography } from "@material-ui/core";
 import DetailContentLayout from "../../Layouts/Detail/DetailContentLayout";
-
+import { useHistory } from "react-router";
 const useStyles = makeStyles({
     mainContainer: {
         display: "flex",
@@ -65,6 +65,7 @@ const useStyles = makeStyles({
 });
 
 const LoginPresenter = (props) => {
+    const history = useHistory();
     const { email, password, handleSubmit, onChange } = props;
 
     const classes = useStyles();
@@ -131,7 +132,12 @@ const LoginPresenter = (props) => {
                                 className={classes.signupButtonContainer}
                             >
                                 <Grid>
-                                    <Button className={classes.signupText}>
+                                    <Button
+                                        className={classes.signupText}
+                                        onClick={() => {
+                                            history.push("/signup");
+                                        }}
+                                    >
                                         회원가입
                                     </Button>
                                     <Button className={classes.signupText}>

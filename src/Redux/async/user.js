@@ -16,16 +16,16 @@ export const login = createAsyncThunk(
         }).then((response) => {
             const { userId, name } = jwt_decode(response.data.token);
             const data = { userId: userId, name: name };
-
             // console.log({ ...response, userData });
-
             if (!response.data.status === "201") {
                 return;
             }
             const token = response.data.token;
             localStorage.setItem("token", token);
+
             return { userId, name };
         });
+
         return response;
     }
 );
