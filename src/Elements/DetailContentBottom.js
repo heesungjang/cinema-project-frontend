@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 
 const DetailContentBottom = (props) => {
     const { movie } = props;
-    console.log("movie: ", movie);
+    // console.log("movie: ", movie);
     const classes = useStyles();
 
     return (
@@ -53,58 +53,11 @@ const DetailContentBottom = (props) => {
                 ))}
             </Grid>
         </Box>
-        // <Grid xs={12}>
-        //     <Typography className={classes.titleText}>감독 및 배우</Typography>
-        //     <Grid xs={12}>
-        //         <Grid className={classes.subContainer}>
-        //             <ListItem>
-        //                 <Avatar
-        //                     className={classes.avatar}
-        //                     src="https://caching.lottecinema.co.kr//Media/MovieFile/PersonImg/40000/39933_107_1.jpg"
-        //                 />
-        //                 <Container>
-        //                     <Typography>케이트 쇼트랜드</Typography>
-        //                     <Typography>감독</Typography>
-        //                 </Container>
-        //             </ListItem>
-        //             <ListItem>
-        //                 <Avatar
-        //                     className={classes.avatar}
-        //                     src="https://caching.lottecinema.co.kr//Media/MovieFile/PersonImg/3000/2538_107_3.jpg"
-        //                 />
-        //                 <Container>
-        //                     <Typography>케이트 쇼트랜드</Typography>
-        //                     <Typography>배우</Typography>
-        //                 </Container>
-        //             </ListItem>
-        //             <ListItem>
-        //                 <Avatar
-        //                     className={classes.avatar}
-        //                     src="https://caching.lottecinema.co.kr//Media/MovieFile/PersonImg/100000/99765_107_3.jpg"
-        //                 />
-        //                 <Container>
-        //                     <Typography>케이트 쇼트랜드</Typography>
-        //                     <Typography>배우</Typography>
-        //                 </Container>
-        //             </ListItem>
-        //             <ListItem>
-        //                 <Avatar
-        //                     className={classes.avatar}
-        //                     src="https://caching.lottecinema.co.kr//Media/MovieFile/PersonImg/81000/80678_107_2.jpg"
-        //                 />
-        //                 <Container>
-        //                     <Typography>케이트 쇼트랜드</Typography>
-        //                     <Typography>배우</Typography>
-        //                 </Container>
-        //             </ListItem>
-        //         </Grid>
-        //     </Grid>
-        // </Grid>
     );
 };
 
 function Item(props) {
-    console.log("props: ", props);
+    // console.log("props: ", props);
     const classes = useStyles();
     return (
         <>
