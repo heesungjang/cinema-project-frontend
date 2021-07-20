@@ -78,9 +78,9 @@ const DetailInfo = (props) => {
                 {is_info_button_active ? (
                     <>
                         <DetailContentTop movie={movie} />
-                        <DetailTrailer />
-                        <DetailPoster />
-                        <DetailContentBottom />
+                        <DetailTrailer movie={movie} />
+                        <DetailPoster movie={movie} />
+                        <DetailContentBottom movie={movie} />
                     </>
                 ) : (
                     <React.Fragment></React.Fragment>

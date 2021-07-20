@@ -20,7 +20,8 @@ const useStyles = makeStyles({
     },
 });
 
-const DetailTrailer = () => {
+const DetailTrailer = (props) => {
+    const { movie } = props;
     const classes = useStyles();
     return (
         <Grid className={classes.mainContainer}>
@@ -31,7 +32,7 @@ const DetailTrailer = () => {
                         controls="true"
                         width="300px"
                         height="200px"
-                        url="http://caching.lottecinema.co.kr//Media/MovieFile/MovieMedia/202107/17630_301_1.mp4"
+                        url={movie.trailers[0]}
                     />
                     <Typography className={classes.videoText}>
                         1차 예고편
@@ -42,7 +43,7 @@ const DetailTrailer = () => {
                         controls="true"
                         width="300px"
                         height="200px"
-                        url="http://caching.lottecinema.co.kr//Media/MovieFile/MovieMedia/202107/17630_301_1.mp4"
+                        url={movie.trailers[1]}
                     />
                     <Typography className={classes.videoText}>
                         2차 예고편
@@ -53,7 +54,7 @@ const DetailTrailer = () => {
                         controls="true"
                         width="300px"
                         height="200px"
-                        url="http://caching.lottecinema.co.kr//Media/MovieFile/MovieMedia/202107/17630_301_1.mp4"
+                        url={movie.trailers[2]}
                     />
                     <Typography className={classes.videoText}>
                         3차 예고편
