@@ -1,8 +1,31 @@
+import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { moviesApi } from "../../api";
 
-export const getMovies = createAsyncThunk("GET_MOVIES", async () => {
-    const reponse = await moviesApi.getAllMovies();
-    console.log(reponse.data);
-    return reponse.data;
-});
+export const getMovies = createAsyncThunk(
+    "movie/list",
+    async (data, thunkAPI) => {
+        const response = await axios({
+            url: "http://13.209.84.245/movies",
+            method: "get",
+        });
+
+        if (response.status === 200) {
+            const data = { ...response.data };
+            return data;
+        }
+    }
+);
+
+export const getMovieDetail = createAsyncThunk(
+    "movie/detail",
+    async ({ movieId }, thunkAPI) => {
+        const response = await axios({
+            url: `http://13.209.84.245/movie/${movieId}`,
+            method: "get",
+        });
+
+        if (response.status === 200) {
+            return response.data;
+        }
+    }
+);

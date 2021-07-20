@@ -7,12 +7,12 @@ export const api = axios.create({
     // },
 });
 
-// export const authApi = {
-//     userLogin: () => api.post("/login"),
-//     userSignup: (data) => api.post("/users", { ...data }),
-// };
+export const authApi = {
+    userLogin: () => api.post("/login"),
+    userSignup: (data) => api.post("/users", { ...data }),
+};
 
-// export const moviesApi = {
-//     getAllMovies: () => api.get("/movies"),
-//     getMovie: (id) => api.get("/movies/id"),
-// };
+export const moviesApi = {
+    getAllMovies: () => api.get("/movies"),
+    getMovie: (id) => api.get("/movies/id"),
+};
