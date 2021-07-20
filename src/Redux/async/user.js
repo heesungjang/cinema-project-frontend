@@ -1,9 +1,33 @@
 import axios from "axios";
+import jwt_decode from "jwt-decode";
+
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const logIn = createAsyncThunk(
+export const login = createAsyncThunk(
     "user/logIn",
-    async (data, thunkAPI) => {}
+    async ({ email, password }, thunkAPI) => {
+        const response = await axios({
+            url: "http://13.209.84.245/login",
+            method: "post",
+            data: {
+                email,
+                password,
+            },
+        }).then((response) => {
+            const { userId, name } = jwt_decode(response.data.token);
+            const data = { userId: userId, name: name };
+
+            // console.log({ ...response, userData });
+
+            if (!response.data.status === "201") {
+                return;
+            }
+            const token = response.data.token;
+            localStorage.setItem("token", token);
+            return { userId, name };
+        });
+        return response;
+    }
 );
 
 export const signup = createAsyncThunk(
@@ -32,7 +56,7 @@ export const signup = createAsyncThunk(
         });
 
         if (response.status === 201) {
-            return { username: name, email: email };
+            return { name, email };
         } else {
             return thunkAPI.rejectWithValue();
         }

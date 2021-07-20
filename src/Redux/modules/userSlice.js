@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { logIn, signup } from "../async/user";
+import { login, signup } from "../async/user";
 
 const initialState = {
-    username: "",
-    email: "",
+    userId: "",
+    name: "",
     isFetching: false,
     isSuccess: false,
     isError: false,
@@ -20,8 +20,6 @@ const userSlice = createSlice({
         [signup.fulfilled]: (state, { payload }) => {
             state.isFetching = false;
             state.isSuccess = true;
-            state.email = payload.email;
-            state.username = payload.username;
         },
         [signup.pending]: (state) => {
             state.isFetching = true;
@@ -29,7 +27,22 @@ const userSlice = createSlice({
         [signup.rejected]: (state, { payload }) => {
             state.isFetching = false;
             state.isError = true;
-            // state.errorMessage = payload.message;
+            state.errorMessage = "회원가입에 실패했습니다";
+        },
+        [login.fulfilled]: (state, { payload }) => {
+            state.userId = payload.userId;
+            state.name = payload.name;
+            state.isFetching = false;
+            state.isSuccess = true;
+            return state;
+        },
+        [login.rejected]: (state, { payload }) => {
+            state.isFetching = false;
+            state.isError = true;
+            state.errorMessage = "로그인에 실패했습니다.";
+        },
+        [login.pending]: (state) => {
+            state.isFetching = true;
         },
     },
 });
