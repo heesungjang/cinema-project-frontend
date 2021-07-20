@@ -122,7 +122,7 @@ const movieSlice = createSlice({
                     releaseDate,
                     runningTime,
                     synopsis,
-                    trailer,
+                    trailers,
                     viewers,
                 } = movie;
                 let _bookRate = bookRate * 100; // 예매율
@@ -140,13 +140,14 @@ const movieSlice = createSlice({
                     releaseDate: _releaseDate[0],
                     runningTime,
                     synopsis,
-                    trailer,
+                    trailers,
                     viewers,
                     main_poster,
                     rank: idx + 1, // 랭크
                 };
                 _movie_data.push(movie_data);
             });
+            console.log(_movie_data);
             state.main_movie_list = _movie_data;
         });
     },
