@@ -20,7 +20,38 @@ const useStyles = makeStyles({
 });
 
 const MainCarousel = (props) => {
-    const movie_list = useSelector((state) => state.movie.carousel_movies);
+    const movie_list = [
+        {
+            name: "정글 크루즈",
+            img: "https://caching2.lottecinema.co.kr/lotte_image/2021/Jungle/Jungle_1920774.jpg",
+            trailer:
+                "https://caching2.lottecinema.co.kr/lotte_image/2021/Jungle/Jungle_1280720.mp4",
+        },
+        {
+            name: "수어사이드 스쿼드",
+            img: "https://caching2.lottecinema.co.kr/lotte_image/2021/Squad/Squad_1920774.jpg",
+            trailer:
+                "https://caching2.lottecinema.co.kr/lotte_image/2021/Squad/Squad_1280720.mp4",
+        },
+        {
+            name: "모가디슈",
+            img: "https://caching2.lottecinema.co.kr/lotte_image/2021/Moga/Moga_1920774.jpg",
+            trailer:
+                "https://caching2.lottecinema.co.kr/lotte_image/2021/Moga/0714/Moga_1280720.mp4",
+        },
+        {
+            name: "아이스로드",
+            img: "https://caching2.lottecinema.co.kr/lotte_image/2021/Ice/0721/Ice_1920774.jpg",
+            trailer:
+                "https://caching2.lottecinema.co.kr/lotte_image/2021/Ice/0721/Ice_1280720.mp4",
+        },
+        {
+            name: "숏 버스 이별행",
+            img: "https://caching2.lottecinema.co.kr/lotte_image/2021/Bus/Bus_1920774.jpg",
+            trailer:
+                "https://caching2.lottecinema.co.kr/lotte_image/2021/Bus/Bus_1920774.jpg",
+        },
+    ];
     // console.log(movie_list);
 
     return (
@@ -62,7 +93,7 @@ const Item = (props) => {
             <Modal open={modalOpen} close={closeModal}>
                 <video
                     src={props.item.trailer}
-                    autoplay="autoplay"
+                    autoPlay="autoplay"
                     controls
                     style={{ width: "100%", height: "100%" }}
                 />

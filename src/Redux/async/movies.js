@@ -5,9 +5,13 @@ export const getMovies = createAsyncThunk(
     "movie/list",
     async (data, thunkAPI) => {
         const response = await axios({
+            // url: "http://localhost:4000/movies",
             url: "http://13.209.84.245/movies",
             method: "get",
         });
+
+        console.log("response: ", response);
+        return response.data;
 
         if (response.status === 200) {
             const data = { ...response.data };
