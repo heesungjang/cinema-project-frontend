@@ -4,12 +4,14 @@ import logo from "../../images/signup_logo.png";
 import logo_x from "../../images/ico-with.png";
 import logo_two from "../../images/img_1050.png";
 
-import { useHistory } from "react-router";
+import { history } from "../../Redux/configureStore";
 import DatePicker from "react-date-picker";
 import { makeStyles } from "@material-ui/styles";
 import { Grid, Typography, TextField, Button } from "@material-ui/core";
 
 import Alert from "@material-ui/lab/Alert";
+
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles({
     mainContainer: {
@@ -60,7 +62,8 @@ const useStyles = makeStyles({
 });
 
 const SignupPresenter = (props) => {
-    const history = useHistory();
+    const isSuccess = useSelector((state) => state.user.isSuccess);
+
     const classes = useStyles();
     const {
         name,
@@ -255,11 +258,11 @@ const SignupPresenter = (props) => {
                         marginTop: "50px",
                     }}
                 >
-                    {false ? (
-                        <Button onClick={console.log("clicked")}>
+                    {isSuccess ? (
+                        <Button onClick={() => history.push("/login")}>
                             <Alert variant="filled" severity="success">
-                                Click - 회원가입에 성공했습니다, 인증 메일을
-                                확인해주세요.
+                                Click - 회원가입에 성공했습니다, 인증 메일 확인
+                                후 로그인하세요.
                             </Alert>
                         </Button>
                     ) : (
