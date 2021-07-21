@@ -15,7 +15,6 @@ const movieSlice = createSlice({
     },
     extraReducers: {
         [getMovies.fulfilled]: (state, action) => {
-            console.log("reducer: ", action.payload);
             state.movies = action.payload;
             // console.log(action.payload[0]);
             state.isFetching = false;
