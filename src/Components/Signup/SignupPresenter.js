@@ -272,7 +272,7 @@ const SignupPresenter = (props) => {
                                 color="default"
                                 style={{ padding: "15px 60px" }}
                                 onClick={() => {
-                                    history.replace("/login");
+                                    history.replace("/");
                                 }}
                             >
                                 취소하기
