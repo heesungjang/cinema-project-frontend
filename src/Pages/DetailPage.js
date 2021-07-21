@@ -16,10 +16,14 @@ import DetailSubSectionLayout from "../Layouts/Detail/DetailSubSectionLayout";
 import DetailAd from "../Elements/DetailAd";
 import DetailLastAd from "../Elements/DetailLastAd";
 import Footer from "../shared/Footer";
+import Spinner from "../shared/Spinner";
 
 const DetailPage = (props) => {
     const dispatch = useDispatch();
     const detailMovie = useSelector((state) => state.detail.movieData);
+    const is_loaded = useSelector((state) => state.detail.isFetching);
+    console.log("DetailPage: ", detailMovie);
+
     const movies = useSelector((state) => state.movie.movies);
 
     // 예매율 순위
@@ -35,27 +39,31 @@ const DetailPage = (props) => {
 
     return (
         <React.Fragment>
-            <MainPageLayout>
-                <DetailHeaderLayout>
-                    <Header page={"detail"} />
-                </DetailHeaderLayout>
-                <DetailSubSectionLayout>
-                    <DetailSubSection detailMovie={detailMovie} />
-                </DetailSubSectionLayout>
-                <DetailContentLayout>
-                    <DetailContent
-                        {...props}
-                        detailMovie={detailMovie}
-                        rank={rank}
-                    />
-                    <DetailInfo detailMovie={detailMovie} />
-                    <DetailAd />
-                </DetailContentLayout>
-                <DetailLastAd />
-                <DetailHeaderLayout>
-                    <Footer />
-                </DetailHeaderLayout>
-            </MainPageLayout>
+            {is_loaded ? (
+                <Spinner />
+            ) : (
+                <MainPageLayout>
+                    <DetailHeaderLayout>
+                        <Header page={"detail"} />
+                    </DetailHeaderLayout>
+                    <DetailSubSectionLayout>
+                        <DetailSubSection detailMovie={detailMovie} />
+                    </DetailSubSectionLayout>
+                    <DetailContentLayout>
+                        <DetailContent
+                            {...props}
+                            detailMovie={detailMovie}
+                            rank={rank}
+                        />
+                        <DetailInfo detailMovie={detailMovie} />
+                        <DetailAd />
+                    </DetailContentLayout>
+                    <DetailLastAd />
+                    <DetailHeaderLayout>
+                        <Footer />
+                    </DetailHeaderLayout>
+                </MainPageLayout>
+            )}
         </React.Fragment>
     );
 };

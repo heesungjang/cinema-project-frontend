@@ -17,6 +17,8 @@ import MainSubSectionLayout from "../Layouts/Main/MainSubSectionLayout";
 import MainSubSection from "../Components/Main/MainSubSection";
 import EventComponent from "../Components/Main/EventComponent";
 
+import Spinner from "../shared/Spinner";
+
 const useStyles = makeStyles({
     firstDiv: {
         height: "641px",
@@ -35,6 +37,8 @@ const MainPage = (props) => {
 
     const dispatch = useDispatch();
     const movies = useSelector((state) => state.movie.movies);
+    const is_loaded = useSelector((state) => state.movie.isFetching);
+    // console.log(is_loaded);
 
     useEffect(() => {
         dispatch(getMovies());
@@ -42,36 +46,40 @@ const MainPage = (props) => {
 
     return (
         <React.Fragment>
-            <MainPageLayout>
-                <MainHeaderLayout>
-                    <Header page={"main"} {...props} />
-                </MainHeaderLayout>
-                <MainSubSectionLayout>
-                    <MainSubSection />
-                </MainSubSectionLayout>
-                <MainContentLayout>
-                    <MainMovieList {...props} movies={movies} />
-                    <div className={classes.firstDiv}>
-                        <EventComponent />
-                    </div>
-                    <div className={classes.secondDiv}>
-                        <Premiere />
-                    </div>
-                </MainContentLayout>
-                <Grid xs={12}>
-                    <Grid
-                        xs={12}
-                        style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            width: "1000px",
-                            margin: "auto",
-                        }}
-                    >
-                        <Footer />
+            {is_loaded ? (
+                <Spinner />
+            ) : (
+                <MainPageLayout>
+                    <MainHeaderLayout>
+                        <Header page={"main"} {...props} />
+                    </MainHeaderLayout>
+                    <MainSubSectionLayout>
+                        <MainSubSection />
+                    </MainSubSectionLayout>
+                    <MainContentLayout>
+                        <MainMovieList {...props} movies={movies} />
+                        <div className={classes.firstDiv}>
+                            <EventComponent />
+                        </div>
+                        <div className={classes.secondDiv}>
+                            <Premiere />
+                        </div>
+                    </MainContentLayout>
+                    <Grid xs={12}>
+                        <Grid
+                            xs={12}
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                width: "1000px",
+                                margin: "auto",
+                            }}
+                        >
+                            <Footer />
+                        </Grid>
                     </Grid>
-                </Grid>
-            </MainPageLayout>
+                </MainPageLayout>
+            )}
         </React.Fragment>
     );
 };
