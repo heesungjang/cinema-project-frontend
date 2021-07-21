@@ -1,8 +1,8 @@
 import React from "react";
-import LogoutContainer from "../Components/Signup/SignupContainer";
+import SignupContainer from "../Components/Signup/SignupContainer";
 
 const SignupPage = (props) => {
-    return <LogoutContainer />;
+    return <SignupContainer />;
 };
 
 export default SignupPage;
