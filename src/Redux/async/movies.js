@@ -10,7 +10,6 @@ export const getMovies = createAsyncThunk(
             method: "get",
         });
 
-        console.log("response: ", response);
         return response.data;
 
         if (response.status === 200) {
