@@ -85,10 +85,10 @@ const DetailContentTop = (props) => {
     // 남성 선호도
     const man_like =
         detailMovie.preference &&
-        (detailMovie.preference.gender !== 0 ||
-            detailMovie.preference.gender !== null)
-            ? ((1 - detailMovie.preference.gender) * 100).toFixed(1)
-            : parseFloat(0).toFixed(1);
+        (detailMovie.preference.gender === 0 ||
+            detailMovie.preference.gender === null)
+            ? parseFloat(0).toFixed(1)
+            : ((1 - detailMovie.preference.gender) * 100).toFixed(1);
     // 여성 선호도
     const woman_like =
         detailMovie.preference &&
