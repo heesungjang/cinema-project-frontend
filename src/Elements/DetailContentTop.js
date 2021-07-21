@@ -83,12 +83,11 @@ const DetailContentTop = (props) => {
     // console.log(detailMovie);
 
     // 남성 선호도
-    const man_like =
-        detailMovie.preference &&
-        (detailMovie.preference.gender === 0 ||
-            detailMovie.preference.gender === null)
+    const man_like = detailMovie.preference && detailMovie.preference.gender;
+    const _man_like =
+        man_like === 0 || man_like === null
             ? parseFloat(0).toFixed(1)
-            : ((1 - detailMovie.preference.gender) * 100).toFixed(1);
+            : ((1 - man_like) * 100).toFixed(1);
     // 여성 선호도
     const woman_like =
         detailMovie.preference &&
@@ -155,7 +154,7 @@ const DetailContentTop = (props) => {
                                     <Typography
                                         className={classes.maleColoredText}
                                     >
-                                        {man_like}%
+                                        {_man_like}%
                                     </Typography>
                                 </Grid>
 

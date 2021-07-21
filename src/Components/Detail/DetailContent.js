@@ -47,6 +47,12 @@ const useStyles = makeStyles({
         fontSize: "20px",
         minWidth: "40px",
     },
+    subContainerViewer: {
+        marginLeft: "5px",
+        fontWeight: "700",
+        fontSize: "20px",
+        minWidth: "200px",
+    },
     detailInfoContainer: {
         display: "flex",
     },
@@ -201,7 +207,7 @@ const DetailContent = (props) => {
                             <Typography className={classes.attendanceTitle}>
                                 누적관객수
                             </Typography>
-                            <Typography className={classes.subContainerText}>
+                            <Typography className={classes.subContainerViewer}>
                                 {detailMovie.viewers &&
                                     detailMovie.viewers.toLocaleString(
                                         "ko-KR"
