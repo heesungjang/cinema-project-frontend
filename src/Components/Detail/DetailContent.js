@@ -55,6 +55,7 @@ const useStyles = makeStyles({
     },
     detailInfoContainer: {
         display: "flex",
+        marginBottom: "5px",
     },
     detailInfoContentContainer: {
         display: "flex",
@@ -111,6 +112,7 @@ const useStyles = makeStyles({
     },
     directorName: {
         fontSize: "13px",
+        minWidth: "500px",
     },
     actorName: {
         fontSize: "13px",
@@ -132,11 +134,11 @@ const useStyles = makeStyles({
 
 const DetailContent = (props) => {
     const { detailMovie, rank } = props;
-    console.log("DetailContent: ", detailMovie);
+    // console.log("DetailContent: ", detailMovie);
 
     const grade = detailMovie.grade && detailMovie.grade.trim().substring(0, 2);
     const _grade = { grade }; // 연령
-    console.log(grade);
+    // console.log(grade);
 
     // 연령 글자
     const _grade_text = grade === "청소" ? "청불" : grade;
@@ -236,7 +238,9 @@ const DetailContent = (props) => {
                             />
                             <Typography style={{ fontSize: "13px" }}>
                                 {detailMovie.releaseDate &&
-                                    detailMovie.releaseDate.split("T")[0]}{" "}
+                                    detailMovie.releaseDate
+                                        .split("T")[0]
+                                        .replaceAll("-", ".")}{" "}
                                 개봉
                             </Typography>
                             <Divider
