@@ -24,6 +24,7 @@ import youtube_blk from "../images/gnb_youtube_blk.png";
 
 import facebook from "../images/gnb_facebook_wht.png";
 import facebook_blk from "../images/gnb_facebook_blk.png";
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles({
     mainContainer: {
@@ -32,7 +33,7 @@ const useStyles = makeStyles({
     },
     subContainer: {
         display: "flex",
-        marginTop: "30px",
+        marginTop: "25px",
     },
     headerTopContainer: {
         display: "flex",
@@ -117,10 +118,15 @@ const Header = (props) => {
 
                 <Grid xs={4} className={classes.logoContainer}>
                     <Typography>
-                        <img
-                            src={page === "mian" ? logo : logo_red}
-                            alt="Lotte Cinema"
-                        />
+                        <Button>
+                            <img
+                                src={page === "mian" ? logo : logo_red}
+                                alt="Lotte Cinema"
+                                onClick={() => {
+                                    props.history.push("/");
+                                }}
+                            />
+                        </Button>
                     </Typography>
                 </Grid>
 
@@ -131,14 +137,16 @@ const Header = (props) => {
                     <Typography className={classes.topRightTexts}>
                         고객센터
                     </Typography>
-                    <Typography
-                        className={classes.topRightTexts}
-                        onClick={() => {
-                            props.history.push("/login");
-                        }}
-                    >
-                        로그인
-                    </Typography>
+                    <Button>
+                        <Typography
+                            className={classes.topRightTexts}
+                            onClick={() => {
+                                props.history.push("/login");
+                            }}
+                        >
+                            로그인
+                        </Typography>
+                    </Button>
                 </Grid>
             </Grid>
 
@@ -158,7 +166,16 @@ const Header = (props) => {
                                 alt=""
                             />
                         </span>
-                        <span className={classes.topBottomTexts}>회원가입</span>
+                        <Button>
+                            <span
+                                className={classes.topBottomTexts}
+                                onClick={() => {
+                                    props.history.push("/signup");
+                                }}
+                            >
+                                회원가입
+                            </span>
+                        </Button>
                     </Typography>
                     <Typography style={{ margin: "0 15px" }}>
                         <span>
