@@ -43,6 +43,9 @@ const useStyles = makeStyles({
     headerTopText: {
         margin: "0px 0px 0px 5px",
         fontSize: "12px",
+        "&:hover": {
+            cursor: "pointer",
+        },
     },
     subscribeTextContainer: {
         margin: "0 15px",
@@ -94,6 +97,7 @@ const Header = (props) => {
                                 alt=""
                             />
                         </span>
+
                         <span className={classes.headerTopText}>좋아요</span>
                     </Typography>
                     <Typography className={classes.subscribeTextContainer}>
