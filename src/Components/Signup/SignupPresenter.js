@@ -258,38 +258,29 @@ const SignupPresenter = (props) => {
                         marginTop: "50px",
                     }}
                 >
-                    {isSuccess ? (
-                        <Button onClick={() => history.push("/login")}>
-                            <Alert variant="filled" severity="success">
-                                Click - 회원가입에 성공했습니다, 인증 메일 확인
-                                후 로그인하세요.
-                            </Alert>
+                    <Grid>
+                        <Button
+                            variant="contained"
+                            color="default"
+                            style={{ padding: "15px 60px" }}
+                            onClick={() => {
+                                history.replace("/");
+                            }}
+                        >
+                            취소하기
                         </Button>
-                    ) : (
-                        <Grid>
-                            <Button
-                                variant="contained"
-                                color="default"
-                                style={{ padding: "15px 60px" }}
-                                onClick={() => {
-                                    history.replace("/");
-                                }}
-                            >
-                                취소하기
-                            </Button>
-                            <Button
-                                variant="contained"
-                                color="secondary"
-                                style={{
-                                    marginLeft: "50px",
-                                    padding: "15px 60px",
-                                }}
-                                onClick={handleSubmit}
-                            >
-                                회원가입
-                            </Button>
-                        </Grid>
-                    )}
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            style={{
+                                marginLeft: "50px",
+                                padding: "15px 60px",
+                            }}
+                            onClick={handleSubmit}
+                        >
+                            회원가입
+                        </Button>
+                    </Grid>
                 </Grid>
             </Grid>
         </>
