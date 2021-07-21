@@ -25,7 +25,10 @@ import youtube_blk from "../images/gnb_youtube_blk.png";
 import facebook from "../images/gnb_facebook_wht.png";
 import facebook_blk from "../images/gnb_facebook_blk.png";
 import { Button } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
 
+import userSlice from "../Redux/modules/userSlice";
+import { logout } from "../Redux/async/user";
 const useStyles = makeStyles({
     mainContainer: {
         height: "115px",
@@ -81,9 +84,23 @@ const useStyles = makeStyles({
         fontSize: "12px",
         color: (props) => (props.page === "main" ? "#fff" : "#000"),
     },
+    link: {
+        textDecoration: "none",
+    },
 });
 
 const Header = (props) => {
+    const dispatch = useDispatch();
+    const user = localStorage.getItem("user");
+    const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
+    if (user) {
+        // dispatch(updateLoginState());
+        dispatch(userSlice.actions.updateLoginState(user));
+    } else {
+        console.log("nah");
+    }
+
     const { page } = props;
     const classes = useStyles(props);
     return (
@@ -97,8 +114,16 @@ const Header = (props) => {
                                 alt=""
                             />
                         </span>
-
-                        <span className={classes.headerTopText}>좋아요</span>
+                        <span
+                            onClick={() =>
+                                window.open(
+                                    "https://www.facebook.com/LotteCinema.kr/"
+                                )
+                            }
+                            className={classes.headerTopText}
+                        >
+                            좋아요
+                        </span>
                     </Typography>
                     <Typography className={classes.subscribeTextContainer}>
                         <span>
@@ -107,7 +132,16 @@ const Header = (props) => {
                                 alt=""
                             />
                         </span>
-                        <span className={classes.headerTopText}>구독하기</span>
+                        <span
+                            onClick={() =>
+                                window.open(
+                                    "https://www.youtube.com/channel/UCi4KivcV3a3yhkycFsjpalQ"
+                                )
+                            }
+                            className={classes.headerTopText}
+                        >
+                            구독하기
+                        </span>
                     </Typography>
                     <Typography>
                         <span>
@@ -116,7 +150,16 @@ const Header = (props) => {
                                 alt=""
                             />
                         </span>
-                        <span className={classes.headerTopText}>팔로우</span>
+                        <span
+                            onClick={() =>
+                                window.open(
+                                    "https://www.instagram.com/lottecinema_official/"
+                                )
+                            }
+                            className={classes.headerTopText}
+                        >
+                            팔로우
+                        </span>
                     </Typography>
                 </Grid>
 
@@ -124,7 +167,7 @@ const Header = (props) => {
                     <Typography>
                         <Button>
                             <img
-                                src={page === "mian" ? logo : logo_red}
+                                src={page === "main" ? logo : logo_red}
                                 alt="Lotte Cinema"
                                 onClick={() => {
                                     props.history.push("/");
@@ -141,16 +184,29 @@ const Header = (props) => {
                     <Typography className={classes.topRightTexts}>
                         고객센터
                     </Typography>
-                    <Button>
-                        <Typography
-                            className={classes.topRightTexts}
-                            onClick={() => {
-                                props.history.push("/login");
-                            }}
-                        >
-                            로그인
-                        </Typography>
-                    </Button>
+                    {isLoggedIn ? (
+                        <Button>
+                            <Typography
+                                className={classes.topRightTexts}
+                                onClick={() => {
+                                    dispatch(logout());
+                                }}
+                            >
+                                로그아웃
+                            </Typography>
+                        </Button>
+                    ) : (
+                        <Button>
+                            <Typography
+                                className={classes.topRightTexts}
+                                onClick={() => {
+                                    props.history.push("/login");
+                                }}
+                            >
+                                로그인
+                            </Typography>
+                        </Button>
+                    )}
                 </Grid>
             </Grid>
 
@@ -170,16 +226,20 @@ const Header = (props) => {
                                 alt=""
                             />
                         </span>
-                        <Button>
-                            <span
-                                className={classes.topBottomTexts}
-                                onClick={() => {
-                                    props.history.push("/signup");
-                                }}
-                            >
-                                회원가입
-                            </span>
-                        </Button>
+                        {!isLoggedIn ? (
+                            <Button>
+                                <span
+                                    className={classes.topBottomTexts}
+                                    onClick={() => {
+                                        props.history.push("/signup");
+                                    }}
+                                >
+                                    회원가입
+                                </span>
+                            </Button>
+                        ) : (
+                            ""
+                        )}
                     </Typography>
                     <Typography style={{ margin: "0 15px" }}>
                         <span>
