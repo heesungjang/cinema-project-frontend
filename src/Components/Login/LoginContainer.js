@@ -17,16 +17,14 @@ const LoginContainer = (props) => {
     } = props;
 
     const {
-        user: { isSuccess, errorMessage, isError },
+        user: { isError, errorMessage },
     } = useSelector((state) => state);
 
     useEffect(() => {
-        if (isSuccess === true) {
-            history.replace("/");
-        } else if (isError === true) {
-            notify("비밀번호 혹은 이메일 확인하세요.");
+        if (isError === true) {
+            notify(errorMessage);
         }
-    }, [isSuccess, history, isError, errorMessage]);
+    }, [isError, errorMessage]);
 
     const onChange = (e) => {
         const {
