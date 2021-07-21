@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const DetailPoster = (props) => {
-    const { movie } = props;
+    const { detailMovie } = props;
 
     const settings = {
         dots: false,
@@ -17,11 +17,14 @@ const DetailPoster = (props) => {
 
     return (
         <Container>
-            <Title>포스터/스틸컷({movie.photos.length})</Title>
+            <Title>
+                포스터/스틸컷({detailMovie.photos && detailMovie.photos.length})
+            </Title>
             <Slider {...settings}>
-                {movie.photos.map((movie, i) => (
-                    <Item key={i} item={movie} />
-                ))}
+                {detailMovie.photos &&
+                    detailMovie.photos.map((photo, i) => (
+                        <Item key={i} photo={photo} />
+                    ))}
             </Slider>
         </Container>
     );
@@ -31,7 +34,7 @@ function Item(props) {
     return (
         <>
             <StillCut>
-                <Img src={props.item} alt="" />
+                <Img src={props.photo} alt="" />
             </StillCut>
         </>
     );

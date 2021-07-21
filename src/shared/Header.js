@@ -27,6 +27,7 @@ import facebook_blk from "../images/gnb_facebook_blk.png";
 import { Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 
+import { history } from "../Redux/configureStore";
 import userSlice from "../Redux/modules/userSlice";
 import { logout } from "../Redux/async/user";
 const useStyles = makeStyles({
@@ -95,10 +96,7 @@ const Header = (props) => {
     const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
     if (user) {
-        // dispatch(updateLoginState());
         dispatch(userSlice.actions.updateLoginState(user));
-    } else {
-        console.log("nah");
     }
 
     const { page } = props;
@@ -170,7 +168,7 @@ const Header = (props) => {
                                 src={page === "main" ? logo : logo_red}
                                 alt="Lotte Cinema"
                                 onClick={() => {
-                                    props.history.push("/");
+                                    history.push("/");
                                 }}
                             />
                         </Button>
@@ -200,7 +198,7 @@ const Header = (props) => {
                             <Typography
                                 className={classes.topRightTexts}
                                 onClick={() => {
-                                    props.history.push("/login");
+                                    history.push("/login");
                                 }}
                             >
                                 로그인
@@ -231,7 +229,7 @@ const Header = (props) => {
                                 <span
                                     className={classes.topBottomTexts}
                                     onClick={() => {
-                                        props.history.push("/signup");
+                                        history.push("/signup");
                                     }}
                                 >
                                     회원가입

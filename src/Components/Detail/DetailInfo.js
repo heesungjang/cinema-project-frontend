@@ -25,13 +25,14 @@ const useStyles = makeStyles({
     },
     MainContainer: {
         display: "flex",
-        margin: "35px 0",
+        margin: "35px auto",
+        minWidth: "932px",
     },
 });
 
 const DetailInfo = (props) => {
-    const { movie } = props;
     const classes = useStyles();
+    const { detailMovie } = props;
     const [is_info_button_active, set_is_info_button_active] = useState(true);
     const [is_comment_button_active, set_is_comment_button_active] =
         useState(false);
@@ -77,10 +78,10 @@ const DetailInfo = (props) => {
             <Grid xs={12}>
                 {is_info_button_active ? (
                     <>
-                        <DetailContentTop movie={movie} />
-                        <DetailTrailer movie={movie} />
-                        <DetailPoster movie={movie} />
-                        <DetailContentBottom movie={movie} />
+                        <DetailContentTop detailMovie={detailMovie} />
+                        <DetailTrailer detailMovie={detailMovie} />
+                        <DetailPoster detailMovie={detailMovie} />
+                        <DetailContentBottom detailMovie={detailMovie} />
                     </>
                 ) : (
                     <React.Fragment></React.Fragment>

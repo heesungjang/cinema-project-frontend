@@ -14,8 +14,14 @@ const detailSlice = createSlice({
         // 여기 reducers 추가
     },
     extraReducers: {
-        [getMovieDetail.fulfilled]: (state, { payload }) => {},
-        [getMovieDetail.pending]: (state, { payload }) => {},
+        [getMovieDetail.fulfilled]: (state, { payload }) => {
+            // console.log(payload.response);
+            state.movieData = payload.response;
+            state.isFetching = false;
+        },
+        [getMovieDetail.pending]: (state, { payload }) => {
+            state.isFetching = true;
+        },
         [getMovieDetail.rejected]: (state, { payload }) => {},
     },
 });

@@ -21,11 +21,13 @@ export const getMovies = createAsyncThunk(
 
 export const getMovieDetail = createAsyncThunk(
     "movie/detail",
-    async ({ movieId }, thunkAPI) => {
+    async (movieId, thunkAPI) => {
         const response = await axios({
-            url: `http://13.209.84.245/movie/${movieId}`,
+            url: `http://13.209.84.245/movies/${movieId}`,
             method: "get",
         });
+
+        return response.data;
 
         if (response.status === 200) {
             return response.data;

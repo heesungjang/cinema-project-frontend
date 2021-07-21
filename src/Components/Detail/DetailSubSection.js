@@ -2,10 +2,10 @@ import React from "react";
 import DetailPageSlider from "./DetailPageSlider";
 
 const MainSubSection = (props) => {
-    const { movie } = props;
+    const { detailMovie } = props;
     return (
         <>
-            <DetailPageSlider movie={movie} />
+            <DetailPageSlider detailMovie={detailMovie} />
         </>
     );
 };

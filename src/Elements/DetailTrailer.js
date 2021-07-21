@@ -25,8 +25,8 @@ const useStyles = makeStyles({
 });
 
 const DetailTrailer = (props) => {
-    const { movie } = props;
     const classes = useStyles();
+    const { detailMovie } = props;
 
     const settings = {
         dots: false,
@@ -38,11 +38,14 @@ const DetailTrailer = (props) => {
 
     return (
         <Container>
-            <Title>트레일러({movie.trailers.length})</Title>
+            <Title>
+                트레일러({detailMovie.trailers && detailMovie.trailers.length})
+            </Title>
             <Slider {...settings}>
-                {movie.trailers.map((item, i) => (
-                    <Item key={i} item={item} />
-                ))}
+                {detailMovie.trailers &&
+                    detailMovie.trailers.map((item, i) => (
+                        <Item key={i} item={item} />
+                    ))}
             </Slider>
         </Container>
         // <Grid className={classes.mainContainer}>
