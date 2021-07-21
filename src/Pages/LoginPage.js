@@ -10,12 +10,13 @@ import MainPageLayout from "../Layouts/Main/MainPageLayout";
 import DetailHeaderLayout from "../Layouts/Detail/DetailHeaderLayout";
 
 const LoginPage = (props) => {
+    const _props = { ...props };
     return (
         <MainPageLayout>
             <DetailHeaderLayout>
                 <Header page={"detail"} {...props} />
             </DetailHeaderLayout>
-            <LoginContainer />
+            <LoginContainer _props={_props} />
             <DetailAd />
             <DetailLastAd />
             <DetailHeaderLayout>

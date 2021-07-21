@@ -4,11 +4,14 @@ import logo from "../../images/signup_logo.png";
 import logo_x from "../../images/ico-with.png";
 import logo_two from "../../images/img_1050.png";
 
+import { history } from "../../Redux/configureStore";
 import DatePicker from "react-date-picker";
 import { makeStyles } from "@material-ui/styles";
 import { Grid, Typography, TextField, Button } from "@material-ui/core";
 
 import Alert from "@material-ui/lab/Alert";
+
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles({
     mainContainer: {
@@ -59,6 +62,8 @@ const useStyles = makeStyles({
 });
 
 const SignupPresenter = (props) => {
+    const isSuccess = useSelector((state) => state.user.isSuccess);
+
     const classes = useStyles();
     const {
         name,
@@ -253,35 +258,29 @@ const SignupPresenter = (props) => {
                         marginTop: "50px",
                     }}
                 >
-                    {false ? (
-                        <Button onClick={console.log("clicked")}>
-                            <Alert variant="filled" severity="success">
-                                Click - 회원가입에 성공했습니다, 인증 메일을
-                                확인해주세요.
-                            </Alert>
+                    <Grid>
+                        <Button
+                            variant="contained"
+                            color="default"
+                            style={{ padding: "15px 60px" }}
+                            onClick={() => {
+                                history.replace("/");
+                            }}
+                        >
+                            취소하기
                         </Button>
-                    ) : (
-                        <Grid>
-                            <Button
-                                variant="contained"
-                                color="default"
-                                style={{ padding: "15px 60px" }}
-                            >
-                                취소하기
-                            </Button>
-                            <Button
-                                variant="contained"
-                                color="secondary"
-                                style={{
-                                    marginLeft: "50px",
-                                    padding: "15px 60px",
-                                }}
-                                onClick={handleSubmit}
-                            >
-                                회원가입
-                            </Button>
-                        </Grid>
-                    )}
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            style={{
+                                marginLeft: "50px",
+                                padding: "15px 60px",
+                            }}
+                            onClick={handleSubmit}
+                        >
+                            회원가입
+                        </Button>
+                    </Grid>
                 </Grid>
             </Grid>
         </>

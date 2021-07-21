@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import { makeStyles } from "@material-ui/styles";
+
+import { getMovies } from "../Redux/async/movies";
 
 import { Grid } from "@material-ui/core";
 import Footer from "../shared/Footer";
@@ -29,6 +32,14 @@ const useStyles = makeStyles({
 
 const MainPage = (props) => {
     const classes = useStyles();
+
+    const dispatch = useDispatch();
+    const movies = useSelector((state) => state.movie.movies);
+
+    useEffect(() => {
+        dispatch(getMovies());
+    }, []);
+
     return (
         <React.Fragment>
             <MainPageLayout>
@@ -39,7 +50,7 @@ const MainPage = (props) => {
                     <MainSubSection />
                 </MainSubSectionLayout>
                 <MainContentLayout>
-                    <MainMovieList {...props} />
+                    <MainMovieList {...props} movies={movies} />
                     <div className={classes.firstDiv}>
                         <EventComponent />
                     </div>

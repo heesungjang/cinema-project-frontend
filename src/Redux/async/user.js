@@ -1,6 +1,7 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
+import { history } from "../configureStore";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const login = createAsyncThunk(
@@ -16,22 +17,28 @@ export const login = createAsyncThunk(
         }).then((response) => {
             const { userId, name } = jwt_decode(response.data.token);
             const data = { userId: userId, name: name };
-
             // console.log({ ...response, userData });
-
             if (!response.data.status === "201") {
                 return;
             }
+
             const token = response.data.token;
-            localStorage.setItem("token", token);
+            const user_data = {
+                userId: userId,
+                userName: name,
+                accessToken: token,
+            };
+            localStorage.setItem("user", JSON.stringify(user_data));
+            history.replace("/");
             return { userId, name };
         });
+
         return response;
     }
 );
 
 export const signup = createAsyncThunk(
-    "users/signup",
+    "user/signup",
     async (
         {
             name,
@@ -56,9 +63,18 @@ export const signup = createAsyncThunk(
         });
 
         if (response.status === 201) {
+            history.replace("/verification");
             return { name, email };
         } else {
             return thunkAPI.rejectWithValue();
         }
+    }
+);
+
+export const logout = createAsyncThunk(
+    "user/logout",
+    async (data, thunkAPI) => {
+        localStorage.removeItem("user");
+        return;
     }
 );
