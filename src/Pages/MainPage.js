@@ -35,7 +35,6 @@ const MainPage = (props) => {
 
     const dispatch = useDispatch();
     const movies = useSelector((state) => state.movie.movies);
-    console.log("MainPage: ", movies);
 
     useEffect(() => {
         dispatch(getMovies());
