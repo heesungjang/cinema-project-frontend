@@ -20,6 +20,7 @@ const userSlice = createSlice({
         [signup.fulfilled]: (state, { payload }) => {
             state.isFetching = false;
             state.isSuccess = true;
+            state.isError = false;
         },
         [signup.pending]: (state) => {
             state.isFetching = true;
@@ -39,7 +40,7 @@ const userSlice = createSlice({
         [login.rejected]: (state, { payload }) => {
             state.isFetching = false;
             state.isError = true;
-            state.errorMessage = "로그인에 실패했습니다.";
+            state.errorMessage = "비밀번호 확인 또는 이메일 인증을 진행하세요.";
         },
         [login.pending]: (state) => {
             state.isFetching = true;
