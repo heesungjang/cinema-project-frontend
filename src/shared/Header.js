@@ -3,6 +3,8 @@ import React from "react";
 import { makeStyles } from "@material-ui/core";
 import { Grid, Typography, Container, Divider } from "@material-ui/core";
 
+import { history } from "../Redux/configureStore";
+
 import logo from "../images/logo.png";
 import logo_red from "../images/logo_red.png";
 import HeaderLinks from "./HeaderLinks";

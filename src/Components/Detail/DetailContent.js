@@ -112,21 +112,29 @@ const useStyles = makeStyles({
     },
     avatarCircle: {
         marginRight: "10px",
-        // backgroundColor: (props) =>
-        //     props.grade === "전체관람가"
-        //         ? "#5BC77E"
-        //         : props.grade === "12세관람가"
-        //         ? "#4DD6FF"
-        //         : props.grade === "15세관람가"
-        //         ? "#FFC134"
-        //         : "#ED4C6B",
+        fontSize: "13px",
+        backgroundColor: (props) =>
+            props.grade === "전체"
+                ? "#5BC77E"
+                : props.grade === "12"
+                ? "#4DD6FF"
+                : props.grade === "15"
+                ? "#FFC134"
+                : "#ED4C6B",
     },
 });
 
 const DetailContent = (props) => {
     const { detailMovie, rank } = props;
-    const grade = detailMovie.grade && detailMovie.grade;
-    const _grade = { grade };
+    console.log("DetailContent: ", detailMovie);
+
+    const grade = detailMovie.grade && detailMovie.grade.trim().substring(0, 2);
+    const _grade = { grade }; // 연령
+    console.log(grade);
+
+    // 연령 글자
+    const _grade_text = grade === "청소" ? "청불" : grade;
+
     const classes = useStyles(_grade);
 
     const comment_list = detailMovie.comments;
@@ -156,7 +164,9 @@ const DetailContent = (props) => {
             <Grid xs={9} className={classes.detailContainer}>
                 <Grid>
                     <Grid className={classes.titleContainer}>
-                        <Avatar className={classes.avatarCircle}>12</Avatar>
+                        <Avatar className={classes.avatarCircle}>
+                            {_grade_text}
+                        </Avatar>
                         <Typography variant="h4">
                             {detailMovie.title && detailMovie.title}
                         </Typography>
