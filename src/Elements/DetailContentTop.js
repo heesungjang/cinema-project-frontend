@@ -29,6 +29,8 @@ const ScrollbarContainer = styled.div`
 const useStyles = makeStyles({
     mainContainer: {
         display: "flex",
+        maxWidth: "932px",
+        margin: "0 auto",
     },
     subContainer: {
         display: "flex",
