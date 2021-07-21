@@ -1,6 +1,7 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
+import { history } from "../configureStore";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const login = createAsyncThunk(
@@ -22,7 +23,7 @@ export const login = createAsyncThunk(
             }
             const token = response.data.token;
             localStorage.setItem("token", token);
-
+            history.replace("/");
             return { userId, name };
         });
 
@@ -31,7 +32,7 @@ export const login = createAsyncThunk(
 );
 
 export const signup = createAsyncThunk(
-    "users/signup",
+    "user/signup",
     async (
         {
             name,
