@@ -13,8 +13,10 @@ const ScrollbarContainer = styled.div`
     &::-webkit-scrollbar {
         /* 세로 스크롤 넓이 */
         width: 8px;
+
         /* 가로 스크롤 높이 */
         height: 8px;
+
         border-radius: 6px;
         background: rgba(255, 255, 255, 0.4);
     }
@@ -27,8 +29,6 @@ const ScrollbarContainer = styled.div`
 const useStyles = makeStyles({
     mainContainer: {
         display: "flex",
-        maxWidth: "932px",
-        margin: "0 auto",
     },
     subContainer: {
         display: "flex",
@@ -78,12 +78,11 @@ const DetailContentTop = (props) => {
     const classes = useStyles();
 
     const { detailMovie } = props;
+    // console.log(detailMovie);
 
     // 남성 선호도
     const man_like =
-        detailMovie.preference &&
-        (detailMovie.preference.gender !== 0 ||
-            detailMovie.preference.gender !== null)
+        detailMovie.preference && detailMovie.preference.gender !== (0 || null)
             ? ((1 - detailMovie.preference.gender) * 100).toFixed(1)
             : parseFloat(0).toFixed(1);
     // 여성 선호도

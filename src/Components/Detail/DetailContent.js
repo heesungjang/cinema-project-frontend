@@ -25,8 +25,8 @@ const useStyles = makeStyles({
         position: "relative",
     },
     detailContainer: {
-        margin: "40px 0px 0 0px",
-        width: "586px",
+        margin: "40px 0px 0 150px",
+        width: "732px",
     },
     titleContainer: {
         display: "flex",
