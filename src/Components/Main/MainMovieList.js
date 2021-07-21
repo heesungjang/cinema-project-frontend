@@ -45,7 +45,6 @@ const useStyles = makeStyles({
 
 const MainMovieList = (props) => {
     const { history, movies } = props;
-    console.log("MainMovieList: ", movies);
 
     const settings = {
         dots: false,
@@ -83,7 +82,6 @@ function Item(props) {
     const classes = useStyles();
     const { history, rank, title, book_rate, photos, rate, result, trailers } =
         props;
-    console.log("Item props: ", props);
 
     const goDetail = () => {
         history.push(`/detail/${result}`);
