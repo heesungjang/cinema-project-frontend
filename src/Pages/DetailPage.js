@@ -31,11 +31,12 @@ const DetailPage = (props) => {
 
     useEffect(() => {
         dispatch(getMovieDetail(props.match.params.id));
-    }, []);
-
-    useEffect(() => {
         dispatch(getMovies());
     }, []);
+
+    // useEffect(() => {
+    // dispatch(getMovies());
+    // }, []);
 
     return (
         <React.Fragment>
