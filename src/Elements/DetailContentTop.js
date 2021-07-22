@@ -40,11 +40,13 @@ const useStyles = makeStyles({
 
     contentTopTitle: {
         fontWeight: 700,
-        fontSize: "16px",
+        fontSize: "15px",
         marginBottom: "15px",
     },
     textContent: {
         height: "100px",
+        fontSize: "13px",
+        lineHeight: "1.6",
         // overflowY: "auto",
         padding: "10px 0",
     },
