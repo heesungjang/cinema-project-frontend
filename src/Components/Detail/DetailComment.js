@@ -91,7 +91,7 @@ const DetailComment = ({ detailMovie }) => {
         }
     };
 
-    const final_rate = total_rate / comment_list.length;
+    const final_rate = Math.round(total_rate / comment_list.length);
 
     const classes = useStyles();
     return (
@@ -106,6 +106,7 @@ const DetailComment = ({ detailMovie }) => {
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover
+                limit={1}
             />
             <Grid>
                 <Grid

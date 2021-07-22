@@ -40,31 +40,27 @@ const DetailPage = (props) => {
 
     return (
         <React.Fragment>
-            {is_loaded ? (
-                <Spinner />
-            ) : (
-                <MainPageLayout>
-                    <DetailHeaderLayout>
-                        <Header page={"detail"} />
-                    </DetailHeaderLayout>
-                    <DetailSubSectionLayout>
-                        <DetailSubSection detailMovie={detailMovie} />
-                    </DetailSubSectionLayout>
-                    <DetailContentLayout>
-                        <DetailContent
-                            {...props}
-                            detailMovie={detailMovie}
-                            rank={rank}
-                        />
-                        <DetailInfo detailMovie={detailMovie} />
-                        <DetailAd />
-                    </DetailContentLayout>
-                    <DetailLastAd />
-                    <DetailHeaderLayout>
-                        <Footer />
-                    </DetailHeaderLayout>
-                </MainPageLayout>
-            )}
+            <MainPageLayout>
+                <DetailHeaderLayout>
+                    <Header page={"detail"} />
+                </DetailHeaderLayout>
+                <DetailSubSectionLayout>
+                    <DetailSubSection detailMovie={detailMovie} />
+                </DetailSubSectionLayout>
+                <DetailContentLayout>
+                    <DetailContent
+                        {...props}
+                        detailMovie={detailMovie}
+                        rank={rank}
+                    />
+                    <DetailInfo detailMovie={detailMovie} />
+                    <DetailAd />
+                </DetailContentLayout>
+                <DetailLastAd />
+                <DetailHeaderLayout>
+                    <Footer />
+                </DetailHeaderLayout>
+            </MainPageLayout>
         </React.Fragment>
     );
 };

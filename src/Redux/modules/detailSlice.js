@@ -1,6 +1,11 @@
 import { LocalConvenienceStoreOutlined } from "@material-ui/icons";
 import { createSlice } from "@reduxjs/toolkit";
-import { getMovieDetail, addComment, resetError } from "../async/movies";
+import {
+    getMovieDetail,
+    addComment,
+    resetError,
+    deleteComment,
+} from "../async/movies";
 
 const initialState = {
     isFetching: false,
@@ -34,6 +39,9 @@ const detailSlice = createSlice({
         },
         [addComment.rejected]: (state, { payload }) => {
             state.errorMessage = payload.error;
+        },
+        [deleteComment.fulfilled]: (state, { payload }) => {
+            state.errorMessage = null;
         },
     },
 });

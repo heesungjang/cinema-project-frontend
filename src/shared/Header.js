@@ -29,7 +29,6 @@ import facebook_blk from "../images/gnb_facebook_blk.png";
 import { Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 
-import { history } from "../Redux/configureStore";
 import userSlice from "../Redux/modules/userSlice";
 import { logout } from "../Redux/async/user";
 const useStyles = makeStyles({
