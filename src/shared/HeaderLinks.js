@@ -7,6 +7,7 @@ const useStyles = makeStyles({
     mainContainer: {
         display: "flex",
         justifyContent: "space-between",
+        alignItems: "center",
         color: (props) => (props.page === "main" ? "#fff" : "#000"),
     },
     divider: {
