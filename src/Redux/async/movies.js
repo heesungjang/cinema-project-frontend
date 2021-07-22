@@ -40,7 +40,7 @@ export const addComment = createAsyncThunk(
     "movie/comment",
     async (
         { comment, movieId, star, token, userName, detailMovie },
-        thunkAPI
+        { dispatch }
     ) => {
         const response = await axios({
             url: `http://13.209.84.245/comments`,
@@ -54,7 +54,42 @@ export const addComment = createAsyncThunk(
                 Authorization: `Bearer ${token}`,
             },
         });
+        await dispatch(getMovieDetail(movieId));
+    }
+);
 
-        getMovieDetail(movieId);
+export const deleteComment = createAsyncThunk(
+    "movie/delete/comment",
+    async ({ movieId, token, commentId }, { dispatch }) => {
+        const response = await axios({
+            url: `http://13.209.84.245/comments/${commentId}`,
+            method: "delete",
+            data: {
+                movieId,
+            },
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        await dispatch(getMovieDetail(movieId));
+    }
+);
+
+export const editComment = createAsyncThunk(
+    "movie/edit/comment",
+    async ({ movieId, comment, star, token, commentId }, { dispatch }) => {
+        const response = await axios({
+            url: `http://13.209.84.245/comments/${commentId}`,
+            method: "put",
+            data: {
+                star,
+                comment,
+                movieId,
+            },
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        await dispatch(getMovieDetail(movieId));
     }
 );

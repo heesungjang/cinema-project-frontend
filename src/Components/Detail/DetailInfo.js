@@ -72,7 +72,8 @@ const DetailInfo = (props) => {
                             set_is_comment_button_active(true);
                         }}
                     >
-                        평점 및 관람편 (98)
+                        평점 및 관람편 (
+                        {detailMovie.comments && detailMovie.comments.length})
                     </Button>
                 </Grid>
             </Grid>

@@ -33,6 +33,14 @@ const DetailComment = ({ detailMovie }) => {
     const dispatch = useDispatch();
     const notify = (text) => toast.error(text);
 
+    let total_rate = 0;
+
+    if (comment_list.length > 0) {
+        comment_list.map((comment) => {
+            total_rate = comment.star + total_rate;
+        });
+    }
+
     let token;
     let userName;
     if (localStorage.getItem("user")) {
@@ -76,6 +84,8 @@ const DetailComment = ({ detailMovie }) => {
             notify("관람평 작성은 로그인이 필요합니다.");
         }
     };
+
+    const final_rate = total_rate / comment_list.length;
 
     const classes = useStyles();
     return (
@@ -132,7 +142,7 @@ const DetailComment = ({ detailMovie }) => {
                                     color: "black",
                                 }}
                             >
-                                0
+                                {isNaN(final_rate) ? 0 : final_rate}
                             </span>{" "}
                             / 10
                         </Typography>
@@ -225,7 +235,7 @@ const DetailComment = ({ detailMovie }) => {
                     </Button>
                 </Grid>
             </Grid>
-            {comment_list.length > 0 ? (
+            {comment_list && comment_list.length > 0 ? (
                 <Grid
                     style={{
                         minHeight: "296px",
@@ -239,7 +249,11 @@ const DetailComment = ({ detailMovie }) => {
                 >
                     <Grid xs={12}>
                         {comment_list.map((comment, idx) => (
-                            <CommentItem id={idx} comment={comment} />
+                            <CommentItem
+                                id={idx}
+                                comment={comment}
+                                movieId={movie_id}
+                            />
                         ))}
                     </Grid>
                 </Grid>

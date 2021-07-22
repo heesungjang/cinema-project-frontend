@@ -126,11 +126,18 @@ const useStyles = makeStyles({
 const DetailContent = (props) => {
     const { detailMovie, rank } = props;
     const grade = detailMovie.grade && detailMovie.grade;
-    console.log(grade);
     const _grade = { grade };
-    console.log("DetailContent: ", detailMovie);
-
     const classes = useStyles(_grade);
+
+    const comment_list = detailMovie.comments;
+    let total_rate = 0;
+
+    if (comment_list && comment_list.length > 0) {
+        comment_list.map((comment) => {
+            total_rate = comment.star + total_rate;
+        });
+    }
+    const final_rate = total_rate / comment_list && comment_list.length;
 
     return (
         <Grid xs={12} className={classes.mainContainer}>
@@ -165,7 +172,9 @@ const DetailContent = (props) => {
                                 className={classes.startImage}
                             />
                             <Typography className={classes.movieRating}>
-                                8.9
+                                {comment_list &&
+                                    comment_list.length &&
+                                    final_rate}
                             </Typography>
                         </Grid>
                         <Grid className={classes.rateSubContainer}>
