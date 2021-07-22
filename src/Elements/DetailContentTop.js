@@ -13,8 +13,10 @@ const ScrollbarContainer = styled.div`
     &::-webkit-scrollbar {
         /* 세로 스크롤 넓이 */
         width: 8px;
+
         /* 가로 스크롤 높이 */
         height: 8px;
+
         border-radius: 6px;
         background: rgba(255, 255, 255, 0.4);
     }
@@ -38,11 +40,13 @@ const useStyles = makeStyles({
 
     contentTopTitle: {
         fontWeight: 700,
-        fontSize: "16px",
+        fontSize: "15px",
         marginBottom: "15px",
     },
     textContent: {
         height: "100px",
+        fontSize: "13px",
+        lineHeight: "1.6",
         // overflowY: "auto",
         padding: "10px 0",
     },
@@ -78,14 +82,14 @@ const DetailContentTop = (props) => {
     const classes = useStyles();
 
     const { detailMovie } = props;
+    // console.log(detailMovie);
 
     // 남성 선호도
-    const man_like =
-        detailMovie.preference &&
-        (detailMovie.preference.gender !== 0 ||
-            detailMovie.preference.gender !== null)
-            ? ((1 - detailMovie.preference.gender) * 100).toFixed(1)
-            : parseFloat(0).toFixed(1);
+    const man_like = detailMovie.preference && detailMovie.preference.gender;
+    const _man_like =
+        man_like === 0 || man_like === null
+            ? parseFloat(0).toFixed(1)
+            : ((1 - man_like) * 100).toFixed(1);
     // 여성 선호도
     const woman_like =
         detailMovie.preference &&
@@ -152,7 +156,7 @@ const DetailContentTop = (props) => {
                                     <Typography
                                         className={classes.maleColoredText}
                                     >
-                                        {man_like}%
+                                        {_man_like}%
                                     </Typography>
                                 </Grid>
 

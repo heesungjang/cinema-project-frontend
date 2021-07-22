@@ -139,7 +139,9 @@ function Item(props) {
                                         <PosterSubBoxSpan>
                                             <img src={star} alt="" />
                                             <span style={{ marginLeft: "3px" }}>
-                                                {/* {movie.likedUsers[movie.rate]} */}
+                                                {rate === 0
+                                                    ? 0
+                                                    : rate.toFixed(1)}
                                             </span>
                                         </PosterSubBoxSpan>
                                         <Divider
