@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
 
 export const getMovies = createAsyncThunk(
     "movie/list",
@@ -32,5 +33,28 @@ export const getMovieDetail = createAsyncThunk(
         if (response.status === 200) {
             return response.data;
         }
+    }
+);
+
+export const addComment = createAsyncThunk(
+    "movie/comment",
+    async (
+        { comment, movieId, star, token, userName, detailMovie },
+        thunkAPI
+    ) => {
+        const response = await axios({
+            url: `http://13.209.84.245/comments`,
+            method: "post",
+            data: {
+                comment,
+                movieId,
+                star,
+            },
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        getMovieDetail(movieId);
     }
 );

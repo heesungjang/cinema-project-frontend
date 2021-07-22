@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getMovieDetail } from "../async/movies";
+import { getMovieDetail, addComment } from "../async/movies";
 
 const initialState = {
     isFetching: false,
     movieData: [],
     error: null,
+    is_added: false,
 };
 
 const detailSlice = createSlice({
@@ -22,7 +23,15 @@ const detailSlice = createSlice({
         [getMovieDetail.pending]: (state, { payload }) => {
             state.isFetching = true;
         },
-        [getMovieDetail.rejected]: (state, { payload }) => {},
+        [getMovieDetail.rejected]: (state, { payload }) => {
+            state.isFeching = false;
+        },
+        [addComment.pending]: (state, actions) => {
+            state.is_added = false;
+        },
+        [addComment.fulfilled]: (state, actions) => {
+            state.is_added = true;
+        },
     },
 });
 

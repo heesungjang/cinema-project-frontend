@@ -6,6 +6,7 @@ import DetailPoster from "../../Elements/DetailPoster";
 import DetailContentTop from "../../Elements/DetailContentTop";
 import DetailContentBottom from "../../Elements/DetailContentBottom";
 import DetailTrailer from "../../Elements/DetailTrailer";
+import DetailComment from "./DetailComment";
 
 const useStyles = makeStyles({
     in_active_button: {
@@ -84,7 +85,9 @@ const DetailInfo = (props) => {
                         <DetailContentBottom detailMovie={detailMovie} />
                     </>
                 ) : (
-                    <React.Fragment></React.Fragment>
+                    <>
+                        <DetailComment detailMovie={detailMovie} />
+                    </>
                 )}
             </Grid>
         </React.Fragment>

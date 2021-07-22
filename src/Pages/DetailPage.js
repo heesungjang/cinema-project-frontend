@@ -20,10 +20,8 @@ import Footer from "../shared/Footer";
 const DetailPage = (props) => {
     const dispatch = useDispatch();
     const detailMovie = useSelector((state) => state.detail.movieData);
-    console.log("DetailPage: ", detailMovie);
-
     const movies = useSelector((state) => state.movie.movies);
-    console.log(movies.result);
+    const is_added = useSelector((state) => state.detail.is_added);
 
     // 예매율 순위
     const rank = movies.result && movies.result.indexOf(props.match.params.id);
