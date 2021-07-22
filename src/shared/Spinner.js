@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { PacmanLoader } from "react-spinners";
+import { BarLoader } from "react-spinners";
 
 function Spinner() {
     return (
         <>
             <Container>
-                <PacmanLoader size={60} color={"#88B14B"} />
+                <Text>Loading...</Text>
+                <BarLoader width={500} color={"#88B14B"} />
             </Container>
         </>
     );
@@ -20,6 +21,14 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+`;
+
+const Text = styled.div`
+    width: 500px;
+    font-size: 50px;
+    color: #88b14b;
+    text-align: center;
+    margin-bottom: 20px;
 `;
 
 export default Spinner;
