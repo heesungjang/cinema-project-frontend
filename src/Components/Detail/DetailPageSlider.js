@@ -16,7 +16,6 @@ const useStyles = makeStyles({
 
 const DetailPageSlider = (props) => {
     const { detailMovie } = props;
-    console.log("DetailPageSlider: ", detailMovie);
 
     return (
         <Carousel animation="slide" navButtonsAlwaysVisible="true">

@@ -1,23 +1,57 @@
 import React from "react";
 
-import { Divider, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 import smileEmoji from "../images/smile.png";
 import star from "../images/star_14.png";
 import good from "../images/ic_review_good.png";
 
 import { useDispatch } from "react-redux";
-import { deleteComment, editComment } from "../Redux/async/movies";
+import { deleteComment, editComment, likeComment } from "../Redux/async/movies";
 import { Button } from "@material-ui/core";
 
+import { makeStyles } from "@material-ui/styles";
+
+const useStyles = makeStyles({
+    mainContainer: {
+        display: "flex",
+        marginTop: "25px",
+        marginLeft: "20px",
+    },
+    subContainer: {
+        display: "flex",
+        flexDirection: "column",
+        marginLeft: "20px",
+    },
+});
+
 const CommentItem = ({ comment, movieId }) => {
+    const classes = useStyles();
     const [editActive, setEditActive] = React.useState(false);
     const [editValue, setEditValue] = React.useState("");
     const dispatch = useDispatch();
 
     const commentId = comment._id;
-    const logged_userName = JSON.parse(localStorage.getItem("user")).userName;
+    const logged_userName = JSON.parse(localStorage.getItem("user"))?.userName;
     const commented_userName = comment.userName;
+
+    let token;
+    let userName;
+    if (localStorage.getItem("user")) {
+        userName = JSON.parse(localStorage.getItem("user")).userName;
+        token = JSON.parse(localStorage.getItem("user")).accessToken;
+    }
+
+    const handleLike = () => {
+        const data = {
+            commentId,
+            movieId,
+            token,
+        };
+        if (token) {
+            dispatch(likeComment(data));
+        }
+    };
 
     const onClickHandler = () => {
         if (logged_userName === commented_userName) {
@@ -54,24 +88,11 @@ const CommentItem = ({ comment, movieId }) => {
 
     return (
         <Grid xs={12} style={{ borderBottom: "1px solid lightgrey" }}>
-            <Grid
-                style={{
-                    display: "flex",
-                    marginTop: "25px",
-                    marginLeft: "20px",
-                }}
-            >
+            <Grid className={classes.mainContainer}>
                 <Grid>
                     <img src={smileEmoji} alt="" />
                 </Grid>
-                <Grid
-                    xs={12}
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        marginLeft: "20px",
-                    }}
-                >
+                <Grid xs={12} className={classes.subContainer}>
                     <Grid style={{ marginBottom: "15px" }}>
                         <span>{comment.userName}</span>
                         <span style={{ color: "grey", margin: "0 10px" }}>
@@ -94,38 +115,23 @@ const CommentItem = ({ comment, movieId }) => {
                                     onChange={handleEditChange}
                                     placeholder={comment.comment}
                                 />
-                                <Button
-                                    variant="outlined"
-                                    color="primary"
-                                    onClick={handleEdit}
-                                >
-                                    수정하기
-                                </Button>
                             </div>
                         ) : (
                             <span>{comment.comment}</span>
                         )}
-                        {logged_userName === commented_userName && (
-                            <Button
-                                variant="outlined"
-                                color="primary"
-                                onClick={() =>
-                                    setEditActive((current) => !current)
-                                }
-                            >
-                                {editActive ? "취소" : "수정"}
-                            </Button>
-                        )}
                     </Grid>
+
                     <Grid style={{ marginBottom: "30px" }}>
                         <Grid>
                             <Grid>
                                 <span>{comment.createdAt.substr(0, 10)}</span>
-                                <img
-                                    src={good}
-                                    alt=""
-                                    style={{ margin: "0 5px 0 15px" }}
-                                />
+                                <Button onClick={handleLike}>
+                                    <img
+                                        src={good}
+                                        alt=""
+                                        style={{ margin: "0 5px 0 15px" }}
+                                    />
+                                </Button>
                                 <span>{comment.likedUsers.length}</span>
                             </Grid>
                             <Grid
@@ -135,6 +141,29 @@ const CommentItem = ({ comment, movieId }) => {
                                     justifyContent: "flex-end",
                                 }}
                             >
+                                {editActive && (
+                                    <Button
+                                        variant="outlined"
+                                        color="primary"
+                                        onClick={handleEdit}
+                                    >
+                                        수정하기
+                                    </Button>
+                                )}
+
+                                {logged_userName === commented_userName && (
+                                    <Button
+                                        style={{ margin: "0 10px" }}
+                                        variant="outlined"
+                                        color="primary"
+                                        onClick={() =>
+                                            setEditActive((current) => !current)
+                                        }
+                                    >
+                                        {editActive ? "취소" : "수정"}
+                                    </Button>
+                                )}
+
                                 {logged_userName === commented_userName && (
                                     <Button
                                         variant="outlined"

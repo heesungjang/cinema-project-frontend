@@ -21,11 +21,9 @@ const DetailPage = (props) => {
     const dispatch = useDispatch();
     const detailMovie = useSelector((state) => state.detail.movieData);
     const movies = useSelector((state) => state.movie.movies);
-    const is_added = useSelector((state) => state.detail.is_added);
 
     // 예매율 순위
     const rank = movies.result && movies.result.indexOf(props.match.params.id);
-    // console.log("rank: ", rank);
 
     useEffect(() => {
         dispatch(getMovieDetail(props.match.params.id));

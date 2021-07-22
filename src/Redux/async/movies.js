@@ -1,6 +1,5 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
 
 export const getMovies = createAsyncThunk(
     "movie/list",
@@ -12,11 +11,6 @@ export const getMovies = createAsyncThunk(
         });
 
         return response.data;
-
-        if (response.status === 200) {
-            const data = { ...response.data };
-            return data;
-        }
     }
 );
 
@@ -40,21 +34,27 @@ export const addComment = createAsyncThunk(
     "movie/comment",
     async (
         { comment, movieId, star, token, userName, detailMovie },
-        { dispatch }
+        thunkAPI
     ) => {
-        const response = await axios({
-            url: `http://13.209.84.245/comments`,
-            method: "post",
-            data: {
-                comment,
-                movieId,
-                star,
-            },
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-        await dispatch(getMovieDetail(movieId));
+        try {
+            const response = await axios({
+                url: `http://13.209.84.245/comments`,
+                method: "post",
+                data: {
+                    comment,
+                    movieId,
+                    star,
+                },
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+        } catch (e) {
+            return thunkAPI.rejectWithValue({
+                error: "이미 관람평을 등록했거나 로그인이 만료되었습니다. ",
+            });
+        }
+        await thunkAPI.dispatch(getMovieDetail(movieId));
     }
 );
 
@@ -90,6 +90,30 @@ export const editComment = createAsyncThunk(
                 Authorization: `Bearer ${token}`,
             },
         });
+        await dispatch(getMovieDetail(movieId));
+    }
+);
+
+export const likeComment = createAsyncThunk(
+    "movie/like/comment",
+    async ({ movieId, token, commentId }, { dispatch }) => {
+        const response = await axios({
+            url: `http://13.209.84.245/comments/${commentId}/like`,
+            method: "post",
+            data: {
+                movieId,
+            },
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        await dispatch(getMovieDetail(movieId));
+    }
+);
+
+export const resetError = createAsyncThunk(
+    "movie/error/reset",
+    async ({ movieId }, { dispatch }) => {
         await dispatch(getMovieDetail(movieId));
     }
 );

@@ -7,7 +7,7 @@ import star from "../../images/star_14.png";
 import { makeStyles } from "@material-ui/styles";
 import { Grid, Typography, Button } from "@material-ui/core";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addComment, getMovieDetail } from "../../Redux/async/movies";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -25,13 +25,19 @@ const useStyles = makeStyles({
 });
 
 const DetailComment = ({ detailMovie }) => {
-    const comment_list = detailMovie.comments;
+    const commentError = useSelector((state) => state.detail.errorMessage);
 
+    const comment_list = detailMovie.comments;
     const [value, setValue] = React.useState(2);
     const [hover, setHover] = React.useState(-1);
     const [comment, setComment] = React.useState("");
     const dispatch = useDispatch();
     const notify = (text) => toast.error(text);
+
+    if (commentError !== null) {
+        notify(commentError);
+        dispatch(getMovieDetail(detailMovie._id));
+    }
 
     let total_rate = 0;
 

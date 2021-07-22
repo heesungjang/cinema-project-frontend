@@ -4,7 +4,6 @@ import ReactPlayer from "react-player";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Grid, Typography } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core";
 

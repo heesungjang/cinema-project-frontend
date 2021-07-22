@@ -1,36 +1,39 @@
+import { LocalConvenienceStoreOutlined } from "@material-ui/icons";
 import { createSlice } from "@reduxjs/toolkit";
-import { getMovieDetail, addComment } from "../async/movies";
+import { getMovieDetail, addComment, resetError } from "../async/movies";
 
 const initialState = {
     isFetching: false,
     movieData: [],
     error: null,
     is_added: false,
+    errorMessage: null,
 };
 
 const detailSlice = createSlice({
     name: "detail",
     initialState: initialState,
-    reducers: {
-        // 여기 reducers 추가
-    },
+    reducers: {},
     extraReducers: {
         [getMovieDetail.fulfilled]: (state, { payload }) => {
-            // console.log(payload.response);
             state.movieData = payload.response;
             state.isFetching = false;
+            state.errorMessage = null;
         },
         [getMovieDetail.pending]: (state, { payload }) => {
             state.isFetching = true;
         },
         [getMovieDetail.rejected]: (state, { payload }) => {
-            state.isFeching = false;
+            state.isFetching = false;
         },
         [addComment.pending]: (state, actions) => {
             state.is_added = false;
         },
-        [addComment.fulfilled]: (state, actions) => {
+        [addComment.fulfilled]: (state, { payload }) => {
             state.is_added = true;
+        },
+        [addComment.rejected]: (state, { payload }) => {
+            state.errorMessage = payload.error;
         },
     },
 });

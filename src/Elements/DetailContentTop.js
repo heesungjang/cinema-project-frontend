@@ -78,7 +78,6 @@ const DetailContentTop = (props) => {
     const classes = useStyles();
 
     const { detailMovie } = props;
-    // console.log(detailMovie);
 
     // 남성 선호도
     const man_like =

@@ -172,9 +172,9 @@ const DetailContent = (props) => {
                                 className={classes.startImage}
                             />
                             <Typography className={classes.movieRating}>
-                                {comment_list &&
-                                    comment_list.length &&
-                                    final_rate}
+                                {comment_list && isNaN(final_rate)
+                                    ? 0
+                                    : final_rate}
                             </Typography>
                         </Grid>
                         <Grid className={classes.rateSubContainer}>

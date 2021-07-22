@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 
 const DetailContentBottom = (props) => {
     const { detailMovie } = props;
-    // console.log("movie: ", movie);
+
     const classes = useStyles();
 
     return (
@@ -63,7 +63,6 @@ const DetailContentBottom = (props) => {
 };
 
 function Item(props) {
-    // console.log("props: ", props);
     const classes = useStyles();
     return (
         <>
