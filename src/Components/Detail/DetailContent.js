@@ -12,18 +12,21 @@ const useStyles = makeStyles({
         width: "200px",
         position: "absolute",
         top: "-40px",
-        left: "120px",
+        left: "0px",
         borderRadius: "5px",
     },
     mainContainer: {
         display: "flex",
+        margin: "0 auto",
+        width: "932px",
     },
     subContainer: {
         display: "flex",
         position: "relative",
     },
     detailContainer: {
-        margin: "40px 0px 0 150px",
+        margin: "40px 0px 0 0px",
+        width: "586px",
     },
     titleContainer: {
         display: "flex",
@@ -36,10 +39,13 @@ const useStyles = makeStyles({
     rateSubContainer: {
         display: "flex",
         alignItems: "center",
+        marginRight: "25px",
     },
     subContainerText: {
         marginLeft: "5px",
         fontWeight: "700",
+        fontSize: "20px",
+        minWidth: "40px",
     },
     detailInfoContainer: {
         display: "flex",
@@ -51,7 +57,7 @@ const useStyles = makeStyles({
     detailInfoContentNameContainer: {
         display: "flex",
         marginLeft: "10px",
-        justifyContent: "space-between",
+        justifyContent: "flex-start",
     },
     buttonContainer: {
         marginTop: "20px",
@@ -70,20 +76,79 @@ const useStyles = makeStyles({
     divider: {
         margin: "20px 0",
     },
+    subDivider: {
+        height: "9px",
+        margin: "auto 10px",
+    },
+    movieRatingTitle: {
+        fontSize: "15px",
+        minWidth: "81px",
+        fontWeight: "600",
+    },
+    movieRating: {
+        fontWeight: "700",
+        fontSize: "20px",
+    },
+    ticketingRateTitle: {
+        fontSize: "15px",
+        minWidth: "75px",
+        fontWeight: "600",
+    },
+    attendanceTitle: {
+        fontSize: "15px",
+        minWidth: "75px",
+        fontWeight: "600",
+    },
+    detailInfoContentContainerText: {
+        fontSize: "13px",
+        minWidth: "26px",
+    },
+    directorName: {
+        fontSize: "13px",
+    },
+    actorName: {
+        fontSize: "13px",
+        marginRight: "8px",
+    },
+    avatarCircle: {
+        marginRight: "10px",
+        // backgroundColor: (props) =>
+        //     props.grade === "전체관람가"
+        //         ? "#5BC77E"
+        //         : props.grade === "12세관람가"
+        //         ? "#4DD6FF"
+        //         : props.grade === "15세관람가"
+        //         ? "#FFC134"
+        //         : "#ED4C6B",
+    },
 });
 
 const DetailContent = (props) => {
-    console.log(props);
-    const { movie } = props;
-    const classes = useStyles();
+    const { detailMovie, rank } = props;
+    const grade = detailMovie.grade && detailMovie.grade;
+    const _grade = { grade };
+    const classes = useStyles(_grade);
+
+    const comment_list = detailMovie.comments;
+    let total_rate = 0;
+
+    if (comment_list && comment_list.length > 0) {
+        comment_list.map((comment) => {
+            total_rate = comment.star + total_rate;
+        });
+    }
+    const final_rate = total_rate / comment_list && comment_list.length;
+
     return (
         <Grid xs={12} className={classes.mainContainer}>
             <Grid xs={3} className={classes.subContainer}>
                 <Grid>
                     <img
                         className={classes.postCard}
-                        src={movie.main_poster}
-                        // src="https://caching.lottecinema.co.kr//Media/MovieFile/MovieImg/202106/17508_103_1.jpg"
+                        src={
+                            detailMovie.photos &&
+                            detailMovie.photos[detailMovie.photos.length - 1]
+                        }
                         alt=""
                     />
                 </Grid>
@@ -91,69 +156,116 @@ const DetailContent = (props) => {
             <Grid xs={9} className={classes.detailContainer}>
                 <Grid>
                     <Grid className={classes.titleContainer}>
-                        <Avatar style={{ marginRight: "10px" }}>12</Avatar>
-                        <Typography variant="h4">{movie.title}</Typography>
-                        {/* <Typography variant="h4">빛나는 순간</Typography> */}
+                        <Avatar className={classes.avatarCircle}>12</Avatar>
+                        <Typography variant="h4">
+                            {detailMovie.title && detailMovie.title}
+                        </Typography>
                     </Grid>
                     <Grid xs={7} className={classes.rateContainer}>
                         <Grid className={classes.rateSubContainer}>
-                            <Typography>관람객 평점</Typography>
+                            <Typography className={classes.movieRatingTitle}>
+                                관람객 평점
+                            </Typography>
                             <img
                                 src={star}
                                 alt=""
                                 className={classes.startImage}
                             />
-                            <Typography style={{ fontWeight: "700" }}>
-                                8.9
+                            <Typography className={classes.movieRating}>
+                                {comment_list && isNaN(final_rate)
+                                    ? 0
+                                    : final_rate}
                             </Typography>
                         </Grid>
                         <Grid className={classes.rateSubContainer}>
-                            <Typography>예매율</Typography>
+                            <Typography className={classes.ticketingRateTitle}>
+                                예매율 {rank + 1}위
+                            </Typography>
                             <Typography className={classes.subContainerText}>
-                                {movie.rank}위 {movie.bookRate}%
+                                {detailMovie.bookRate &&
+                                    (detailMovie.bookRate * 100).toFixed(1)}
+                                %
                             </Typography>
                         </Grid>
                         <Grid className={classes.rateSubContainer}>
-                            <Typography>누적관객수</Typography>
+                            <Typography className={classes.attendanceTitle}>
+                                누적관객수
+                            </Typography>
                             <Typography className={classes.subContainerText}>
-                                {movie.viewers.toLocaleString("ko-KR")} 명
+                                {detailMovie.viewers &&
+                                    detailMovie.viewers.toLocaleString(
+                                        "ko-KR"
+                                    )}{" "}
+                                명
                             </Typography>
                         </Grid>
                     </Grid>
                 </Grid>
                 <Divider className={classes.divider} />
                 <Grid xs={12}>
-                    <Grid xs={5} className={classes.detailInfoContainer}>
-                        <Typography>장르</Typography>
+                    <Grid xs={12} className={classes.detailInfoContainer}>
+                        <Typography
+                            className={classes.detailInfoContentContainerText}
+                        >
+                            장르
+                        </Typography>
                         <Grid className={classes.detailInfoContentContainer}>
-                            <Typography>{movie.genre}</Typography>
-                            <Typography>{movie.releaseDate} 개봉</Typography>
-                            <Typography>{movie.runningTime}분</Typography>
-                            {/* <Typography>드라마 / 한국</Typography>
-                            <Typography>2021.06.30 개봉</Typography>
-                            <Typography>95분</Typography> */}
+                            <Typography style={{ fontSize: "13px" }}>
+                                {detailMovie.genre}
+                            </Typography>
+                            <Divider
+                                orientation="vertical"
+                                flexItem
+                                className={classes.subDivider}
+                            />
+                            <Typography style={{ fontSize: "13px" }}>
+                                {detailMovie.releaseDate &&
+                                    detailMovie.releaseDate.split("T")[0]}{" "}
+                                개봉
+                            </Typography>
+                            <Divider
+                                orientation="vertical"
+                                flexItem
+                                className={classes.subDivider}
+                            />
+                            <Typography style={{ fontSize: "13px" }}>
+                                {detailMovie.runningTime &&
+                                    detailMovie.runningTime}
+                                분
+                            </Typography>
                         </Grid>
                     </Grid>
                     <Grid xs={2} className={classes.detailInfoContainer}>
-                        <Typography>감독</Typography>
+                        <Typography
+                            className={classes.detailInfoContentContainerText}
+                        >
+                            감독
+                        </Typography>
                         <Grid className={classes.detailInfoContentContainer}>
-                            <Typography>{movie.director.name}</Typography>
-                            {/* <Typography>소준문</Typography> */}
+                            <Typography className={classes.directorName}>
+                                <u>
+                                    {detailMovie.director &&
+                                        detailMovie.director.name}
+                                </u>
+                            </Typography>
                         </Grid>
                     </Grid>
                     <Grid className={classes.detailInfoContainer}>
-                        <Typography>출연</Typography>
+                        <Typography
+                            className={classes.detailInfoContentContainerText}
+                        >
+                            출연
+                        </Typography>
                         <Grid
-                            xs={4}
+                            xs={12}
                             className={classes.detailInfoContentNameContainer}
                         >
-                            {movie.actors.map((actor, idx) => (
-                                <Typography>{actor.name}</Typography>
-                            ))}
-                            {/* <Typography>고두심</Typography>
-                            <Typography>지형우</Typography>
-                            <Typography>양정원</Typography>
-                            <Typography>전혜진</Typography> */}
+                            {detailMovie.actors &&
+                                detailMovie.actors.map((actor, idx) => (
+                                    <Typography className={classes.actorName}>
+                                        <u>{actor.name}</u>
+                                    </Typography>
+                                ))}
                         </Grid>
                     </Grid>
                 </Grid>

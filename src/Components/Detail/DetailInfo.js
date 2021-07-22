@@ -6,6 +6,7 @@ import DetailPoster from "../../Elements/DetailPoster";
 import DetailContentTop from "../../Elements/DetailContentTop";
 import DetailContentBottom from "../../Elements/DetailContentBottom";
 import DetailTrailer from "../../Elements/DetailTrailer";
+import DetailComment from "./DetailComment";
 
 const useStyles = makeStyles({
     in_active_button: {
@@ -25,13 +26,14 @@ const useStyles = makeStyles({
     },
     MainContainer: {
         display: "flex",
-        margin: "35px 0",
+        margin: "35px auto",
+        minWidth: "932px",
     },
 });
 
 const DetailInfo = (props) => {
-    const { movie } = props;
     const classes = useStyles();
+    const { detailMovie } = props;
     const [is_info_button_active, set_is_info_button_active] = useState(true);
     const [is_comment_button_active, set_is_comment_button_active] =
         useState(false);
@@ -70,20 +72,23 @@ const DetailInfo = (props) => {
                             set_is_comment_button_active(true);
                         }}
                     >
-                        평점 및 관람편 (98)
+                        평점 및 관람편 (
+                        {detailMovie.comments && detailMovie.comments.length})
                     </Button>
                 </Grid>
             </Grid>
             <Grid xs={12}>
                 {is_info_button_active ? (
                     <>
-                        <DetailContentTop movie={movie} />
-                        <DetailTrailer movie={movie} />
-                        <DetailPoster movie={movie} />
-                        <DetailContentBottom movie={movie} />
+                        <DetailContentTop detailMovie={detailMovie} />
+                        <DetailTrailer detailMovie={detailMovie} />
+                        <DetailPoster detailMovie={detailMovie} />
+                        <DetailContentBottom detailMovie={detailMovie} />
                     </>
                 ) : (
-                    <React.Fragment></React.Fragment>
+                    <>
+                        <DetailComment detailMovie={detailMovie} />
+                    </>
                 )}
             </Grid>
         </React.Fragment>

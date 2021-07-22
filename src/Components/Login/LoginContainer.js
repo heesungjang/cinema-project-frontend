@@ -61,7 +61,6 @@ const LoginContainer = (props) => {
             />
 
             <ToastContainer
-                limit={1}
                 position="top-right"
                 autoClose={5000}
                 hideProgressBar={false}

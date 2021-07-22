@@ -59,19 +59,21 @@ const MainMovieList = (props) => {
             <Container>
                 <Slider {...settings}>
                     {movies.title &&
-                        movies.title.map((title, i) => (
-                            <Item
-                                key={i}
-                                title={title}
-                                rank={i + 1}
-                                book_rate={movies.bookRate[i]}
-                                photos={movies.photos[i]}
-                                rate={movies.rate[i]}
-                                result={movies.result[i]}
-                                trailers={movies.trailers[i]}
-                                history={history}
-                            />
-                        ))}
+                        movies.title.map((title, i) =>
+                            movies.photos[i] !== null ? (
+                                <Item
+                                    key={i}
+                                    title={title}
+                                    rank={i + 1}
+                                    book_rate={movies.bookRate[i]}
+                                    photos={movies.photos[i]}
+                                    rate={movies.rate[i]}
+                                    result={movies.result[i]}
+                                    trailers={movies.trailers[i]}
+                                    history={history}
+                                />
+                            ) : null
+                        )}
                 </Slider>
             </Container>
         </>

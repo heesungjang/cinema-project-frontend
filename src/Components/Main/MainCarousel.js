@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
 
 import Modal from "./Modal";
 import { Paper } from "@material-ui/core";
@@ -52,7 +51,6 @@ const MainCarousel = (props) => {
                 "https://caching2.lottecinema.co.kr/lotte_image/2021/Bus/Bus_1920774.jpg",
         },
     ];
-    // console.log(movie_list);
 
     return (
         <>

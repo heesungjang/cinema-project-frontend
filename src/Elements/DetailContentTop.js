@@ -13,10 +13,8 @@ const ScrollbarContainer = styled.div`
     &::-webkit-scrollbar {
         /* 세로 스크롤 넓이 */
         width: 8px;
-
         /* 가로 스크롤 높이 */
         height: 8px;
-
         border-radius: 6px;
         background: rgba(255, 255, 255, 0.4);
     }
@@ -29,6 +27,8 @@ const ScrollbarContainer = styled.div`
 const useStyles = makeStyles({
     mainContainer: {
         display: "flex",
+        maxWidth: "932px",
+        margin: "0 auto",
     },
     subContainer: {
         display: "flex",
@@ -75,9 +75,47 @@ const useStyles = makeStyles({
 });
 
 const DetailContentTop = (props) => {
-    const { movie } = props;
-    console.log(movie);
     const classes = useStyles();
+
+    const { detailMovie } = props;
+
+    // 남성 선호도
+    const man_like =
+        detailMovie.preference &&
+        (detailMovie.preference.gender !== 0 ||
+            detailMovie.preference.gender !== null)
+            ? ((1 - detailMovie.preference.gender) * 100).toFixed(1)
+            : parseFloat(0).toFixed(1);
+    // 여성 선호도
+    const woman_like =
+        detailMovie.preference &&
+        (detailMovie.preference.gender * 100).toFixed(1);
+
+    // 10대 선호도
+    const teens_like =
+        detailMovie.preference &&
+        detailMovie.preference.generation["10"] !== null
+            ? detailMovie.preference.generation["10"].toFixed(1)
+            : 0;
+    // 20대 선호도
+    const twenties =
+        detailMovie.preference &&
+        detailMovie.preference.generation["20"] !== null
+            ? detailMovie.preference.generation["20"].toFixed(1)
+            : 0;
+    // 30대 선호도
+    const thirties =
+        detailMovie.preference &&
+        detailMovie.preference.generation["30"] !== null
+            ? detailMovie.preference.generation["30"].toFixed(1)
+            : 0;
+    // 40대 선호도
+    const forties =
+        detailMovie.preference &&
+        detailMovie.preference.generation["40"] !== null
+            ? detailMovie.preference.generation["40"].toFixed(1)
+            : 0;
+
     return (
         <Grid xs={12} className={classes.mainContainer}>
             <Grid xs={6} className={classes.subContainer}>
@@ -87,10 +125,8 @@ const DetailContentTop = (props) => {
                     </Typography>
                     <ScrollbarContainer>
                         <Grid className={classes.textContent}>
-                            {parse(movie.synopsis)}
-                            {/* {parse(
-                                "<span><b> “제 이름은 고진옥, 제주 해녀입니다” </b><br><br>‘바다에서 숨 오래 참기’로 기네스북에 오른 제주 해녀 진옥(고두심)<br>성질도, 물질도 제주에서 그를 이길 사람이 없다.<br>진옥을 취재하기 위해 서울에서 내려온 다큐멘터리 PD 경훈(지현우)<br>하지만 진옥의 반응은 냉담하다.<br>경훈은 진옥의 마음을 열기 위해 그의 주위를 맴돌기 시작하고,<br>진옥은 바다에 빠진 경훈의 목숨을 구해준 이후<br>자신과 같은 상처를 가졌음을 알고 경훈에게 마음을 연다.<br>제주 그리고 해녀의 삶에 깊숙이 들어가게 된 경훈<br>그런 경훈을 통해 진옥은 생전 처음 느껴보는 감정들을 마주하기 시작하는데…<br><br><b> 당신을 만나고 비로소 알게 된,<br>나의 가장 빛나는 순간 </b></span>"
-                            )} */}
+                            {detailMovie.synopsis &&
+                                parse(detailMovie.synopsis)}
                         </Grid>
                     </ScrollbarContainer>
                 </Grid>
@@ -116,11 +152,7 @@ const DetailContentTop = (props) => {
                                     <Typography
                                         className={classes.maleColoredText}
                                     >
-                                        {100 -
-                                            (
-                                                movie.preference.gender * 100
-                                            ).toFixed(1)}
-                                        %
+                                        {man_like}%
                                     </Typography>
                                 </Grid>
 
@@ -137,10 +169,7 @@ const DetailContentTop = (props) => {
                                                 classes.femaleColoredText
                                             }
                                         >
-                                            {(
-                                                movie.preference.gender * 100
-                                            ).toFixed(1)}
-                                            %
+                                            {woman_like}%
                                         </Typography>
                                     </Grid>
                                 </dd>
@@ -155,7 +184,7 @@ const DetailContentTop = (props) => {
                                     <Typography
                                         className={classes.agePreferenceText}
                                     >
-                                        {movie.preference.generation["10"]}%
+                                        {teens_like}%
                                     </Typography>
                                 </Grid>
 
@@ -167,7 +196,7 @@ const DetailContentTop = (props) => {
                                                 classes.agePreferenceText
                                             }
                                         >
-                                            {movie.preference.generation["20"]}%
+                                            {twenties}%
                                         </Typography>
                                     </Grid>
                                 </dd>
@@ -179,7 +208,7 @@ const DetailContentTop = (props) => {
                                                 classes.agePreferenceText
                                             }
                                         >
-                                            {movie.preference.generation["30"]}%
+                                            {thirties}%
                                         </Typography>
                                     </Grid>
                                 </dd>
@@ -191,7 +220,7 @@ const DetailContentTop = (props) => {
                                                 classes.agePreferenceText
                                             }
                                         >
-                                            {movie.preference.generation["40"]}%
+                                            {forties}%
                                         </Typography>
                                     </Grid>
                                 </dd>

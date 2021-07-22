@@ -4,7 +4,6 @@ import ReactPlayer from "react-player";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Grid, Typography } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core";
 
@@ -25,8 +24,8 @@ const useStyles = makeStyles({
 });
 
 const DetailTrailer = (props) => {
-    const { movie } = props;
     const classes = useStyles();
+    const { detailMovie } = props;
 
     const settings = {
         dots: false,
@@ -38,11 +37,14 @@ const DetailTrailer = (props) => {
 
     return (
         <Container>
-            <Title>트레일러({movie.trailers.length})</Title>
+            <Title>
+                트레일러({detailMovie.trailers && detailMovie.trailers.length})
+            </Title>
             <Slider {...settings}>
-                {movie.trailers.map((item, i) => (
-                    <Item key={i} item={item} />
-                ))}
+                {detailMovie.trailers &&
+                    detailMovie.trailers.map((item, i) => (
+                        <Item key={i} item={item} />
+                    ))}
             </Slider>
         </Container>
         // <Grid className={classes.mainContainer}>

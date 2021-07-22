@@ -24,8 +24,8 @@ const useStyles = makeStyles({
 });
 
 const DetailContentBottom = (props) => {
-    const { movie } = props;
-    // console.log("movie: ", movie);
+    const { detailMovie } = props;
+
     const classes = useStyles();
 
     return (
@@ -36,11 +36,16 @@ const DetailContentBottom = (props) => {
                     <ListItem>
                         <Avatar
                             className={classes.avatar}
-                            src={movie.director.img}
+                            src={
+                                detailMovie.director && detailMovie.director.img
+                            }
                         />
                         <Container>
                             <Typography className={classes.text}>
-                                <u>{movie.director.name}</u>
+                                <u>
+                                    {detailMovie.director &&
+                                        detailMovie.director.name}
+                                </u>
                             </Typography>
                             <Typography className={classes.text}>
                                 감독
@@ -48,16 +53,16 @@ const DetailContentBottom = (props) => {
                         </Container>
                     </ListItem>
                 </Grid>
-                {movie.actors.map((item, i) => (
-                    <Item key={item.id} {...item} />
-                ))}
+                {detailMovie.actors &&
+                    detailMovie.actors.map((actor, i) => (
+                        <Item key={actor.id} {...actor} />
+                    ))}
             </Grid>
         </Box>
     );
 };
 
 function Item(props) {
-    // console.log("props: ", props);
     const classes = useStyles();
     return (
         <>
